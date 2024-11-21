@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
+import { ImageLibrary} from './../../../assets/imagedata'
 
 @Component({
-    selector: 'avans-nx-workshop-about',
-    templateUrl: './about.component.html',
-    styleUrls: ['./about.component.css']
+  selector: 'app-about',
+  templateUrl: './about.component.html',
+  styleUrls: ['./about.component.css'],
 })
-export class AboutComponent {}
+export class AboutComponent {
+  erd = ImageLibrary.erd;
+}

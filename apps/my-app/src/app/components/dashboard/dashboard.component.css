@@ -1,0 +1,37 @@
+.single-image {
+    height: 60vh;
+    background-color: #333;
+    color: white;
+}
+
+.single-image img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.box {
+    background-color: #1a1a1a;
+    color: #fff;
+    border-radius: 10px;
+    padding: 30px;
+    margin-top: 30px;
+}
+
+.round-photo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-left: 15px;
+}
+
+.row-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.row-item .text {
+    flex-grow: 1;
+}

@@ -1,1 +1,164 @@
-<p>about works!</p>
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Over de Applicatie</title>
+  </head>
+  <body>
+    <section>
+      <h2>Wat is deze applicatie?</h2>
+      <p>
+        Onze applicatie biedt een overzicht van treinen, zodat gebruikers
+        gemakkelijk treinen kunnen uploaden, bewerken en met anderen kunnen
+        delen. Of je nu een treinliefhebber bent of gewoon op zoek bent naar
+        specifieke treinen, deze applicatie biedt alles wat je nodig hebt om
+        je treinervaring te verbeteren.
+        <br /><br />
+        Deze applicatie is op dit moment nog in ontwikkeling dus er bestaat een
+        kans dat de huidige functionaliteit nog niet werkt en/of later nog zal
+        gaan veranderen.
+      </p>
+    </section>
+
+    <section class="features">
+      <h2>Belangrijkste functies</h2>
+      <ul>
+        <li>
+          <strong>Uploaden van treinen:</strong> Gebruikers kunnen hun favoriete
+          treinen delen.
+        </li>
+        <li>
+          <strong>Bewerken van gedeelde treinen:</strong> Het is mogelijk om
+          gedeelde treinen aan te passen en up-to-date te houden.
+        </li>
+        <li>
+          <strong>Reageren op gedeelde treinen:</strong> Gebruikers kunnen hun
+          mening geven over treinen die door anderen zijn gedeeld.
+        </li>
+        <li>
+          <strong>Zoeken en filteren:</strong> Een krachtige zoekfunctie om snel
+          gedeelde treinen te vinden.
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Waarom deze applicatie?</h2>
+      <p>
+        Deze applicatie is ontworpen om treinliefhebbers en reizigers een
+        platform te bieden om hun kennis te delen en elkaar te helpen bij het
+        vinden van de beste treinen. Of je nu een expert bent in het
+        treinverkeer of een nieuwsgierige reiziger, onze app biedt een plek voor
+        iedereen om hun ervaringen te delen en van anderen te leren.
+      </p>
+    </section>
+
+    <section>
+      <h2>Neem contact met ons op</h2>
+      <p>
+        Heb je vragen of suggesties? Neem contact met ons op via het
+        onderstaande formulier of stuur een e-mail naar
+        <a>support&#64;train-fandom.nl</a>.
+      </p>
+    </section>
+
+    <section>
+      <h2>Datamodel</h2>
+      <img src="{{erd}}" alt="ERD Diagram" />
+    </section>
+
+    <section>
+      <h2>Entiteiten en Attributen</h2>
+      <div>
+        <h3>User (Gebruiker)</h3>
+        <p>
+          De User-entiteit bevat informatie over gebruikers van de applicatie, zoals persoonlijke gegevens en accountstatus.
+        </p>
+        <ul>
+          <li><strong>firstName:</strong> Voornaam van de gebruiker.</li>
+          <li><strong>lastName:</strong> Achternaam van de gebruiker.</li>
+          <li><strong>username:</strong> Gebruikersnaam (uniek binnen het systeem).</li>
+          <li><strong>emailAddress:</strong> E-mailadres van de gebruiker.</li>
+          <li><strong>dayOfBirth:</strong> Geboortedatum van de gebruiker.</li>
+          <li><strong>password:</strong> Wachtwoord (geëncrypteerd opgeslagen).</li>
+          <li><strong>isActive:</strong> Boolean die aangeeft of het account actief is.</li>
+        </ul>
+
+        <h3>Address (Adres)</h3>
+        <p>
+          De Address-entiteit is een zwakke entiteit, gekoppeld aan de Station-entiteit, die de fysieke locatie van een station specificeert.
+        </p>
+        <ul>
+          <li><strong>city:</strong> Stad waar het adres zich bevindt.</li>
+          <li><strong>street:</strong> Straatnaam.</li>
+          <li><strong>number:</strong> Huisnummer.</li>
+          <li><strong>zipcode:</strong> Postcode.</li>
+          <li><strong>country:</strong> Land.</li>
+        </ul>
+
+        <h3>Station (Station)</h3>
+        <p>
+          De Station-entiteit beschrijft stations die onderdeel zijn van het systeem.
+        </p>
+        <ul>
+          <li><strong>name:</strong> Naam van het station.</li>
+          <li><strong>numberOfTracks:</strong> Aantal sporen op het station.</li>
+          <li><strong>inUseSince:</strong> Datum waarop het station in gebruik is genomen.</li>
+        </ul>
+
+        <h3>Train (Trein)</h3>
+        <p>
+          De Train-entiteit bevat informatie over treinen die via het systeem kunnen worden beheerd.
+        </p>
+        <ul>
+          <li><strong>name:</strong> Naam of identificatie van de trein.</li>
+          <li><strong>sort:</strong> Type trein (bijv. hogesnelheidstrein, goederen, etc.).</li>
+          <li><strong>operator:</strong> Exploitant of eigenaar van de trein.</li>
+          <li><strong>model:</strong> Model van de trein.</li>
+          <li><strong>capacity:</strong> Maximale capaciteit (aantal passagiers of gewicht).</li>
+          <li><strong>numberOfWagons:</strong> Aantal wagons.</li>
+          <li><strong>maxSpeed:</strong> Maximale snelheid van de trein (in km/h).</li>
+          <li><strong>propulsion:</strong> Aandrijvingstype (bijv. elektrisch, diesel).</li>
+          <li><strong>length:</strong> Lengte van de trein (in meters).</li>
+          <li><strong>manufactureYear:</strong> Bouwjaar van de trein.</li>
+          <li><strong>manufacturer:</strong> Naam van de fabrikant.</li>
+          <li><strong>weight:</strong> Gewicht van de trein.</li>
+          <li><strong>energyConsumption:</strong> Energieverbruik (bijv. kWh per kilometer).</li>
+          <li><strong>isActive:</strong> Boolean die aangeeft of de trein in gebruik is.</li>
+          <li><strong>image:</strong> Afbeelding van de trein (URI of bestandslocatie).</li>
+        </ul>
+
+        <h3>Facility (Faciliteit)</h3>
+        <p>
+          De Facility-entiteit geeft de naam van beschikbare faciliteiten die aan treinen of stations kunnen worden gekoppeld.
+        </p>
+        <ul>
+          <li><strong>name:</strong> Naam van de faciliteit (bijv. Wi-Fi, bagageruimte).</li>
+        </ul>
+
+        <h3>Comment (Opmerking)</h3>
+        <p>
+          De Comment-entiteit beschrijft opmerkingen of reviews van gebruikers, mogelijk gekoppeld aan treinen of stations.
+        </p>
+        <ul>
+          <li><strong>content:</strong> De inhoud van de opmerking.</li>
+          <li><strong>postDate:</strong> Datum waarop de opmerking is geplaatst.</li>
+          <li><strong>isVerified:</strong> Boolean die aangeeft of de opmerking is gecontroleerd.</li>
+          <li><strong>isActive:</strong> Boolean die aangeeft of de opmerking zichtbaar is.</li>
+        </ul>
+      </div>
+
+      <h2>Relaties tussen Entiteiten</h2>
+      <ul>
+        <li><strong>User → Comment:</strong> Een gebruiker kan meerdere opmerkingen plaatsen, en een opmerking wordt door één gebruiker geplaatst.</li>
+        <li><strong>User → Train:</strong> Een gebruiker kan informatie plaatsen over een trein.</li>
+        <li><strong>User → Address:</strong> Elke gebruiker heeft precies één adres, maar een adres kan uniek aan één gebruiker gekoppeld zijn.</li>
+        <li><strong>Train → Comment:</strong> Een trein kan meerdere opmerkingen hebben, en een opmerking kan maar aan één trein gekoppeld zijn.</li>
+        <li><strong>Train → Facility:</strong> Een trein kan meerdere faciliteiten hebben, en een faciliteit kan aan meerdere treinen gekoppeld zijn.</li>
+        <li><strong>Train → Station:</strong> Elke trein is gekoppeld aan precies één station waar de trein gespot is. Als de trein niet op het station zelf gespot is wordt hij gekoppelt aan het station dat er het meest dichtbij ligt.</li>
+        <li><strong>Station → Address:</strong> Elk station heeft precies één adres, maar een adres kan uniek aan één station gekoppeld zijn.</li>
+      </ul>
+    </section>
+  </body>
+</html>

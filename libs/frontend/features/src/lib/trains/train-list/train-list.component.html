@@ -1,0 +1,27 @@
+<h1 class="mt-3 mb-4">Een overzicht van treinen</h1>
+<table class="table table-border table-hover">
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>Naam</th>
+      <th>Soort</th>
+      <th>Model</th>
+      <th>Vervoerder</th>
+      <th>Bouwjaar</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      *ngFor="let train of trains"
+      (click)="goToDetail(train.id)"
+      style="cursor: pointer"
+    >
+      <td>{{ train.id }}</td>
+      <td>{{ train.name }}</td>
+      <td>{{ train.sort }}</td>
+      <td>{{ train.model }}</td>
+      <td>{{ train.operator }}</td>
+      <td>{{ train.manufactureYear }}</td>
+    </tr>
+  </tbody>
+</table>
