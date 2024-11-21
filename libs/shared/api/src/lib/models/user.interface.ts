@@ -1,5 +1,5 @@
 // import { IEntity } from 'libs/share-a-meal/common/src/lib/entity/entity.model';
-import { IMeal } from './meal.interface';
+import { ITrain } from './train.interface';
 import { IToken, IUserRegistration } from './auth.interface';
 import { Id } from './id.type';
 
@@ -43,7 +43,7 @@ export interface IUserInfo extends IUserRegistration {
  * All user information, incl. domain entities
  */
 export interface IUser extends IUserInfo {
-    meals: IMeal[];
+    trains: ITrain[];
 }
 
 export type ICreateUser = Pick<IUser, 'name' | 'password' | 'emailAddress'>;

@@ -3,7 +3,7 @@ import { Document, Schema as MongooseSchema } from 'mongoose';
 // import { v4 as uuid } from 'uuid';
 import isEmail from 'validator/lib/isEmail';
 import {
-    IMeal,
+    ITrain,
     IUser,
     UserGender,
     UserRole
@@ -73,9 +73,9 @@ export class User implements IUser {
     @Prop({
         default: [],
         type: [MongooseSchema.Types.ObjectId],
-        ref: 'Meal'
+        ref: 'Train'
     })
-    meals: IMeal[] = [];
+    trains: ITrain[] = [];
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

@@ -1,5 +1,6 @@
 import { IsNotEmpty, IsString, IsBoolean, IsOptional } from 'class-validator';
 import {
+    ITrain,
     // ICreateUser,
     IUpdateUser,
     IUpsertUser,
@@ -8,7 +9,7 @@ import {
     UserGender,
     UserRole
 } from '@avans-nx-workshop/shared/api';
-import { Meal } from '@avans-nx-workshop/backend/features';
+import { Train } from '@avans-nx-workshop/backend/features';
 
 export class CreateUserDto implements IUserRegistration {
     @IsString()
@@ -49,7 +50,7 @@ export class UpsertUserDto implements IUpsertUser {
 
     @IsString()
     @IsNotEmpty()
-    meals: Meal[] = [];
+    trains: Train[] = [];
 
     @IsString()
     @IsNotEmpty()
@@ -58,7 +59,7 @@ export class UpsertUserDto implements IUpsertUser {
     @IsString()
     @IsNotEmpty()
     gender: UserGender = UserGender.Unknown;
-}
+ }
 
 export class UpdateUserDto implements IUpdateUser {
     _id?: string | undefined;

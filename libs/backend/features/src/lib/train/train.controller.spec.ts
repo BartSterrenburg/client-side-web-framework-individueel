@@ -1,8 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { MealController } from './meal.controller';
+import { TrainController } from './train.controller';
 
 describe('MealController', () => {
-    let controller: MealController;
+    let controller: TrainController;
 
     // beforeEach(async () => {
     //     const module: TestingModule = await Test.createTestingModule({
