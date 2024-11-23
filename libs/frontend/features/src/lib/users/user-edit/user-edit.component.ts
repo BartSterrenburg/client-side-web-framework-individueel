@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-    selector: 'avans-nx-workshop-user-edit',
+    selector: 'train-repo-user-edit',
     templateUrl: './user-edit.component.html',
     styles: []
 })

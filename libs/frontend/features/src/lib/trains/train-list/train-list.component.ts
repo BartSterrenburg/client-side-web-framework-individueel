@@ -16,8 +16,11 @@ export class TrainListComponent implements OnInit {
   ) {}
 
   goToDetail(trainId: number): void {
-    // Navigeer naar de detailpagina voor een specifieke trein
     this.router.navigate([`/train/${trainId}`]);
+  }
+
+  goToPostTrainForm(): void {
+    this.router.navigate(['/train-post']);
   }
 
   ngOnInit(): void {

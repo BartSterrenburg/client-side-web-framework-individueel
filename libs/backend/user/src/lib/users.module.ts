@@ -3,7 +3,7 @@ import { UserController } from './user/user.controller';
 import { UserService } from './user/user.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { User, UserSchema } from './user/user.schema';
-// import { Meal, MealSchema } from '@avans-nx-workshop/backend/features';
+// import { Meal, MealSchema } from '@train-repo/backend/features';
 
 @Module({
     imports: [

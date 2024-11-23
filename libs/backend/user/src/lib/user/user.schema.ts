@@ -2,12 +2,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Schema as MongooseSchema } from 'mongoose';
 // import { v4 as uuid } from 'uuid';
 import isEmail from 'validator/lib/isEmail';
-import {
-    ITrain,
-    IUser,
-    UserGender,
-    UserRole
-} from '@avans-nx-workshop/shared/api';
+import { ITrain, IUser, UserGender, UserRole } from '@train-repo/shared/api';
 import { IsMongoId } from 'class-validator';
 
 export type UserDocument = User & Document;

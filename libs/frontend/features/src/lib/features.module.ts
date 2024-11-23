@@ -6,6 +6,7 @@ import { UserEditComponent } from './users/user-edit/user-edit.component';
 import { TrainListComponent } from './trains/train-list/train-list.component';
 
 import { provideHttpClient } from '@angular/common/http';
+import { TrainPostComponent } from './trains/train-post/train-post.component';
 
 @NgModule({
     imports: [CommonModule],
@@ -13,14 +14,11 @@ import { provideHttpClient } from '@angular/common/http';
         UserDetailsComponent,
         UserDetailsComponent,
         UserListComponent,
-        UserEditComponent,        
-        TrainListComponent
+        UserEditComponent,
+        TrainListComponent,
+        TrainPostComponent
     ],
-    exports: [
-        UserListComponent, 
-        UserDetailsComponent, 
-        UserEditComponent
-    ],
+    exports: [UserListComponent, UserDetailsComponent, UserEditComponent],
     providers: [provideHttpClient()]
 })
 export class FeaturesModule {}

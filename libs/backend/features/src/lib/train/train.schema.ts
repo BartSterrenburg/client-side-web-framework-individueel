@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Schema as MongooseSchema } from 'mongoose';
-import { TrainSort, IUserInfo } from '@avans-nx-workshop/shared/api';
-import { ITrain } from '@avans-nx-workshop/shared/api';
+import { TrainSort, IUserInfo } from '@train-repo/shared/api';
+import { ITrain } from '@train-repo/shared/api';
 import { IsMongoId } from 'class-validator';
 
 export type TrainDocument = Train & Document;

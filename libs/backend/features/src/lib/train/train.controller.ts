@@ -1,9 +1,9 @@
 import { Controller, Logger, Request } from '@nestjs/common';
 import { TrainService } from './train.service';
 import { Get, Param, Post, Body, UseGuards } from '@nestjs/common';
-import { ITrain } from '@avans-nx-workshop/shared/api';
-import { CreateTrainDto } from '@avans-nx-workshop/backend/dto';
-import { AuthGuard } from '@avans-nx-workshop/backend/auth';
+import { ITrain } from '@train-repo/shared/api';
+import { CreateTrainDto } from '@train-repo/backend/dto';
+import { AuthGuard } from '@train-repo/backend/auth';
 
 @Controller('train')
 export class TrainController {

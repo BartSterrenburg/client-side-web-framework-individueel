@@ -2,12 +2,9 @@ import { HttpException, Injectable, Logger } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { Train as TrainModel, TrainDocument } from './train.schema';
-import { ITrain } from '@avans-nx-workshop/shared/api';
-import { CreateTrainDto, UpdateTrainDto } from '@avans-nx-workshop/backend/dto';
-import {
-    UserDocument,
-    User as UserModel
-} from '@avans-nx-workshop/backend/user';
+import { ITrain } from '@train-repo/shared/api';
+import { CreateTrainDto, UpdateTrainDto } from '@train-repo/backend/dto';
+import { UserDocument, User as UserModel } from '@train-repo/backend/user';
 
 @Injectable()
 export class TrainService {
@@ -27,7 +24,10 @@ export class TrainService {
         this.logger.log(`Finding all items`);
         const items = await this.trainModel
             .find()
-            .populate('owner', 'name emailAddress gender isActive profileImgUrl')
+            .populate(
+                'owner',
+                'name emailAddress gender isActive profileImgUrl'
+            )
             .exec();
         return items;
     }

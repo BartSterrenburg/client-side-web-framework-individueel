@@ -11,7 +11,7 @@ import {
     IUpsertTrain,
     IUserIdentity,
     TrainSort
-} from '@avans-nx-workshop/shared/api';
+} from '@train-repo/shared/api';
 
 /**
  * Use the `Pick` utility type to extract only the properties we want for
@@ -29,7 +29,6 @@ export class CreateTrainDto implements ICreateTrain {
     @IsString()
     @IsOptional()
     sort!: TrainSort;
-
 }
 
 export class UpsertTrainDto implements IUpsertTrain {
@@ -80,7 +79,7 @@ export class UpsertTrainDto implements IUpsertTrain {
     @IsString()
     @IsOptional()
     manufacturer!: string;
-    
+
     @IsString()
     @IsOptional()
     weight!: number;
@@ -92,9 +91,6 @@ export class UpsertTrainDto implements IUpsertTrain {
     @IsString()
     @IsOptional()
     facilities!: string[];
-
 }
 
-export class UpdateTrainDto implements IUpdateTrain {
-
-}
+export class UpdateTrainDto implements IUpdateTrain {}
