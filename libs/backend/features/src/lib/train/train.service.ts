@@ -27,7 +27,7 @@ export class TrainService {
         this.logger.log(`Finding all items`);
         const items = await this.trainModel
             .find()
-            .populate('cook', 'name emailAddress gender isActive profileImgUrl')
+            .populate('owner', 'name emailAddress gender isActive profileImgUrl')
             .exec();
         return items;
     }
