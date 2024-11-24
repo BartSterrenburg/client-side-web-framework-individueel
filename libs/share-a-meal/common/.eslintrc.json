@@ -21,7 +21,7 @@
           "error",
           {
             "type": "element",
-            "prefix": "avans-nx-workshop",
+            "prefix": "train-repo",
             "style": "kebab-case"
           }
         ]

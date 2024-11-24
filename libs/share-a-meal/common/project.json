@@ -2,7 +2,7 @@
   "name": "common",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/share-a-meal/common/src",
-  "prefix": "avans-nx-workshop",
+  "prefix": "train-repo",
   "tags": [],
   "projectType": "library",
   "targets": {

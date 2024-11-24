@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
-import { BackendFeaturesModule } from '@avans-nx-workshop/backend/features';
-import { UsersModule } from '@avans-nx-workshop/backend/user';
-import { AuthModule } from '@avans-nx-workshop/backend/auth';
+import { BackendFeaturesModule } from '@train-repo/backend/features';
+import { UsersModule } from '@train-repo/backend/user';
+import { AuthModule } from '@train-repo/backend/auth';
 import { MongooseModule } from '@nestjs/mongoose';
-import { environment } from '@avans-nx-workshop/shared/util-env';
+import { environment } from '@train-repo/shared/util-env';
 import { Logger } from '@nestjs/common';
 
 @Module({

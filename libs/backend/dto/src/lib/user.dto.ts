@@ -8,8 +8,8 @@ import {
     Id,
     UserGender,
     UserRole
-} from '@avans-nx-workshop/shared/api';
-import { Train } from '@avans-nx-workshop/backend/features';
+} from '@train-repo/shared/api';
+import { Train } from '@train-repo/backend/features';
 
 export class CreateUserDto implements IUserRegistration {
     @IsString()
@@ -59,7 +59,7 @@ export class UpsertUserDto implements IUpsertUser {
     @IsString()
     @IsNotEmpty()
     gender: UserGender = UserGender.Unknown;
- }
+}
 
 export class UpdateUserDto implements IUpdateUser {
     _id?: string | undefined;

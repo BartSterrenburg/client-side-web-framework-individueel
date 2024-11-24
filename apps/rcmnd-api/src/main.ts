@@ -4,7 +4,7 @@
  */
 import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
-import { ApiResponseInterceptor } from '@avans-nx-workshop/backend/dto';
+import { ApiResponseInterceptor } from '@train-repo/backend/dto';
 import { AppModule } from './app/app.module';
 import { CorsOptions } from '@nestjs/common/interfaces/external/cors-options.interface';
 

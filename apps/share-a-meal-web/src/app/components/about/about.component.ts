@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 
 @Component({
-    selector: 'avans-nx-workshop-about',
+    selector: 'train-repo-about',
     templateUrl: './about.component.html',
-    styles: [],
+    styles: []
 })
 export class AboutComponent {}

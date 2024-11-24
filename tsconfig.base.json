@@ -15,43 +15,43 @@
         "skipDefaultLibCheck": true,
         "baseUrl": ".",
         "paths": {
-            "@avans-nx-workshop/backend/auth": [
+            "@train-repo/backend/auth": [
                 "libs/backend/auth/src/index.ts"
             ],
-            "@avans-nx-workshop/backend/dto": ["libs/backend/dto/src/index.ts"],
-            "@avans-nx-workshop/backend/features": [
+            "@train-repo/backend/dto": ["libs/backend/dto/src/index.ts"],
+            "@train-repo/backend/features": [
                 "libs/backend/features/src/index.ts"
             ],
-            "@avans-nx-workshop/backend/neo4j": [
+            "@train-repo/backend/neo4j": [
                 "libs/backend/neo4j/src/index.ts"
             ],
-            "@avans-nx-workshop/backend/user": [
+            "@train-repo/backend/user": [
                 "libs/backend/user/src/index.ts"
             ],
-            "@avans-nx-workshop/frontend/common": [
-                "libs/frontend/common/src/index.ts"
-            ],
-            "@avans-nx-workshop/features": [
+            "@train-repo/features": [
                 "libs/frontend/features/src/index.ts"
             ],
-            "@avans-nx-workshop/frontend/ui": ["libs/frontend/ui/src/index.ts"],
-            "@avans-nx-workshop/share-a-meal/auth": [
+            "@train-repo/frontend/common": [
+                "libs/frontend/common/src/index.ts"
+            ],
+            "@train-repo/frontend/ui": ["libs/frontend/ui/src/index.ts"],
+            "@train-repo/share-a-meal/auth": [
                 "libs/share-a-meal/auth/src/index.ts"
             ],
-            "@avans-nx-workshop/share-a-meal/common": [
+            "@train-repo/share-a-meal/common": [
                 "libs/share-a-meal/common/src/index.ts"
             ],
-            "@avans-nx-workshop/share-a-meal/features": [
+            "@train-repo/share-a-meal/features": [
                 "libs/share-a-meal/features/src/index.ts"
             ],
-            "@avans-nx-workshop/share-a-meal/ui": [
+            "@train-repo/share-a-meal/ui": [
                 "libs/share-a-meal/ui/src/index.ts"
             ],
-            "@avans-nx-workshop/share-a-meal/user": [
+            "@train-repo/share-a-meal/user": [
                 "libs/share-a-meal/user/src/index.ts"
             ],
-            "@avans-nx-workshop/shared/api": ["libs/shared/api/src/index.ts"],
-            "@avans-nx-workshop/shared/util-env": [
+            "@train-repo/shared/api": ["libs/shared/api/src/index.ts"],
+            "@train-repo/shared/util-env": [
                 "libs/shared/util-env/src/index.ts"
             ]
         }

@@ -2,9 +2,9 @@ import { Module } from '@nestjs/common';
 import { TrainController } from './train/train.controller';
 import { TrainService } from './train/train.service';
 import { MongooseModule } from '@nestjs/mongoose';
-import { User as UserModel, UserSchema } from '@avans-nx-workshop/backend/user';
+import { User as UserModel, UserSchema } from '@train-repo/backend/user';
 import { Train as TrainModel, TrainSchema } from './train/train.schema';
-import { AuthModule } from '@avans-nx-workshop/backend/auth';
+import { AuthModule } from '@train-repo/backend/auth';
 import { JwtModule } from '@nestjs/jwt';
 
 @Module({

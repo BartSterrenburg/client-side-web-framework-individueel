@@ -2,7 +2,7 @@
     "name": "features",
     "$schema": "../../../node_modules/nx/schemas/project-schema.json",
     "sourceRoot": "libs/frontend/features/src",
-    "prefix": "avans-nx-workshop",
+    "prefix": "train-repo",
     "tags": [],
     "projectType": "library",
     "targets": {

@@ -1,4 +1,4 @@
-import { Neo4jBackendModule } from '@avans-nx-workshop/backend/neo4j';
+import { Neo4jBackendModule } from '@train-repo/backend/neo4j';
 import { Module } from '@nestjs/common';
 import { Neo4jModule } from 'nest-neo4j/dist';
 

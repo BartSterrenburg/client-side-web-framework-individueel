@@ -12,9 +12,9 @@ import {
     IUserCredentials,
     IUserIdentity,
     IUserRegistration
-} from '@avans-nx-workshop/shared/api';
-import { CreateUserDto } from '@avans-nx-workshop/backend/dto';
-import { UserExistGuard } from '@avans-nx-workshop/backend/user';
+} from '@train-repo/shared/api';
+import { CreateUserDto } from '@train-repo/backend/dto';
+import { UserExistGuard } from '@train-repo/backend/user';
 
 @Controller('auth')
 export class AuthController {

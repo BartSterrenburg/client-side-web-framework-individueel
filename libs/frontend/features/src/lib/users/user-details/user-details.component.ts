@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-    selector: 'avans-nx-workshop-user-details',
+    selector: 'train-repo-user-details',
     templateUrl: './user-details.component.html',
     styles: []
 })

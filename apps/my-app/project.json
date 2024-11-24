@@ -2,7 +2,7 @@
     "name": "my-app",
     "$schema": "../../node_modules/nx/schemas/project-schema.json",
     "projectType": "application",
-    "prefix": "avans-nx-workshop",
+    "prefix": "train-repo",
     "sourceRoot": "apps/my-app/src",
     "tags": [],
     "targets": {

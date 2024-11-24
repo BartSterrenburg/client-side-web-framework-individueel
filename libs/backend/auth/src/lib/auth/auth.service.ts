@@ -4,13 +4,10 @@ import {
     UnauthorizedException
 } from '@nestjs/common/exceptions';
 import { HttpStatus } from '@nestjs/common/enums';
-import {
-    User as UserModel,
-    UserDocument
-} from '@avans-nx-workshop/backend/user';
+import { User as UserModel, UserDocument } from '@train-repo/backend/user';
 import { JwtService } from '@nestjs/jwt';
-import { IUserCredentials, IUserIdentity } from '@avans-nx-workshop/shared/api';
-import { CreateUserDto } from '@avans-nx-workshop/backend/dto';
+import { IUserCredentials, IUserIdentity } from '@train-repo/shared/api';
+import { CreateUserDto } from '@train-repo/backend/dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 
