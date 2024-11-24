@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, of, BehaviorSubject } from 'rxjs';
 import { Train, TrainSort } from './train.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TrainService {
-  readonly trains: Train[] = [
+  private trains: Train[] = [
     {
       id: 1,
       sort: TrainSort.Intercity,
@@ -161,13 +161,34 @@ export class TrainService {
       facilities: ['WiFi', 'Power sockets'],
     }
   ];
+  private trainsSubject = new BehaviorSubject<Train[]>(this.trains);
+
+
 
   constructor() {
     console.log('Service constructor aangeroepen');
   }
 
-  getTrains(): Train[] {
-    return this.trains;
+  //GET
+  getTrains(): Observable<Train[]> {
+    return this.trainsSubject.asObservable();
+  }
+
+  //POST
+  addTrain(train: Train): void {
+    this.trains.push(train);
+  }
+
+  editTrain(): void {
+    // TO DO
+  }
+
+  deleteTrain(id: number): void {
+    const index = this.trains.findIndex(train => train.id === id);
+    if (index !== -1) {
+      this.trains.splice(index, 1);
+      this.trainsSubject.next(this.trains);
+    }
   }
 
   getTrainsAsObservable(): Observable<Train[]> {
@@ -180,5 +201,10 @@ export class TrainService {
   getTrainById(id: number): Train {
     console.log('getTrainById aangeroepen');
     return this.trains.filter((train) => train.id === id)[0];
+  }
+
+  loadTrains(trains: Train[]): void {
+    this.trains = trains;
+    this.trainsSubject.next(this.trains);
   }
 }

@@ -21,10 +21,18 @@ export class TrainDetailsComponent implements OnInit{
     private trainService: TrainService
   ) {}
 
-    ngOnInit(): void {
-        this.route.paramMap.subscribe((params) => {
-            this.trainId = params.get('id');
-            this.train = this.trainService.getTrainById(Number(this.trainId));
-          });    
-        }
+  deleteTrain(id: number): void {
+    if (id) {
+      this.trainService.deleteTrain(id);
+    }
+  }
+
+  ngOnInit(): void {
+  this.route.paramMap.subscribe((params) => {
+    this.trainId = params.get('id');
+    this.train = this.trainService.getTrainById(Number(this.trainId));
+    });    
+  }
+  
+  
 }
