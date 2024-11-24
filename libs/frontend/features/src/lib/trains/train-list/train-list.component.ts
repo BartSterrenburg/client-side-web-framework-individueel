@@ -19,7 +19,7 @@ export class TrainListComponent implements OnInit {
     this.router.navigate([`/train/${trainId}`]);
   }
 
-  goToPostTrainForm(): void {
+  postTrainForm(): void {
     this.router.navigate(['/train-post']);
   }
 

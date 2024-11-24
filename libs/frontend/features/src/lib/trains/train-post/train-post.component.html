@@ -1,1 +1,117 @@
-<p>train-post works!</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Train Form</title>
+</head>
+<body>
+  <div class="container">
+    <div class="form-container">
+      <h2 class="text-center mb-4">Train Information Form</h2>
+      <form>
+        <!-- Train ID -->
+        <div class="mb-3">
+          <label for="trainId" class="form-label">Train ID</label>
+          <input type="number" class="form-control" id="trainId" placeholder="Enter Train ID" required>
+        </div>
+
+        <!-- Train Sort -->
+        <div class="mb-3">
+          <label for="trainSort" class="form-label">Train Sort</label>
+          <select class="form-select" id="trainSort" required>
+            <option value="">Select Sort</option>
+            <option value="Sprinter">Sprinter</option>
+            <option value="Intercity">Intercity</option>
+            <option value="HighSpeed">HighSpeed</option>
+            <option value="Freight">Freight</option>
+          </select>
+        </div>
+
+        <!-- Name -->
+        <div class="mb-3">
+          <label for="trainName" class="form-label">Name</label>
+          <input type="text" class="form-control" id="trainName" placeholder="Enter Train Name" required>
+        </div>
+
+        <!-- Operator -->
+        <div class="mb-3">
+          <label for="trainOperator" class="form-label">Operator</label>
+          <input type="text" class="form-control" id="trainOperator" placeholder="Enter Operator" required>
+        </div>
+
+        <!-- Model -->
+        <div class="mb-3">
+          <label for="trainModel" class="form-label">Model</label>
+          <input type="text" class="form-control" id="trainModel" placeholder="Enter Model" required>
+        </div>
+
+        <!-- Capacity -->
+        <div class="mb-3">
+          <label for="trainCapacity" class="form-label">Capacity</label>
+          <input type="number" class="form-control" id="trainCapacity" placeholder="Enter Capacity" required>
+        </div>
+
+        <!-- Number of Wagons -->
+        <div class="mb-3">
+          <label for="numberOfWagons" class="form-label">Number of Wagons</label>
+          <input type="number" class="form-control" id="numberOfWagons" placeholder="Enter Number of Wagons" required>
+        </div>
+
+        <!-- Max Speed -->
+        <div class="mb-3">
+          <label for="maxSpeed" class="form-label">Max Speed (km/h)</label>
+          <input type="number" class="form-control" id="maxSpeed" placeholder="Enter Max Speed" required>
+        </div>
+
+        <!-- Propulsion -->
+        <div class="mb-3">
+          <label for="propulsion" class="form-label">Propulsion</label>
+          <input type="text" class="form-control" id="propulsion" placeholder="Enter Propulsion Type" required>
+        </div>
+
+        <!-- Length -->
+        <div class="mb-3">
+          <label for="length" class="form-label">Length (m)</label>
+          <input type="number" class="form-control" id="length" placeholder="Enter Train Length" required>
+        </div>
+
+        <!-- Manufacture Year -->
+        <div class="mb-3">
+          <label for="manufactureYear" class="form-label">Manufacture Year</label>
+          <input type="number" class="form-control" id="manufactureYear" placeholder="Enter Manufacture Year" required>
+        </div>
+
+        <!-- Manufacturer -->
+        <div class="mb-3">
+          <label for="manufacturer" class="form-label">Manufacturer</label>
+          <input type="text" class="form-control" id="manufacturer" placeholder="Enter Manufacturer" required>
+        </div>
+
+        <!-- Weight -->
+        <div class="mb-3">
+          <label for="weight" class="form-label">Weight (tons)</label>
+          <input type="number" class="form-control" id="weight" placeholder="Enter Weight" required>
+        </div>
+
+        <!-- Energy Consumption -->
+        <div class="mb-3">
+          <label for="energyConsumption" class="form-label">Energy Consumption (kWh/km)</label>
+          <input type="number" class="form-control" id="energyConsumption" placeholder="Enter Energy Consumption" required>
+        </div>
+
+        <!-- Facilities -->
+        <div class="mb-3">
+          <label for="facilities" class="form-label">Facilities</label>
+          <input type="text" class="form-control" id="facilities" placeholder="Enter Facilities (comma-separated)" required>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="d-grid">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

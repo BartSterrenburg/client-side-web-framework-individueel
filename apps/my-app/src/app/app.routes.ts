@@ -5,6 +5,7 @@ import { UserListComponent } from 'libs/frontend/features/src/lib/users/user-lis
 import { UserDetailsComponent } from 'libs/frontend/features/src/lib/users/user-details/user-details.component';
 import { TrainListComponent } from 'libs/frontend/features/src/lib/trains/train-list/train-list.component'
 import { TrainDetailsComponent } from 'libs/frontend/features/src/lib/trains/train-details/train-details.component'
+import { TrainPostComponent } from 'libs/frontend/features/src/lib/trains/train-post/train-post.component';
 
 export const appRoutes: Route[] = [
     {path: '', pathMatch: 'full', redirectTo: 'dashboard'},
@@ -13,5 +14,6 @@ export const appRoutes: Route[] = [
     {path: 'user', component: UserListComponent, pathMatch: 'full'},
     {path: 'train', component: TrainListComponent, pathMatch: 'full'},
     {path: 'user/:id', component: UserDetailsComponent, pathMatch: 'full'},
-    {path: 'train/:id', component: TrainDetailsComponent, pathMatch: 'full'}
+    {path: 'train/:id', component: TrainDetailsComponent, pathMatch: 'full'},
+    {path: 'train-post', component: TrainPostComponent, pathMatch: 'full'}
 ];
