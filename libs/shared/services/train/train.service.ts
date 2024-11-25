@@ -8,7 +8,7 @@ import { Train, TrainSort } from './train.model';
 export class TrainService {
   private trains: Train[] = [
     {
-      id: 1,
+      id: "1",
       sort: TrainSort.Intercity,
       name: 'Intercity 1000',
       operator: 'NS',
@@ -25,7 +25,7 @@ export class TrainService {
       facilities: ['WiFi', 'Toilets', 'Power sockets'],
     },
     {
-      id: 2,
+      id: "2",
       sort: TrainSort.Sprinter,
       name: 'Sprinter 200',
       operator: 'NS',
@@ -42,7 +42,7 @@ export class TrainService {
       facilities: ['Toilets'],
     },
     {
-      id: 3,
+      id: "3",
       sort: TrainSort.HighSpeed,
       name: 'Thalys 3000',
       operator: 'Thalys',
@@ -59,7 +59,7 @@ export class TrainService {
       facilities: ['WiFi', 'Power sockets', 'Restaurant'],
     },
     {
-      id: 4,
+      id: "4",
       sort: TrainSort.Freight,
       name: 'Freight 4000',
       operator: 'DB Cargo',
@@ -76,7 +76,7 @@ export class TrainService {
       facilities: ['None'],
     },
     {
-      id: 5,
+      id: "5",
       sort: TrainSort.Intercity,
       name: 'Intercity 1500',
       operator: 'NS',
@@ -93,7 +93,7 @@ export class TrainService {
       facilities: ['WiFi', 'Toilets', 'Power sockets'],
     },
     {
-      id: 6,
+      id: "6",
       sort: TrainSort.Sprinter,
       name: 'Sprinter 300',
       operator: 'NS',
@@ -110,7 +110,7 @@ export class TrainService {
       facilities: ['Toilets'],
     },
     {
-      id: 7,
+      id: "7",
       sort: TrainSort.HighSpeed,
       name: 'Eurostar 5000',
       operator: 'Eurostar',
@@ -127,7 +127,7 @@ export class TrainService {
       facilities: ['WiFi', 'Power sockets', 'Toilets', 'Catering'],
     },
     {
-      id: 8,
+      id: "8",
       sort: TrainSort.Freight,
       name: 'Freight 5000',
       operator: 'SBB Cargo',
@@ -144,7 +144,7 @@ export class TrainService {
       facilities: ['None'],
     },
     {
-      id: 9,
+      id: "9",
       sort: TrainSort.Intercity,
       name: 'Intercity 2000',
       operator: 'NS',
@@ -183,7 +183,7 @@ export class TrainService {
     // TO DO
   }
 
-  deleteTrain(id: number): void {
+  deleteTrain(id: string): void {
     const index = this.trains.findIndex(train => train.id === id);
     if (index !== -1) {
       this.trains.splice(index, 1);
@@ -193,13 +193,10 @@ export class TrainService {
 
   getTrainsAsObservable(): Observable<Train[]> {
     console.log('getUsersAsObservable aangeroepen');
-    // 'of' is een rxjs operator die een Observable
-    // maakt van de gegeven data.
     return of(this.trains);
   }
 
-  getTrainById(id: number): Train {
-    console.log('getTrainById aangeroepen');
+  getTrainById(id: string): Train {
     return this.trains.filter((train) => train.id === id)[0];
   }
 }

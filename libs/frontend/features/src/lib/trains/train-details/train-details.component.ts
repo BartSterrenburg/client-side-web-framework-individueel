@@ -21,7 +21,7 @@ export class TrainDetailsComponent implements OnInit{
     private trainService: TrainService
   ) {}
 
-  deleteTrain(id: number): void {
+  deleteTrain(id: string): void {
     if (id) {
       this.trainService.deleteTrain(id);
     }
@@ -30,7 +30,9 @@ export class TrainDetailsComponent implements OnInit{
   ngOnInit(): void {
   this.route.paramMap.subscribe((params) => {
     this.trainId = params.get('id');
-    this.train = this.trainService.getTrainById(Number(this.trainId));
+      if(this.trainId) {
+        this.train = this.trainService.getTrainById(this.trainId!);
+      }
     });    
   }
   

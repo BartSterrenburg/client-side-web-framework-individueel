@@ -14,7 +14,7 @@
   <tbody>
     <tr
       *ngFor="let train of trains"
-      (click)="goToDetail(train.id)"
+      (click)="goToDetail(train!.id)"
       style="cursor: pointer"
     >
       <td>{{ train.id }}</td>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IUserInfo, UserRole, UserGender } from '@train-repo/shared/api';
-import { UserService } from '../user.service';
+import { UserService } from '../../../../../../shared/services/user/user.service';
 
 @Component({
     selector: 'train-repo-user-list',
@@ -9,34 +9,11 @@ import { UserService } from '../user.service';
 export class UserListComponent implements OnInit {
     users: IUserInfo[] = [];
 
-    constructor(private userSercice: UserService) {}
+    constructor(private userService: UserService) {}
 
     ngOnInit(): void {
-        this.userSercice
-            .getUsersAsync()
+        this.userService
+            .getUsersAsObservable()
             .subscribe((users) => (this.users = users));
     }
-
-    // [
-    //     {
-    //         _id: "1",
-    //         name: "robin",
-    //         emailAddress: "r.schellius@avans.nl",
-    //         role: UserRole.Unknown,
-    //         gender: UserGender.Unknown,
-    //         password: "secret",
-    //         isActive: true,
-    //         profileImgUrl: "url"
-    //     },
-    //     {
-    //         _id: "2",
-    //         name: "Davide",
-    //         emailAddress: "d.ambesi@avans.nl",
-    //         role: UserRole.Unknown,
-    //         gender: UserGender.Unknown,
-    //         password: "secret",
-    //         isActive: true,
-    //         profileImgUrl: "url"
-    //     }
-    // ]
 }
