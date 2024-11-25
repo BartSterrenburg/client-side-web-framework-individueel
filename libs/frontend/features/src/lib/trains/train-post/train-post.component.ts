@@ -11,4 +11,7 @@ import { Train } from './../../../../../../shared/services/train/train.model';
 })
 export class TrainPostComponent {
     constructor(private router: Router) {}
+
+    saveTrain(formData: string): void {
+    }
 }

@@ -202,9 +202,4 @@ export class TrainService {
     console.log('getTrainById aangeroepen');
     return this.trains.filter((train) => train.id === id)[0];
   }
-
-  loadTrains(trains: Train[]): void {
-    this.trains = trains;
-    this.trainsSubject.next(this.trains);
-  }
 }
