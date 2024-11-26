@@ -174,7 +174,8 @@ export class TrainService {
 
   //POST
   addTrain(train: Train): void {
-    this.trains.push(train);
+    const newTrain = { ...train, id: this.generateUniqueId() };
+    this.trains.push(newTrain);
     this.trainsSubject.next(this.trains);
   }
 
@@ -194,9 +195,12 @@ export class TrainService {
     return of(this.trains);
   }
 
-getTrainById(id: string): Observable<Train | undefined> {
-  const train = this.trains.find((train) => train.id === id);
-  return of(train); // Retourneer een Observable van de gevonden trein
-}
+  getTrainById(id: string): Observable<Train | undefined> {
+    const train = this.trains.find((train) => train.id === id);
+    return of(train);
+  }
 
+  private generateUniqueId(): string {
+    return (Math.max(...this.trains.map(train => parseInt(train.id || '0', 10)), 0) + 1).toString();
+  }
 }
