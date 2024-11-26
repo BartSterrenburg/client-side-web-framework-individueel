@@ -1,19 +1,13 @@
 import { Injectable } from '@angular/core';
-import { map, Observable, of } from 'rxjs';
-import {
-    IUserInfo,
-    UserRole,
-    UserGender
-} from './user.model';
-import { HttpClient } from '@angular/common/http';
-import { environment } from '@train-repo/shared/util-env';
-import { ApiResponse } from '@train-repo/shared/api';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { IUserInfo, UserRole, UserGender } from './user.model';
 
 @Injectable({
     providedIn: 'root'
 })
 export class UserService {
-    readonly users: IUserInfo[] = [
+
+    private users: IUserInfo[] = [
         {
             _id: "1",
             name: "Bart",
@@ -35,11 +29,28 @@ export class UserService {
             profileImgUrl: "url"
         }
     ];
+    private usersSubject = new BehaviorSubject<IUserInfo[]>(this.users);
 
-    constructor(private http: HttpClient) {}
+    constructor() {}
+
+
+  //GET
+  getUsers(): Observable<IUserInfo[]> {
+    return this.usersSubject.asObservable();
+  }
+
+    getUserById(id: string): IUserInfo {
+        return this.users.filter((user) => user._id == id)[0];
+    }
+    deleteUser(id: string): void {
+        const index = this.users.findIndex(user => user._id == id);
+        if (index !== -1) {
+            this.users.splice(index, 1);
+            this.usersSubject.next(this.users);
+        }
+    }
 
     getUsersAsObservable(): Observable<IUserInfo[]> {
-        console.log('getUsersAsObservable aangeroepen');
         return of(this.users);
-      }
+    }
 }

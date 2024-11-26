@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { IUserInfo, UserRole, UserGender } from '@train-repo/shared/api';
 import { UserService } from '../../../../../../shared/services/user/user.service';
 
@@ -9,7 +10,15 @@ import { UserService } from '../../../../../../shared/services/user/user.service
 export class UserListComponent implements OnInit {
     users: IUserInfo[] = [];
 
-    constructor(private userService: UserService) {}
+    constructor(
+        private userService: UserService, 
+        private router: Router
+    ){}
+
+
+    goToDetail(userId: string): void {
+        this.router.navigate([`/user/${userId}`]);
+      }
 
     ngOnInit(): void {
         this.userService

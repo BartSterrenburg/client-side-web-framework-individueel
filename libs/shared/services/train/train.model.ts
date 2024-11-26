@@ -5,6 +5,7 @@ export enum TrainSort {
   Intercity = 'Intercity',
   HighSpeed = 'HighSpeed',
   Freight = 'Freight',
+  Unkown = 'Unknown'
 }
 
 export class Train {

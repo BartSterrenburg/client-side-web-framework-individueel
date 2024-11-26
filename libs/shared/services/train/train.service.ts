@@ -165,9 +165,7 @@ export class TrainService {
 
 
 
-  constructor() {
-    console.log('Service constructor aangeroepen');
-  }
+  constructor() {}
 
   //GET
   getTrains(): Observable<Train[]> {
@@ -177,6 +175,7 @@ export class TrainService {
   //POST
   addTrain(train: Train): void {
     this.trains.push(train);
+    this.trainsSubject.next(this.trains);
   }
 
   editTrain(): void {
@@ -192,11 +191,12 @@ export class TrainService {
   }
 
   getTrainsAsObservable(): Observable<Train[]> {
-    console.log('getUsersAsObservable aangeroepen');
     return of(this.trains);
   }
 
-  getTrainById(id: string): Train {
-    return this.trains.filter((train) => train.id === id)[0];
-  }
+getTrainById(id: string): Observable<Train | undefined> {
+  const train = this.trains.find((train) => train.id === id);
+  return of(train); // Retourneer een Observable van de gevonden trein
+}
+
 }

@@ -9,17 +9,17 @@
   <div class="container">
     <div class="form-container">
       <h2 class="text-center mb-4">Train Information Form</h2>
-      <form>
-        <!-- Train ID -->
-        <div class="mb-3">
+      <form #trainPostForm="ngForm" name="form" (ngSubmit)="trainPostForm.form.valid && onSubmit()" novalidate>
+
+        <div class="form-row mb-3">
           <label for="trainId" class="form-label">Train ID</label>
-          <input type="number" class="form-control" id="trainId" placeholder="Enter Train ID" required>
+          <input type="number" class="form-control" id="trainId" placeholder="Enter Train ID" required [(ngModel)]="newTrain.id" name="trainId">
         </div>
 
         <!-- Train Sort -->
-        <div class="mb-3">
+        <div class="form-row mb-3">
           <label for="trainSort" class="form-label">Train Sort</label>
-          <select class="form-select" id="trainSort" required>
+          <select class="form-select" id="trainSort" required [(ngModel)]="newTrain.sort" name="trainSort">
             <option value="">Select Sort</option>
             <option value="Sprinter">Sprinter</option>
             <option value="Intercity">Intercity</option>
@@ -28,87 +28,86 @@
           </select>
         </div>
 
-        <!-- Name -->
-        <div class="mb-3">
+        <div class="form-row mb-3">
           <label for="trainName" class="form-label">Name</label>
-          <input type="text" class="form-control" id="trainName" placeholder="Enter Train Name" required>
+          <input type="text" class="form-control" id="trainName" placeholder="Enter Train Name" required [(ngModel)]="newTrain.name" name="trainName">
         </div>
 
         <!-- Operator -->
-        <div class="mb-3">
+        <div class="form-row mb-3">
           <label for="trainOperator" class="form-label">Operator</label>
-          <input type="text" class="form-control" id="trainOperator" placeholder="Enter Operator" required>
+          <input type="text" class="form-control" id="trainOperator" placeholder="Enter Operator" required [(ngModel)]="newTrain.operator" name="trainOperator">
         </div>
 
         <!-- Model -->
-        <div class="mb-3">
+        <div class="form-row mb-3">
           <label for="trainModel" class="form-label">Model</label>
-          <input type="text" class="form-control" id="trainModel" placeholder="Enter Model" required>
+          <input type="text" class="form-control" id="trainModel" placeholder="Enter Model" required [(ngModel)]="newTrain.model" name="trainModel">
         </div>
 
         <!-- Capacity -->
-        <div class="mb-3">
+        <div class="form-row mb-3">
           <label for="trainCapacity" class="form-label">Capacity</label>
-          <input type="number" class="form-control" id="trainCapacity" placeholder="Enter Capacity" required>
+          <input type="number" class="form-control" id="trainCapacity" placeholder="Enter Capacity" required [(ngModel)]="newTrain.capacity" name="trainCapacity">
         </div>
 
         <!-- Number of Wagons -->
-        <div class="mb-3">
+        <div class="form-row mb-3">
           <label for="numberOfWagons" class="form-label">Number of Wagons</label>
-          <input type="number" class="form-control" id="numberOfWagons" placeholder="Enter Number of Wagons" required>
+          <input type="number" class="form-control" id="numberOfWagons" placeholder="Enter Number of Wagons" required [(ngModel)]="newTrain.numberOfWagons" name="numberOfWagons">
         </div>
 
         <!-- Max Speed -->
-        <div class="mb-3">
+        <div class="form-row mb-3">
           <label for="maxSpeed" class="form-label">Max Speed (km/h)</label>
-          <input type="number" class="form-control" id="maxSpeed" placeholder="Enter Max Speed" required>
+          <input type="number" class="form-control" id="maxSpeed" placeholder="Enter Max Speed" required [(ngModel)]="newTrain.maxSpeed" name="maxSpeed">
         </div>
 
         <!-- Propulsion -->
-        <div class="mb-3">
+        <div class="form-row mb-3">
           <label for="propulsion" class="form-label">Propulsion</label>
-          <input type="text" class="form-control" id="propulsion" placeholder="Enter Propulsion Type" required>
+          <input type="text" class="form-control" id="propulsion" placeholder="Enter Propulsion Type" required [(ngModel)]="newTrain.propulsion" name="propulsion">
         </div>
 
         <!-- Length -->
-        <div class="mb-3">
+        <div class="form-row mb-3">
           <label for="length" class="form-label">Length (m)</label>
-          <input type="number" class="form-control" id="length" placeholder="Enter Train Length" required>
+          <input type="number" class="form-control" id="length" placeholder="Enter Train Length" required [(ngModel)]="newTrain.length" name="length">
         </div>
 
         <!-- Manufacture Year -->
-        <div class="mb-3">
+        <div class="form-row mb-3">
           <label for="manufactureYear" class="form-label">Manufacture Year</label>
-          <input type="number" class="form-control" id="manufactureYear" placeholder="Enter Manufacture Year" required>
+          <input type="number" class="form-control" id="manufactureYear" placeholder="Enter Manufacture Year" required [(ngModel)]="newTrain.manufactureYear" name="manufactureYear">
         </div>
 
         <!-- Manufacturer -->
-        <div class="mb-3">
+        <div class="form-row mb-3">
           <label for="manufacturer" class="form-label">Manufacturer</label>
-          <input type="text" class="form-control" id="manufacturer" placeholder="Enter Manufacturer" required>
+          <input type="text" class="form-control" id="manufacturer" placeholder="Enter Manufacturer" required [(ngModel)]="newTrain.manufacturer" name="manufacturer">
         </div>
 
         <!-- Weight -->
-        <div class="mb-3">
+        <div class="form-row mb-3">
           <label for="weight" class="form-label">Weight (tons)</label>
-          <input type="number" class="form-control" id="weight" placeholder="Enter Weight" required>
+          <input type="number" class="form-control" id="weight" placeholder="Enter Weight" required [(ngModel)]="newTrain.weight" name="weight">
         </div>
 
         <!-- Energy Consumption -->
-        <div class="mb-3">
+        <div class="form-row mb-3">
           <label for="energyConsumption" class="form-label">Energy Consumption (kWh/km)</label>
-          <input type="number" class="form-control" id="energyConsumption" placeholder="Enter Energy Consumption" required>
+          <input type="number" class="form-control" id="energyConsumption" placeholder="Enter Energy Consumption" required [(ngModel)]="newTrain.energyConsumption" name="energyConsumption">
         </div>
 
         <!-- Facilities -->
-        <div class="mb-3">
+        <div class="form-row mb-3">
           <label for="facilities" class="form-label">Facilities</label>
-          <input type="text" class="form-control" id="facilities" placeholder="Enter Facilities (comma-separated)" required>
+          <input type="text" class="form-control" id="facilities" placeholder="Enter Facilities (comma-separated)" required [(ngModel)]="newTrain.facilities" name="facilities">
         </div>
 
         <!-- Submit Button -->
         <div class="d-grid">
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="submit" class="btn btn-success" [disabled]="!trainPostForm.valid">Submit</button>
         </div>
       </form>
     </div>

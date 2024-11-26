@@ -28,13 +28,20 @@ export class TrainDetailsComponent implements OnInit{
   }
 
   ngOnInit(): void {
-  this.route.paramMap.subscribe((params) => {
-    this.trainId = params.get('id');
-      if(this.trainId) {
-        this.train = this.trainService.getTrainById(this.trainId!);
+    this.route.paramMap.subscribe((params) => {
+      this.trainId = params.get('id');
+      if (this.trainId) {
+        this.trainService.getTrainById(this.trainId).subscribe((train) => {
+          if (train) {
+            this.train = train;
+          } else {
+            console.log("Train not found");
+          }
+        });
       }
-    });    
+    });
   }
+  
   
   
 }
