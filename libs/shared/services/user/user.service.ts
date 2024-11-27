@@ -38,6 +38,14 @@ export class UserService {
         this.usersSubject.next(this.users);
     }
 
+    editUser(id: string, user: IUserInfo): void {
+        const index = this.users.findIndex((u) => u._id == id);
+        if (index) {
+            this.users[index] = user;
+            this.usersSubject.next(this.users);
+        }
+    }
+
   //GET
   getUsers(): Observable<IUserInfo[]> {
     return this.usersSubject.asObservable();
