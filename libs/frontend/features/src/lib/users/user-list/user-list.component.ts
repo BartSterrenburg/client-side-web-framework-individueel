@@ -15,6 +15,9 @@ export class UserListComponent implements OnInit {
         private router: Router
     ){}
 
+    postUserForm(): void {
+        this.router.navigate(['/user-post']);
+    }
 
     goToDetail(userId: string): void {
         this.router.navigate([`/user/${userId}`]);

@@ -33,6 +33,10 @@ export class UserService {
 
     constructor() {}
 
+    addUser(user: IUserInfo): void {
+        this.users.push(user);
+        this.usersSubject.next(this.users);
+    }
 
   //GET
   getUsers(): Observable<IUserInfo[]> {

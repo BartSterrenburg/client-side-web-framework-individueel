@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Train Form</title>
+</head>
+<body>
+  <div class="container">
+    <div class="form-container">
+      <h2 class="text-center mb-4">User Information Form</h2>
+      <form #userPostForm="ngForm" name="form" (ngSubmit)="userPostForm.form.valid && onSubmit()" novalidate>
+
+        <div class="form-row mb-3">
+          <label for="userId" class="form-label">User ID</label>
+          <input type="number" class="form-control" id="trainId" placeholder="Enter Train ID" required [(ngModel)]="newUser._id" name="trainId">
+        </div>
+        <div class="form-row mb-3">
+            <label for="name" class="form-label">gebruikersnaam</label>
+            <input type="number" class="form-control" id="name" placeholder="Enter Name" required [(ngModel)]="newUser.name" name="name">
+        </div>
+        <div class="form-row mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="number" class="form-control" id="email" placeholder="Enter Email" required [(ngModel)]="newUser.emailAddress" name="email">
+        </div>
+        <div class="form-row mb-3">
+            <label for="password" class="form-label">Wachtwoord</label>
+            <input type="number" class="form-control" id="password" placeholder="Enter Password" required [(ngModel)]="newUser.password" name="password">
+        </div>
+        <div class="form-row mb-3">
+            <label for="profilepicture" class="form-label">profilepicture</label>
+            <input type="number" class="form-control" id="profilePicture" placeholder="Enter profilePicture" required [(ngModel)]="newUser.profileImgUrl" name="email">
+        </div>
+        <div class="form-row mb-3">
+            <label for="userRole" class="form-label">Rol</label>
+            <select class="form-select" id="userRole" required [(ngModel)]="newUser.role" name="userRole">
+              <option value="">Selecteer rol</option>
+              <option value="Guest">Gast</option>
+              <option value="Admin">Administrator</option>
+              <option value="UnKnown">onbekend</option>
+            </select>
+          </div>
+
+          <div class="form-row mb-3">
+            <label for="userGender" class="form-label">Gender</label>
+            <select class="form-select" id="userGender" required [(ngModel)]="newUser.gender" name="userGender">
+              <option value="">Selecteer gender</option>
+              <option value="Male">Man</option>
+              <option value="Female">Vrouw</option>
+              <option value="None">geen</option>
+              <option value="UnKnown">onbekend</option>
+            </select>
+          </div>
+
+        <!-- Submit Button -->
+        <div class="d-grid">
+          <button type="submit" class="btn btn-success" [disabled]="!userPostForm.valid">Opslaan</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

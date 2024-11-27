@@ -9,9 +9,9 @@
         <div class="container">
             <div class="title mt-3 mb-4"><h1>Gebruikerdetails</h1></div>
 
-            <button class="primary" (click)="deleteUser(user!._id)">
-                delete
-            </button>
+            <button class="primary" (click)="deleteUser(user!._id)">verwijderen</button>
+            <button class="primary" (click)="RouteEditUserForm(user!._id)" style="cursor: pointer">bewerken</button>
+
 
             <!-- Train info grid -->
             <div class="info-grid">

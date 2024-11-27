@@ -179,8 +179,15 @@ export class TrainService {
     this.trainsSubject.next(this.trains);
   }
 
-  editTrain(): void {
-    // TO DO
+  editTrain(id: string, train: Train): void {
+    let index = this.trains.findIndex((t) => t.id == id)
+    console.log("index: " + index)
+    if(index) {
+      this.trains[index] = train;
+      this.trainsSubject.next(this.trains);
+    } else {
+      console.log("Train not found!")
+    }
   }
 
   deleteTrain(id: string): void {

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { IUserInfo } from './../../../../../../shared/services/user/user.model'
 import { UserService } from './../../../../../../shared/services/user/user.service'
 
@@ -9,11 +10,12 @@ import { UserService } from './../../../../../../shared/services/user/user.servi
     styles: []
 })
 export class UserDetailsComponent implements OnInit{
-    userId: string | null = null;
-    user: IUserInfo | null = null;
+  userId: string | null = null;
+  user: IUserInfo | null = null;
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private userService: UserService
   ) {}
 
@@ -21,6 +23,10 @@ export class UserDetailsComponent implements OnInit{
     if (id) {
       this.userService.deleteUser(id);
     }
+  }
+
+  RouteEditUserForm(id: string) {
+    this.router.navigate([`/user-edit/${id}`]);
   }
 
   ngOnInit(): void {
