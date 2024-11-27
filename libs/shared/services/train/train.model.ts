@@ -1,12 +1,15 @@
+import { Id } from './../id.model';
+
 export enum TrainSort {
   Sprinter = 'Sprinter',
   Intercity = 'Intercity',
   HighSpeed = 'HighSpeed',
   Freight = 'Freight',
+  Unkown = 'Unknown'
 }
 
 export class Train {
-  id: number = 0;
+  id: Id = "0";
   sort: TrainSort;
   name: string;
   operator: string;
@@ -23,7 +26,7 @@ export class Train {
   facilities: string[];
 
   constructor(
-    id: number,
+    id: Id,
     sort: TrainSort,
     name: string,
     operator: string,

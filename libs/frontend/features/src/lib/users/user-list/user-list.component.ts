@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { IUserInfo, UserRole, UserGender } from '@train-repo/shared/api';
-import { UserService } from '../user.service';
+import { UserService } from '../../../../../../shared/services/user/user.service';
 
 @Component({
     selector: 'train-repo-user-list',
@@ -9,34 +10,22 @@ import { UserService } from '../user.service';
 export class UserListComponent implements OnInit {
     users: IUserInfo[] = [];
 
-    constructor(private userSercice: UserService) {}
+    constructor(
+        private userService: UserService, 
+        private router: Router
+    ){}
 
-    ngOnInit(): void {
-        this.userSercice
-            .getUsersAsync()
-            .subscribe((users) => (this.users = users));
+    postUserForm(): void {
+        this.router.navigate(['/user-post']);
     }
 
-    // [
-    //     {
-    //         _id: "1",
-    //         name: "robin",
-    //         emailAddress: "r.schellius@avans.nl",
-    //         role: UserRole.Unknown,
-    //         gender: UserGender.Unknown,
-    //         password: "secret",
-    //         isActive: true,
-    //         profileImgUrl: "url"
-    //     },
-    //     {
-    //         _id: "2",
-    //         name: "Davide",
-    //         emailAddress: "d.ambesi@avans.nl",
-    //         role: UserRole.Unknown,
-    //         gender: UserGender.Unknown,
-    //         password: "secret",
-    //         isActive: true,
-    //         profileImgUrl: "url"
-    //     }
-    // ]
+    goToDetail(userId: string): void {
+        this.router.navigate([`/user/${userId}`]);
+      }
+
+    ngOnInit(): void {
+        this.userService
+            .getUsersAsObservable()
+            .subscribe((users) => (this.users = users));
+    }
 }

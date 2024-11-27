@@ -1,16 +1,22 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { TrainService } from 'libs/shared/services/train/train.service';
 import { Train, TrainSort } from './../../../../../../shared/services/train/train.model';
 
 
-
 @Component({
-    selector: 'train-repo-train-post',
-    templateUrl: './train-post.component.html',
-    styleUrls: ['./train-post.component.css']
+    selector: 'train-edit',
+    templateUrl: './train-edit.component.html',
+    styles: []
 })
-export class TrainPostComponent {
+export class TrainEditComponent {
+    constructor(private trainService: TrainService, private router: Router, private route: ActivatedRoute,
+    ) {}
+
+
+    trainId: string | null = null;
+
     newTrain: Train = {
         id: '',
         sort: TrainSort.Unkown,
@@ -27,11 +33,7 @@ export class TrainPostComponent {
         weight: -1,
         energyConsumption: -1,
         facilities: []
-      };
-    constructor(
-        private router: Router, 
-        private trainService: TrainService
-    ) {}
+    };
 
 
     onSubmit(): void {
@@ -50,7 +52,12 @@ export class TrainPostComponent {
         console.log(`weight: ${this.newTrain.weight}`);
         console.log(`energyConsumption: ${this.newTrain.energyConsumption}`);
 
-        this.trainService.addTrain(this.newTrain);
+        this.route.paramMap.subscribe((params) => {
+            this.trainId = params.get('id');
+            if (this.trainId) {
+                console.log("trainid:" + this.trainId)
+                this.trainService.editTrain(this.trainId, this.newTrain);
+            }
+        });
     }
-      
 }

@@ -9,7 +9,7 @@
   <div class="container">
     <div class="form-container">
       <h2 class="text-center mb-4">Train Information Form</h2>
-      <form #trainPostForm="ngForm" name="form" (ngSubmit)="trainPostForm.form.valid && onSubmit()" novalidate>
+      <form #trainEditForm="ngForm" name="form" (ngSubmit)="trainEditForm.form.valid && onSubmit()" novalidate>
 
         <div class="form-row mb-3">
           <label for="trainId" class="form-label">Train ID</label>
@@ -107,7 +107,7 @@
 
         <!-- Submit Button -->
         <div class="d-grid">
-          <button type="submit" class="btn btn-success" [disabled]="!trainPostForm.valid">Submit</button>
+          <button type="submit" class="btn btn-success" [disabled]="!trainEditForm.valid">Submit</button>
         </div>
       </form>
     </div>

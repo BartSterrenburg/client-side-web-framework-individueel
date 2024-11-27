@@ -12,11 +12,10 @@
       <!-- Train photo -->
       <img src="{{ image }}" alt="Train Photo" class="train-photo" />
 
-      <button class="primary" (click)="deleteTrain(train!.id)">delete</button>
-
-
       <!-- Train info grid -->
       <div class="info-grid">
+        <button class="primary" (click)="deleteTrain(train!.id)">verwijderen</button>
+        <button class="primary" (click)="RouteEditTrainForm(train!.id)" style="cursor: pointer">bewerken</button>
         <div class="info-item">
           <strong>ID:</strong>
           {{ train?.id }}

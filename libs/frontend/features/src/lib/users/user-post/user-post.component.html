@@ -9,7 +9,7 @@
   <div class="container">
     <div class="form-container">
       <h2 class="text-center mb-4">User Information Form</h2>
-      <form #userEditForm="ngForm" name="form" (ngSubmit)="userEditForm.form.valid && onSubmit()" novalidate>
+      <form #userPostForm="ngForm" name="form" (ngSubmit)="userPostForm.form.valid && onSubmit()" novalidate>
 
         <div class="form-row mb-3">
           <label for="userId" class="form-label">User ID</label>
@@ -54,7 +54,7 @@
 
         <!-- Submit Button -->
         <div class="d-grid">
-          <button type="submit" class="btn btn-success" [disabled]="!userEditForm.valid">Opslaan</button>
+          <button type="submit" class="btn btn-success" [disabled]="!userPostForm.valid">Opslaan</button>
         </div>
       </form>
     </div>

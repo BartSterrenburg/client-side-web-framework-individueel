@@ -15,23 +15,21 @@ export class TrainListComponent implements OnInit {
     private router: Router
   ) {}
 
-  goToDetail(trainId: number): void {
+  goToDetail(trainId: string): void {
     this.router.navigate([`/train/${trainId}`]);
   }
 
-  goToPostTrainForm(): void {
+  postTrainForm(): void {
     this.router.navigate(['/train-post']);
   }
 
-  // Methode om de trein te verwijderen
-  deleteTrain(id: number): void {
-    this.trainService.deleteTrain(id);  // Verwijder de trein uit de service
+  deleteTrain(id: string): void {
+    this.trainService.deleteTrain(id); 
   }
 
   ngOnInit(): void {
-    // Luister naar veranderingen in de lijst van treinen
     this.trainService.getTrains().subscribe((trains) => {
-      this.trains = trains; // Update de lijst van treinen
+      this.trains = trains; 
     });
   }
 }

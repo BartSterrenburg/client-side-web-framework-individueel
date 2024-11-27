@@ -8,7 +8,7 @@ import { Train, TrainSort } from './train.model';
 export class TrainService {
   private trains: Train[] = [
     {
-      id: 1,
+      id: "1",
       sort: TrainSort.Intercity,
       name: 'Intercity 1000',
       operator: 'NS',
@@ -25,7 +25,7 @@ export class TrainService {
       facilities: ['WiFi', 'Toilets', 'Power sockets'],
     },
     {
-      id: 2,
+      id: "2",
       sort: TrainSort.Sprinter,
       name: 'Sprinter 200',
       operator: 'NS',
@@ -42,7 +42,7 @@ export class TrainService {
       facilities: ['Toilets'],
     },
     {
-      id: 3,
+      id: "3",
       sort: TrainSort.HighSpeed,
       name: 'Thalys 3000',
       operator: 'Thalys',
@@ -59,7 +59,7 @@ export class TrainService {
       facilities: ['WiFi', 'Power sockets', 'Restaurant'],
     },
     {
-      id: 4,
+      id: "4",
       sort: TrainSort.Freight,
       name: 'Freight 4000',
       operator: 'DB Cargo',
@@ -76,7 +76,7 @@ export class TrainService {
       facilities: ['None'],
     },
     {
-      id: 5,
+      id: "5",
       sort: TrainSort.Intercity,
       name: 'Intercity 1500',
       operator: 'NS',
@@ -93,7 +93,7 @@ export class TrainService {
       facilities: ['WiFi', 'Toilets', 'Power sockets'],
     },
     {
-      id: 6,
+      id: "6",
       sort: TrainSort.Sprinter,
       name: 'Sprinter 300',
       operator: 'NS',
@@ -110,7 +110,7 @@ export class TrainService {
       facilities: ['Toilets'],
     },
     {
-      id: 7,
+      id: "7",
       sort: TrainSort.HighSpeed,
       name: 'Eurostar 5000',
       operator: 'Eurostar',
@@ -127,7 +127,7 @@ export class TrainService {
       facilities: ['WiFi', 'Power sockets', 'Toilets', 'Catering'],
     },
     {
-      id: 8,
+      id: "8",
       sort: TrainSort.Freight,
       name: 'Freight 5000',
       operator: 'SBB Cargo',
@@ -144,7 +144,7 @@ export class TrainService {
       facilities: ['None'],
     },
     {
-      id: 9,
+      id: "9",
       sort: TrainSort.Intercity,
       name: 'Intercity 2000',
       operator: 'NS',
@@ -165,9 +165,7 @@ export class TrainService {
 
 
 
-  constructor() {
-    console.log('Service constructor aangeroepen');
-  }
+  constructor() {}
 
   //GET
   getTrains(): Observable<Train[]> {
@@ -176,14 +174,23 @@ export class TrainService {
 
   //POST
   addTrain(train: Train): void {
-    this.trains.push(train);
+    const newTrain = { ...train, id: this.generateUniqueId() };
+    this.trains.push(newTrain);
+    this.trainsSubject.next(this.trains);
   }
 
-  editTrain(): void {
-    // TO DO
+  editTrain(id: string, train: Train): void {
+    let index = this.trains.findIndex((t) => t.id == id)
+    console.log("index: " + index)
+    if(index) {
+      this.trains[index] = train;
+      this.trainsSubject.next(this.trains);
+    } else {
+      console.log("Train not found!")
+    }
   }
 
-  deleteTrain(id: number): void {
+  deleteTrain(id: string): void {
     const index = this.trains.findIndex(train => train.id === id);
     if (index !== -1) {
       this.trains.splice(index, 1);
@@ -192,19 +199,15 @@ export class TrainService {
   }
 
   getTrainsAsObservable(): Observable<Train[]> {
-    console.log('getUsersAsObservable aangeroepen');
-    // 'of' is een rxjs operator die een Observable
-    // maakt van de gegeven data.
     return of(this.trains);
   }
 
-  getTrainById(id: number): Train {
-    console.log('getTrainById aangeroepen');
-    return this.trains.filter((train) => train.id === id)[0];
+  getTrainById(id: string): Observable<Train | undefined> {
+    const train = this.trains.find((train) => train.id === id);
+    return of(train);
   }
 
-  loadTrains(trains: Train[]): void {
-    this.trains = trains;
-    this.trainsSubject.next(this.trains);
+  private generateUniqueId(): string {
+    return (Math.max(...this.trains.map(train => parseInt(train.id || '0', 10)), 0) + 1).toString();
   }
 }

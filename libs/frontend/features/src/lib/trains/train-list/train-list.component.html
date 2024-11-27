@@ -1,5 +1,5 @@
 <h1 class="mt-3 mb-4">Een overzicht van treinen</h1>
-<button (click)="goToPostTrainForm()"></button>
+<button class="btn btn-primary" (click)="postTrainForm()">Toevoegen</button>
 <table class="table table-border table-hover">
   <thead>
     <tr>
@@ -14,7 +14,7 @@
   <tbody>
     <tr
       *ngFor="let train of trains"
-      (click)="goToDetail(train.id)"
+      (click)="goToDetail(train!.id)"
       style="cursor: pointer"
     >
       <td>{{ train.id }}</td>
