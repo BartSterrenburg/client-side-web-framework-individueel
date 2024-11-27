@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { IUserInfo, UserGender, UserRole } from './../../../../../../shared/services/user/user.model';
 import { UserService } from './../../../../../../shared/services/user/user.service';
@@ -22,7 +23,7 @@ export class UserEditComponent {
         password: ''
     }
 
-    constructor(private userService: UserService, private route: ActivatedRoute) {}
+    constructor(private userService: UserService, private router: Router, private route: ActivatedRoute) {}
     
     onSubmit() {
         this.route.paramMap.subscribe((params) => {
@@ -30,7 +31,8 @@ export class UserEditComponent {
             if (this.userId) {
                 console.log("trainid:" + this.userId)
                 this.userService.editUser(this.userId, this.newUser);
+                this.router.navigate(['/user']);
             }
-        });
+        });    
     }
 }

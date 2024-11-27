@@ -51,6 +51,7 @@ export class TrainPostComponent {
         console.log(`energyConsumption: ${this.newTrain.energyConsumption}`);
 
         this.trainService.addTrain(this.newTrain);
+        this.router.navigate(['/train']);
     }
       
 }

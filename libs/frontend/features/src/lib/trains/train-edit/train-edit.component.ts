@@ -37,7 +37,6 @@ export class TrainEditComponent {
 
 
     onSubmit(): void {
-        console.log(`id: ${this.newTrain.id}`);
         console.log(`sort: ${this.newTrain.sort}`);
         console.log(`name: ${this.newTrain.name}`);
         console.log(`operator: ${this.newTrain.operator}`);
@@ -57,6 +56,7 @@ export class TrainEditComponent {
             if (this.trainId) {
                 console.log("trainid:" + this.trainId)
                 this.trainService.editTrain(this.trainId, this.newTrain);
+                this.router.navigate(['/train']);
             }
         });
     }

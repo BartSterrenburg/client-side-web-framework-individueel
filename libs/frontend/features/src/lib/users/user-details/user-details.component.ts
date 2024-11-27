@@ -22,6 +22,7 @@ export class UserDetailsComponent implements OnInit{
   deleteUser(id: string): void {
     if (id) {
       this.userService.deleteUser(id);
+      this.router.navigate(['/user']);
     }
   }
 
