@@ -7,7 +7,7 @@ import { UserService } from './../../../../../../shared/services/user/user.servi
 @Component({
     selector: 'train-repo-user-details',
     templateUrl: './user-details.component.html',
-    styles: []
+    styleUrls: []
 })
 export class UserDetailsComponent implements OnInit{
   userId: string | null = null;
@@ -22,6 +22,7 @@ export class UserDetailsComponent implements OnInit{
   deleteUser(id: string): void {
     if (id) {
       this.userService.deleteUser(id);
+      this.router.navigate(['/user']);
     }
   }
 

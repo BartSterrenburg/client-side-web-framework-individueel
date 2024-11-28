@@ -11,10 +11,6 @@
       <h2 class="text-center mb-4">Train Information Form</h2>
       <form #trainEditForm="ngForm" name="form" (ngSubmit)="trainEditForm.form.valid && onSubmit()" novalidate>
 
-        <div class="form-row mb-3">
-          <label for="trainId" class="form-label">Train ID</label>
-          <input type="number" class="form-control" id="trainId" placeholder="Enter Train ID" required [(ngModel)]="newTrain.id" name="trainId">
-        </div>
 
         <!-- Train Sort -->
         <div class="form-row mb-3">

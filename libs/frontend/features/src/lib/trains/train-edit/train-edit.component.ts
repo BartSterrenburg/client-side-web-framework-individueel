@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { TrainService } from 'libs/shared/services/train/train.service';
@@ -10,10 +10,10 @@ import { Train, TrainSort } from './../../../../../../shared/services/train/trai
     templateUrl: './train-edit.component.html',
     styles: []
 })
-export class TrainEditComponent {
+export class TrainEditComponent implements OnInit {
     constructor(private trainService: TrainService, private router: Router, private route: ActivatedRoute,
     ) {}
-
+    
 
     trainId: string | null = null;
 
@@ -23,21 +23,36 @@ export class TrainEditComponent {
         name: '',
         operator: '',
         model: '',
-        capacity: -1,
-        numberOfWagons: -1,
-        maxSpeed: -1,
+        capacity: 0,
+        numberOfWagons: 0,
+        maxSpeed: 0,
         propulsion: '',
-        length: -1,
-        manufactureYear: -1,
+        length: 0,
+        manufactureYear: 0,
         manufacturer: '',
-        weight: -1,
-        energyConsumption: -1,
+        weight: 0,
+        energyConsumption: 0,
         facilities: []
     };
 
 
+    ngOnInit(): void {
+        this.route.paramMap.subscribe((params) => {
+            this.trainId = params.get('id');
+            if (this.trainId) {
+              this.trainService.getTrains().subscribe((trains) => {
+                const train = trains.find(t => t.id === this.trainId);
+                if (train) {
+                  this.newTrain = train;
+                } else {
+                  console.log("Train not found");
+                }
+              });
+            }
+          });
+    }
+
     onSubmit(): void {
-        console.log(`id: ${this.newTrain.id}`);
         console.log(`sort: ${this.newTrain.sort}`);
         console.log(`name: ${this.newTrain.name}`);
         console.log(`operator: ${this.newTrain.operator}`);
@@ -57,6 +72,7 @@ export class TrainEditComponent {
             if (this.trainId) {
                 console.log("trainid:" + this.trainId)
                 this.trainService.editTrain(this.trainId, this.newTrain);
+                this.router.navigate(['/train']);
             }
         });
     }

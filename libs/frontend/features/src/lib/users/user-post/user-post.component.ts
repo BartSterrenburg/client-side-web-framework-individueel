@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router'
 import { IUserInfo, UserRole, UserGender } from './../../../../../../shared/services/user/user.model';
 import { UserService } from './../../../../../../shared/services/user/user.service'
 
@@ -20,10 +21,11 @@ export class UserPostComponent {
         password: ''
     }
     
-    constructor(private userService: UserService) {}
+    constructor(private userService: UserService, private router: Router) {}
 
 
     onSubmit() {
         this.userService.addUser(this.newUser);
+        this.router.navigate(['/user']);
     }
 }

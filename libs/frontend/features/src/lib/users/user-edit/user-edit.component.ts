@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { IUserInfo, UserGender, UserRole } from './../../../../../../shared/services/user/user.model';
 import { UserService } from './../../../../../../shared/services/user/user.service';
@@ -8,7 +9,7 @@ import { UserService } from './../../../../../../shared/services/user/user.servi
     templateUrl: './user-edit.component.html',
     styles: []
 })
-export class UserEditComponent {
+export class UserEditComponent implements OnInit {
     userId: string | null = null;
 
     newUser: IUserInfo = {
@@ -22,15 +23,25 @@ export class UserEditComponent {
         password: ''
     }
 
-    constructor(private userService: UserService, private route: ActivatedRoute) {}
+    constructor(private userService: UserService, private router: Router, private route: ActivatedRoute) {}
     
+    ngOnInit(): void {
+        this.route.paramMap.subscribe((params) => {
+          this.userId = params.get('id');
+            if(this.userId) {
+              this.newUser = this.userService.getUserById(this.userId!);
+            }
+          });    
+    }
+
     onSubmit() {
         this.route.paramMap.subscribe((params) => {
             this.userId = params.get('id');
             if (this.userId) {
                 console.log("trainid:" + this.userId)
                 this.userService.editUser(this.userId, this.newUser);
+                this.router.navigate(['/user']);
             }
-        });
+        });    
     }
 }

@@ -31,6 +31,7 @@ export class TrainDetailsComponent implements OnInit{
   deleteTrain(id: string): void {
     if (id) {
       this.trainService.deleteTrain(id);
+      this.router.navigate(['/train']);
     }
   }
   ngOnInit(): void {
