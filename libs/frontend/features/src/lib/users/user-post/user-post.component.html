@@ -10,11 +10,6 @@
     <div class="form-container">
       <h2 class="text-center mb-4">User Information Form</h2>
       <form #userPostForm="ngForm" name="form" (ngSubmit)="userPostForm.form.valid && onSubmit()" novalidate>
-
-        <div class="form-row mb-3">
-          <label for="userId" class="form-label">User ID</label>
-          <input type="text" class="form-control" id="trainId" placeholder="Enter Train ID" required [(ngModel)]="newUser._id" name="trainId">
-        </div>
         <div class="form-row mb-3">
             <label for="name" class="form-label">gebruikersnaam</label>
             <input type="text" class="form-control" id="name" placeholder="Enter Name" required [(ngModel)]="newUser.name" name="name">

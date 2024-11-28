@@ -34,7 +34,8 @@ export class UserService {
     constructor() {}
 
     addUser(user: IUserInfo): void {
-        this.users.push(user);
+        const newUser = { ...user, _id: this.generateUniqueId() };
+        this.users.push(newUser);
         this.usersSubject.next(this.users);
     }
 
@@ -64,5 +65,9 @@ export class UserService {
 
     getUsersAsObservable(): Observable<IUserInfo[]> {
         return of(this.users);
+    }
+
+    private generateUniqueId(): string {
+        return (Math.max(...this.users.map(user => parseInt(user._id || '0', 10)), 0) + 1).toString();
     }
 }
