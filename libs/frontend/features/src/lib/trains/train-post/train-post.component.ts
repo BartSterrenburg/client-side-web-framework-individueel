@@ -17,15 +17,15 @@ export class TrainPostComponent {
         name: '',
         operator: '',
         model: '',
-        capacity: -1,
-        numberOfWagons: -1,
-        maxSpeed: -1,
+        capacity: 0,
+        numberOfWagons: 0,
+        maxSpeed: 0,
         propulsion: '',
-        length: -1,
-        manufactureYear: -1,
+        length: 0,
+        manufactureYear: 0,
         manufacturer: '',
-        weight: -1,
-        energyConsumption: -1,
+        weight: 0,
+        energyConsumption: 0,
         facilities: []
       };
     constructor(

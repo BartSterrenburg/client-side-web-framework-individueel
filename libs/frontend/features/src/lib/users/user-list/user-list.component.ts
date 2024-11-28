@@ -5,7 +5,8 @@ import { UserService } from '../../../../../../shared/services/user/user.service
 
 @Component({
     selector: 'train-repo-user-list',
-    templateUrl: './user-list.component.html'
+    templateUrl: './user-list.component.html',
+    styleUrls: ['./user-list.component.css']
 })
 export class UserListComponent implements OnInit {
     users: IUserInfo[] = [];
