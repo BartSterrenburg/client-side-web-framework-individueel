@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of, BehaviorSubject, map } from 'rxjs';
+import { Observable, of, BehaviorSubject, map, tap } from 'rxjs';
 import { Train } from './train.model';
 
 @Injectable({
@@ -25,11 +25,15 @@ export class TrainService {
     );
   }
 
-  // POST: Voeg een nieuwe trein toe
-  addTrain(train: Train): void {
-    const newTrain = { ...train, _id: this.generateUniqueId() };
-    this.trains.push(newTrain);
-    this.trainsSubject.next(this.trains);
+  addTrain(train: Train): Observable<Train> {
+    const newTrain = { ...train };
+
+    return this.http.post<Train>(this.apiUrl, newTrain).pipe(
+      tap((addedTrain) => {
+        this.trains.push(addedTrain);
+        this.trainsSubject.next(this.trains);
+      })
+    );
   }
 
   editTrain(id: string, train: Train): void {
