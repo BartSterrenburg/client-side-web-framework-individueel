@@ -39,13 +39,7 @@ export interface IUserInfo extends IUserRegistration {
     isActive: boolean;
 }
 
-/**
- * All user information, incl. domain entities
- */
-export interface IUser extends IUserInfo {
-    trains: ITrain[];
-}
 
-export type ICreateUser = Pick<IUser, 'name' | 'password' | 'emailAddress'>;
-export type IUpdateUser = Partial<Omit<IUser, 'id'>>;
-export type IUpsertUser = IUser;
+export type ICreateUser = Pick<IUserInfo, 'name' | 'password' | 'emailAddress'>;
+export type IUpdateUser = Partial<Omit<IUserInfo, 'id'>>;
+export type IUpsertUser = IUserInfo;

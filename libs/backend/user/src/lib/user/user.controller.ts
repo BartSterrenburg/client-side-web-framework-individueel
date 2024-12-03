@@ -8,7 +8,7 @@ import {
     UseGuards
 } from '@nestjs/common';
 import { UserService } from './user.service';
-import { IUserInfo, IUser } from '@train-repo/shared/api';
+import { IUserInfo } from '@train-repo/shared/api';
 import { CreateUserDto, UpdateUserDto } from '@train-repo/backend/dto';
 import { UserExistGuard } from './user-exists.guard';
 
@@ -29,7 +29,7 @@ export class UserController {
     // }
 
     @Get(':id')
-    async findOne(@Param('id') id: string): Promise<IUser | null> {
+    async findOne(@Param('id') id: string): Promise< IUserInfo | null> {
         return this.userService.findOne(id);
     }
 

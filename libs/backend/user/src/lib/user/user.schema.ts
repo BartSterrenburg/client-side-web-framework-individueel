@@ -2,13 +2,13 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Schema as MongooseSchema } from 'mongoose';
 // import { v4 as uuid } from 'uuid';
 import isEmail from 'validator/lib/isEmail';
-import { ITrain, IUser, UserGender, UserRole } from '@train-repo/shared/api';
+import { IUserInfo, UserGender, UserRole } from '@train-repo/shared/api';
 import { IsMongoId } from 'class-validator';
 
 export type UserDocument = User & Document;
 
 @Schema()
-export class User implements IUser {
+export class User implements IUserInfo {
     @IsMongoId()
     _id!: string;
 
@@ -20,7 +20,7 @@ export class User implements IUser {
 
     @Prop({
         required: true,
-        select: false, // do not return password in select statements
+        select: false,
         type: String
     })
     password = '';
@@ -64,13 +64,6 @@ export class User implements IUser {
         default: true
     })
     isActive = true;
-
-    @Prop({
-        default: [],
-        type: [MongooseSchema.Types.ObjectId],
-        ref: 'Train'
-    })
-    trains: ITrain[] = [];
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

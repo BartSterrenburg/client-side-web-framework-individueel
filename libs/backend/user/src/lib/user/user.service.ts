@@ -2,7 +2,7 @@ import { HttpException, Injectable, Logger } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { User as UserModel, UserDocument } from './user.schema';
-import { IUser, IUserInfo } from '@train-repo/shared/api';
+import { IUserInfo } from '@train-repo/shared/api';
 // import { Meal, MealDocument } from '@train-repo/backend/features';
 import { CreateUserDto, UpdateUserDto } from '@train-repo/backend/dto';
 
@@ -20,7 +20,7 @@ export class UserService {
         return items;
     }
 
-    async findOne(_id: string): Promise<IUser | null> {
+    async findOne(_id: string): Promise<IUserInfo | null> {
         this.logger.log(`finding user with id ${_id}`);
         const item = await this.userModel.findOne({ _id }).exec();
         if (!item) {
