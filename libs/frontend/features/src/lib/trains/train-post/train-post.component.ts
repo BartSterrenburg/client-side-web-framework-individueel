@@ -12,7 +12,7 @@ import { Train, TrainSort } from './../../../../../../shared/services/train/trai
 })
 export class TrainPostComponent {
     newTrain: Train = {
-        id: '',
+        _id: '',
         sort: TrainSort.Unkown,
         name: '',
         operator: '',
@@ -35,7 +35,7 @@ export class TrainPostComponent {
 
 
     onSubmit(): void {
-        console.log(`id: ${this.newTrain.id}`);
+        console.log(`id: ${this.newTrain._id}`);
         console.log(`sort: ${this.newTrain.sort}`);
         console.log(`name: ${this.newTrain.name}`);
         console.log(`operator: ${this.newTrain.operator}`);

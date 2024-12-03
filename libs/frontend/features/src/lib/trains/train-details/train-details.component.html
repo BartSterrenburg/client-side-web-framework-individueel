@@ -14,12 +14,8 @@
 
       <!-- Train info grid -->
       <div class="info-grid">
-        <button class="primary" (click)="deleteTrain(train!.id)">verwijderen</button>
-        <button class="primary" (click)="RouteEditTrainForm(train!.id)" style="cursor: pointer">bewerken</button>
-        <div class="info-item">
-          <strong>ID:</strong>
-          {{ train?.id }}
-        </div>
+        <button class="primary" (click)="deleteTrain(train!._id)">verwijderen</button>
+        <button class="primary" (click)="RouteEditTrainForm(train!._id)" style="cursor: pointer">bewerken</button>
         <div class="info-item">
           <strong>Sort:</strong>
           {{ train?.sort }}

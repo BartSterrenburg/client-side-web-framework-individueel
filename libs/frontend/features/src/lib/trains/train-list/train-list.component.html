@@ -14,10 +14,10 @@
   <tbody>
     <tr
       *ngFor="let train of trains"
-      (click)="goToDetail(train!.id)"
+      (click)="goToDetail(train!._id)"
       style="cursor: pointer"
     >
-      <td>{{ train.id }}</td>
+      <td>{{ train._id }}</td>
       <td>{{ train.name }}</td>
       <td>{{ train.sort }}</td>
       <td>{{ train.model }}</td>

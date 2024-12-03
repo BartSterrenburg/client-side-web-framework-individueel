@@ -39,7 +39,7 @@ export class TrainDetailsComponent implements OnInit{
       this.trainId = params.get('id');
       if (this.trainId) {
         this.trainService.getTrains().subscribe((trains) => {
-          const train = trains.find(t => t.id === this.trainId);
+          const train = trains.find(t => t._id === this.trainId);
           if (train) {
             this.train = train;
           } else {

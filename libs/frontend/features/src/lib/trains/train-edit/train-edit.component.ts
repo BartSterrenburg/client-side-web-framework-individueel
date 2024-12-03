@@ -18,7 +18,7 @@ export class TrainEditComponent implements OnInit {
     trainId: string | null = null;
 
     newTrain: Train = {
-        id: '',
+        _id: '',
         sort: TrainSort.Unkown,
         name: '',
         operator: '',
@@ -41,7 +41,7 @@ export class TrainEditComponent implements OnInit {
             this.trainId = params.get('id');
             if (this.trainId) {
               this.trainService.getTrains().subscribe((trains) => {
-                const train = trains.find(t => t.id === this.trainId);
+                const train = trains.find(t => t._id === this.trainId);
                 if (train) {
                   this.newTrain = train;
                 } else {

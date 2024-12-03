@@ -9,7 +9,7 @@ export enum TrainSort {
 }
 
 export class Train {
-  id: Id = "0";
+  _id: Id = "0";
   sort: TrainSort;
   name: string;
   operator: string;
@@ -26,7 +26,7 @@ export class Train {
   facilities: string[];
 
   constructor(
-    id: Id,
+    _id: Id,
     sort: TrainSort,
     name: string,
     operator: string,
@@ -42,7 +42,7 @@ export class Train {
     energyConsumption: number,
     facilities: string[],
   ) {
-    this.id = id;
+    this._id = _id;
     this.sort = sort;
     this.name = name;
     this.operator = operator;
