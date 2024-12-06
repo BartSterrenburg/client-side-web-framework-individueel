@@ -29,6 +29,7 @@ export interface IUserInfo extends IUserRegistration {
     role: UserRole;
     gender: UserGender;
     isActive: boolean;
+    token?: string;
 }
 
 export interface IUser extends IUserInfo {

@@ -4,7 +4,7 @@ export const environment: IEnvironment = {
     production: true,
 
     ROOT_DOMAIN_URL: 'https://nxworkshop.azurewebsites.net',
-    dataApiUrl: 'https://nxworkshop.azurewebsites.net/api',
+    SERVER_API_URL: 'https://nxworkshop.azurewebsites.net/api',
 
 
     // this is permitted for now
