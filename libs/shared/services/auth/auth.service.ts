@@ -83,12 +83,12 @@ export class AuthService {
       );
   }
 
-  validateToken(userData: IUserInfo): Observable<IUserInfo | null> {
+  validateToken(token: string): Observable<IUserInfo | null> {
     const url = `${environment.SERVER_API_URL}/api/auth/profile`;
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${userData.token}`,
+        Authorization: `Bearer ${token}`,
       }),
     };
 
@@ -124,9 +124,27 @@ export class AuthService {
     return of(localUser ? JSON.parse(localUser) as IUserInfo : null);
   }
 
-  private saveUserToLocalStorage(user: IUserInfo): void {
-    localStorage.setItem(this.CURRENT_USER, JSON.stringify(user));
+  getTokenFromLocalStorage(): string | null {
+    const localUser = localStorage.getItem(this.CURRENT_USER);
+    if (localUser) {
+      const user = JSON.parse(localUser) as IUserInfo;
+      return user.token || null; // Retourneer het token of null als het token niet bestaat
+    }
+    return null;
   }
+  
+
+  private saveUserToLocalStorage(apiResponse: any): void {
+    const userData = apiResponse.results;
+
+    if (userData) {
+        localStorage.setItem(this.CURRENT_USER, JSON.stringify(userData));
+        console.log("saved user " + JSON.stringify(userData));
+    } else {
+        console.error("No results found in the API response.");
+    }
+  
+}
 
   userMayEdit(itemUserId: string): Observable<boolean> {
     return this.currentUser$.pipe(
