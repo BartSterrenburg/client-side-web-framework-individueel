@@ -13,56 +13,30 @@
          -->
           <div class="form-row">
             <div class="col-5">
-              <label for="inputFirstName">Firstname</label>
+              <label for="inputName">name</label>
               <input
                 type="text"
                 class="form-control"
-                formControlName="firstname"
-                placeholder="Firstname"
-                id="inputFirstName"
+                formControlName="name"
+                placeholder="Name"
+                id="inputName"
                 [ngClass]="{
                   'is-invalid':
-                    registerForm.get('firstname')?.invalid &&
-                    registerForm.get('firstname')?.touched
+                    registerForm.get('name')?.invalid &&
+                    registerForm.get('name')?.touched
                 }"
               />
               <span
                 *ngIf="
-                  !registerForm.get('firstname')?.valid &&
-                  registerForm.get('firstname')?.touched
+                  !registerForm.get('name')?.valid &&
+                  registerForm.get('name')?.touched
                 "
                 class="invalid-feedback"
               >
                 <p id="firstName-invalid">Name is invalid.</p>
               </span>
             </div>
-            <!--
-          lastName
-         -->
-            <div class="col">
-              <label for="inputLastName">Lastname</label>
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Lastname"
-                formControlName="lastname"
-                id="inputLastName"
-                [ngClass]="{
-                  'is-invalid':
-                    registerForm.get('lastname')?.invalid &&
-                    registerForm.get('lastname')?.touched
-                }"
-              />
-              <span
-                *ngIf="
-                  !registerForm.get('lastname')?.valid &&
-                  registerForm.get('lastname')?.touched
-                "
-                class="invalid-feedback"
-              >
-                <p id="lastName-invalid">Lastname is invalid.</p>
-              </span>
-            </div>
+
           </div>
           <!--
           email
@@ -73,13 +47,13 @@
               type="email"
               class="form-control"
               placeholder="Email address"
-              formControlName="email"
+              formControlName="emailAddress"
               id="inputEmail"
               aria-describedby="emailHelp"
               [ngClass]="{
                 'is-invalid':
-                  registerForm.get('email')?.invalid &&
-                  registerForm.get('email')?.touched
+                  registerForm.get('emailAddress')?.invalid &&
+                  registerForm.get('emailAddress')?.touched
               }"
             />
             <small id="emailHelp" class="form-text text-muted"
@@ -87,8 +61,8 @@
             >
             <span
               *ngIf="
-                !registerForm.get('email')?.valid &&
-                registerForm.get('email')?.touched
+                !registerForm.get('emailAddress')?.valid &&
+                registerForm.get('emailAddress')?.touched
               "
               class="invalid-feedback"
             >

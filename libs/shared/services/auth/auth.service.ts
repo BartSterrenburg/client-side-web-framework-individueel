@@ -65,7 +65,7 @@ export class AuthService {
   register(userData: IUserInfo): Observable<IUserInfo | null> {
     console.log(`register at ${environment.SERVER_API_URL}/api/users`);
     return this.http
-      .post<IUserInfo>(`${environment.SERVER_API_URL}/api/users`, userData, {
+      .post<IUserInfo>(`${environment.SERVER_API_URL}/api/auth/register`, { "name": userData.name, "emailAddress": userData.emailAddress, "password": userData.password }, {
         headers: this.headers,
       })
       .pipe(
