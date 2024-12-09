@@ -1,10 +1,12 @@
 name: Deploy NestJS to Azure
 
 on:
-  workflow_run:
-    workflows: ["Azure Static Web Apps CI/CD"]
-    types:
-      - completed
+  push:
+    branches:
+      - release  # Zorgt ervoor dat de workflow wordt getriggerd bij elke push naar de release branch
+  pull_request:
+    branches:
+      - release  # Dit zorgt ervoor dat de workflow ook wordt getriggerd bij een pull request naar release
 
 jobs:
   build:
