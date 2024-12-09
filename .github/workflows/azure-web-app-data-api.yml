@@ -1,0 +1,35 @@
+name: Deploy NestJS to Azure
+
+on:
+  push:
+    branches:
+      - release  # Dit zorgt ervoor dat de workflow wordt getriggerd bij elke push naar de main branch
+  pull_request:
+    branches:
+      - release  # Dit zorgt ervoor dat de workflow ook wordt getriggerd bij een pull request naar main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # Specifieer de machine waar de actie op draait
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3  # Checkout je code
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3  # Zorgt ervoor dat Node.js wordt ingesteld
+        with:
+          node-version: '20'  # Zorg ervoor dat je de juiste versie gebruikt (Node 20, zoals je hebt gekozen op Azure)
+
+      - name: Install dependencies
+        run: npm install  # Installeer je npm dependencies
+
+      - name: Build NestJS app
+        run: npm run build  # Bouw de NestJS app (zorg ervoor dat dit in je package.json staat)
+
+      - name: Upload build files to Azure
+        uses: azure/webapps-deploy@v2  # Azure deploy action
+        with:
+          app-name: 'train-api'  # Vervang dit door de naam van je web app in Azure
+          publish-profile: ${{ secrets.NESTJS_PUBLISHPROFILE }}  # Haal je publish profile uit de secret in GitHub
+          package: '.'  # Zorg ervoor dat het de root van je repository is, of pas dit aan naar de locatie van de build output
