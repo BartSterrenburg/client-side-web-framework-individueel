@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of, BehaviorSubject, map, tap } from 'rxjs';
 import { Train } from './train.model';
-import { environment } from './../../util-env/src/index'
+import { environment } from './../../util-env/src/lib/environment'
 
 @Injectable({
   providedIn: 'root',
