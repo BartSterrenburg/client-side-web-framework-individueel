@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, map, Observable, of, throwError } from 'rxjs';
 import { IUserInfo, UserRole, UserGender } from './user.model';
 import { HttpClient } from '@angular/common/http';
+import { environment } from './../../util-env/src/index'
 
 @Injectable({
     providedIn: 'root'
@@ -11,7 +12,7 @@ export class UserService {
     private users: IUserInfo[] = [];
     private usersSubject = new BehaviorSubject<IUserInfo[]>(this.users);
 
-    private apiUrl = 'http://localhost:3000/api/user';
+    private apiUrl = `${environment.SERVER_API_URL}/api/user`
 
 
     constructor(private http: HttpClient) {}

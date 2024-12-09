@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of, BehaviorSubject, map, tap } from 'rxjs';
 import { Train } from './train.model';
+import { environment } from './../../util-env/src/index'
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +11,7 @@ export class TrainService {
   private trains: Train[] = [];
   private trainsSubject = new BehaviorSubject<Train[]>(this.trains);
 
-  private apiUrl = 'http://localhost:3000/api/train';
+  private apiUrl = `${environment.SERVER_API_URL}/api/train`
 
   constructor(private http: HttpClient) {}
 

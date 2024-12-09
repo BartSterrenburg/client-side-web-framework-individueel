@@ -4,7 +4,7 @@ export const environment: IEnvironment = {
     production: false,
 
     ROOT_DOMAIN_URL: 'http://localhost:3000',
-    SERVER_API_URL: 'http://localhost:3000/api',
+    SERVER_API_URL: 'http://localhost:3000',
 
     MONGO_DB_CONNECTION_STRING: 'mongodb://localhost:27017/shareameal'
 };
