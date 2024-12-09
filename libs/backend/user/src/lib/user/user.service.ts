@@ -48,4 +48,18 @@ export class UserService {
         this.logger.log(`Update user ${user.name}`);
         return this.userModel.findByIdAndUpdate({ _id }, user);
     }
+
+    async delete(_id: string): Promise<string> {
+        this.logger.log(`Delete user with id ${_id}`);
+        const result = await this.userModel.deleteOne({ _id });
+    
+        if (result.deletedCount === 1) {
+            this.logger.log(`User with id ${_id} successfully deleted.`);
+            return `User with id ${_id} successfully deleted.`;
+        } else {
+            this.logger.warn(`User with id ${_id} not found.`);
+            return `User with id ${_id} not found.`;
+        }
+    }
+    
 }

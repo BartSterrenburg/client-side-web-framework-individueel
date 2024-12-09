@@ -40,7 +40,7 @@ export class UserEditComponent implements OnInit {
             if (this.userId) {
                 console.log("trainid:" + this.userId)
                 this.userService.editUser(this.userId, this.newUser);
-                this.router.navigate(['/user']);
+                // this.router.navigate(['/user']);
             }
         });    
     }

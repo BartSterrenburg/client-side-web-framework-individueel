@@ -1,7 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Schema as MongooseSchema } from 'mongoose';
 // import { v4 as uuid } from 'uuid';
-import isEmail from 'validator/lib/isEmail';
 import { IUserInfo, UserGender, UserRole } from '@train-repo/shared/api';
 import { IsMongoId } from 'class-validator';
 
