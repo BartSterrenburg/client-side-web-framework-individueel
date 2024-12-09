@@ -32,4 +32,8 @@ jobs:
         with:
           app-name: 'train-api'
           publish-profile: ${{ secrets.NESTJS_PUBLISHPROFILE }}
-          package: 'dist/apps/data-api'  # Pas dit pad aan op basis van jouw build output
+          package: '.'  # Gebruik de root van de repository, of het juiste pad naar je app
+          
+      - name: Restart app on Azure
+        run: |
+          az webapp restart --name 'train-api' --resource-group 'myResourceGroup'
