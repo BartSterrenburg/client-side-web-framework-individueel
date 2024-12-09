@@ -17,24 +17,31 @@ export class UserService {
 
     constructor(private http: HttpClient) {}
 
-    addUser(user: IUserInfo): void {
-        const newUser = { ...user, _id: this.generateUniqueId() };
-        this.users.push(newUser);
-        this.usersSubject.next(this.users);
+    addUser(user: IUserInfo): Observable<IUserInfo> {
+        const newUser = {
+            "name": user.name,
+            "password": user.password,
+            "emailAddress": user.emailAddress,
+            "isActive": user.isActive,
+            "profileImgUrl": user.profileImgUrl,
+            "role": user.role,
+            "gender": user.gender
+        };
+
+        return this.http.post<IUserInfo>(`${this.apiUrl}`, newUser).pipe(
+            map(response => {
+                return response;
+            })
+        );
     }
 
     editUser(id: string, user: IUserInfo): Observable<IUserInfo> {
         return this.http.put<IUserInfo>(`${this.apiUrl}/${id}`, user).pipe(
-          map(updatedUser => {
-            const index = this.users.findIndex(u => u._id === id);
-            if (index !== -1) {
-              this.users[index] = updatedUser;
-              this.usersSubject.next(this.users);
-            }
-            return updatedUser;
-          })
+            map(response => {
+                return response;
+            })
         );
-      }
+    }
 
     //GET
     getUsers(): Observable<IUserInfo[]> {
@@ -53,24 +60,11 @@ export class UserService {
 
 
     deleteUser(id: string): Observable<void> {
-        console.log(`Trying to delete user with id: ${id}`);
+        console.log(`Deleting user with id: ${id} url: ${this.apiUrl}/${id}`);
         return this.http.delete<void>(`${this.apiUrl}/${id}`).pipe(
-            map(() => {
-                const index = this.users.findIndex(user => user._id === id);
-                if (index !== -1) {
-                    this.users.splice(index, 1);
-                    this.usersSubject.next(this.users);
-                }
-            }),
-            catchError(error => {
-                console.error('Error during delete:', error);
-                return throwError(() => new Error('Error during delete operation.'));
+            map(response => {
+                return response;
             })
         );
-    }
-    
-
-    private generateUniqueId(): string {
-        return (Math.max(...this.users.map(user => parseInt(user._id || '0', 10)), 0) + 1).toString();
     }
 }

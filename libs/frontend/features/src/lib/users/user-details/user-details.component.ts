@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { IUserInfo } from './../../../../../../shared/services/user/user.model'
 import { UserService } from './../../../../../../shared/services/user/user.service'
+import { Observable } from 'rxjs';
 
 @Component({
     selector: 'train-repo-user-details',
@@ -21,7 +22,9 @@ export class UserDetailsComponent implements OnInit{
 
   deleteUser(id: string): void {
     if (id) {
-      this.userService.deleteUser(id);
+      this.userService.deleteUser(id).subscribe(data => {
+        console.log(data);
+      })
       this.router.navigate(['/user']);
     }
   }

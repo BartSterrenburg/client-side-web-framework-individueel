@@ -10,7 +10,7 @@ export type TrainDocument = Train & Document;
 export class Train implements ITrain {
     @IsMongoId()
     id!: string;
-    @Prop({ required: true })
+    @Prop({ required: false })
     name!: string;
     @Prop({ required: false })
     operator!: string;
@@ -34,10 +34,11 @@ export class Train implements ITrain {
     weight!: number;
     @Prop({ required: false })
     energyConsumption!: number;
-    @Prop({ required: true, type: Object })
+    @Prop({ required: false, type: Object })
     sort!: TrainSort;
     @Prop({ required: false, type: MongooseSchema.Types.ObjectId, ref: 'User' })
-    owner!: IUserInfo;
+    owner!: MongooseSchema.Types.ObjectId;
+    @Prop({required: false, type: [String]})
     facilities!: string[];
 }
 

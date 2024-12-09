@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { appRoutes } from './app.routes';
 import { AlertComponent } from './../../../../libs/frontend/features/src/lib/alert/alert.component'
@@ -30,6 +31,7 @@ import { FeaturesModule } from '@train-repo/features';
         }),
         FeaturesModule,
         ReactiveFormsModule,
+        HttpClientModule
     ],
     providers: [],
     bootstrap: [AppComponent]
