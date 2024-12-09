@@ -25,7 +25,9 @@ export class UserPostComponent {
 
 
     onSubmit() {
-        this.userService.addUser(this.newUser);
+        this.userService.addUser(this.newUser).subscribe(data => {
+            console.log("succes")
+        });
         this.router.navigate(['/user']);
     }
 }

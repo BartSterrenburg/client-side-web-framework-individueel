@@ -35,22 +35,9 @@ export class TrainPostComponent {
 
 
     onSubmit(): void {
-        console.log(`id: ${this.newTrain._id}`);
-        console.log(`sort: ${this.newTrain.sort}`);
-        console.log(`name: ${this.newTrain.name}`);
-        console.log(`operator: ${this.newTrain.operator}`);
-        console.log(`model: ${this.newTrain.model}`);
-        console.log(`capacity: ${this.newTrain.capacity}`);
-        console.log(`numberOfWagons: ${this.newTrain.numberOfWagons}`);
-        console.log(`maxSpeed: ${this.newTrain.maxSpeed}`);
-        console.log(`propulsion: ${this.newTrain.propulsion}`);
-        console.log(`length: ${this.newTrain.length}`);
-        console.log(`manufactureYear: ${this.newTrain.manufactureYear}`);
-        console.log(`manufacturer: ${this.newTrain.manufacturer}`);
-        console.log(`weight: ${this.newTrain.weight}`);
-        console.log(`energyConsumption: ${this.newTrain.energyConsumption}`);
-
-        this.trainService.addTrain(this.newTrain);
+        this.trainService.addTrain(this.newTrain).subscribe(data =>
+            console.log(data)
+        );
         this.router.navigate(['/train']);
     }
       

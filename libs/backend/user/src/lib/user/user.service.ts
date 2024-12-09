@@ -50,16 +50,20 @@ export class UserService {
     }
 
     async delete(_id: string): Promise<string> {
-        this.logger.log(`Delete user with id ${_id}`);
+        console.log(`DELETE operation started for user with id: ${_id}`);
+        
         const result = await this.userModel.deleteOne({ _id });
-    
+        console.log(`Database delete result:`, result);
+        
         if (result.deletedCount === 1) {
-            this.logger.log(`User with id ${_id} successfully deleted.`);
+            console.log(`User with id ${_id} successfully deleted.`);
             return `User with id ${_id} successfully deleted.`;
         } else {
-            this.logger.warn(`User with id ${_id} not found.`);
+            console.warn(`User with id ${_id} not found.`);
             return `User with id ${_id} not found.`;
         }
     }
+    
+    
     
 }

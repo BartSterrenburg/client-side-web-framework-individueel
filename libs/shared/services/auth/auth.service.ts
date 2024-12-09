@@ -124,13 +124,25 @@ export class AuthService {
     return of(localUser ? JSON.parse(localUser) as IUserInfo : null);
   }
 
+  getCurrentUserId(): string | null {
+    const localUser = localStorage.getItem(this.CURRENT_USER);
+    if (localUser) {
+      const user = JSON.parse(localUser) as IUserInfo;
+      return user._id || null;
+    } else {
+      return null;
+    }
+  }
+  
+
   getTokenFromLocalStorage(): string | null {
     const localUser = localStorage.getItem(this.CURRENT_USER);
     if (localUser) {
       const user = JSON.parse(localUser) as IUserInfo;
       return user.token || null; // Retourneer het token of null als het token niet bestaat
+    } else {
+      return null;
     }
-    return null;
   }
   
 

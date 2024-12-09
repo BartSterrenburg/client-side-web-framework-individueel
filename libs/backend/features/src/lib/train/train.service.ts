@@ -1,5 +1,5 @@
 import { HttpException, Injectable, Logger } from '@nestjs/common';
-import { Model } from 'mongoose';
+import mongoose, { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { Train as TrainModel, TrainDocument } from './train.schema';
 import { ITrain } from '@train-repo/shared/api';
@@ -12,7 +12,6 @@ export class TrainService {
 
     constructor(
         @InjectModel(TrainModel.name) private trainModel: Model<TrainDocument>,
-        @InjectModel(UserModel.name) private userModel: Model<UserDocument>
     ) {}
 
     /**
@@ -43,25 +42,48 @@ export class TrainService {
 
     async create(req: any): Promise<ITrain | null> {
         const train = req.body;
-        const user_id = req.user.user_id;
-
-        if (train && user_id) {
-            this.logger.log(`Create train ${train.name} for ${user_id}`);
-            const user = await this.userModel
-                .findOne({ _id: user_id })
-                .select('-password -trains')
-                .exec();
-            const createdItem = {
-                ...train,
-                owner: user
-            };
-            return this.trainModel.create(createdItem);
+        const user_id = train.owner;
+    
+        if (!user_id) {
+            this.logger.error("User ID is missing in request.");
+            throw new Error("User ID is missing.");
         }
-        return null;
+    
+        const createdItem = {
+            ...train,
+            owner: new mongoose.Types.ObjectId(user_id),
+        };
+    
+        this.logger.log(`Creating train with data: ${JSON.stringify(createdItem)}`);
+    
+        try {
+            const result = await this.trainModel.create(createdItem);
+            this.logger.log(`Train successfully created: ${JSON.stringify(result)}`);
+            return result;
+        } catch (error) {
+            this.logger.error(`Error creating train: ${error.message}`);
+            throw error;
+        }
     }
+    
 
     async update(_id: string, train: UpdateTrainDto): Promise<ITrain | null> {
         this.logger.log(`Update train`);
         return this.trainModel.findByIdAndUpdate({ _id }, train);
+    }
+
+    async delete(_id: string): Promise<string> {
+        console.log(`DELETE operation started for train with id: ${_id}`);
+        
+        const result = await this.trainModel.deleteOne({ _id });
+        console.log(`Database delete result:`, result);
+        
+        if (result.deletedCount === 1) {
+            console.log(`Train with id ${_id} successfully deleted.`);
+            return `Train with id ${_id} successfully deleted.`;
+        } else {
+            console.warn(`Train with id ${_id} not found.`);
+            return `Train with id ${_id} not found.`;
+        }
     }
 }

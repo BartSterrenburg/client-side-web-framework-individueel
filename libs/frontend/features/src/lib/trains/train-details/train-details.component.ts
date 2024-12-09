@@ -30,7 +30,9 @@ export class TrainDetailsComponent implements OnInit{
 
   deleteTrain(id: string): void {
     if (id) {
-      this.trainService.deleteTrain(id);
+      this.trainService.deleteTrain(id).subscribe(data => {
+        console.log(data);
+      });
       this.router.navigate(['/train']);
     }
   }

@@ -39,8 +39,10 @@ export class UserEditComponent implements OnInit {
             this.userId = params.get('id');
             if (this.userId) {
                 console.log("trainid:" + this.userId)
-                this.userService.editUser(this.userId, this.newUser);
-                // this.router.navigate(['/user']);
+                this.userService.editUser(this.userId, this.newUser).subscribe(data => {
+                    console.log(data);
+                });
+                this.router.navigate(['/user']);
             }
         });    
     }

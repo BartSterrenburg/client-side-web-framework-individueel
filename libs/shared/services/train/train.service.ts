@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, of, BehaviorSubject, map, tap } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, of, BehaviorSubject, map, tap, catchError, throwError, isObservable } from 'rxjs';
 import { Train } from './train.model';
 import { environment } from './../../util-env/src/lib/environment'
+import { AuthService } from 'libs/shared/services/auth/auth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +14,7 @@ export class TrainService {
 
   private apiUrl = `${environment.SERVER_API_URL}/api/train`
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
   // GET: Haal de treinen op van de API
   getTrains(): Observable<Train[]> {
@@ -28,35 +29,84 @@ export class TrainService {
   }
 
   addTrain(train: Train): Observable<Train> {
-    const newTrain = { ...train };
+    const newTrain = {
+      "sort": train.sort,
+      "name": train.name,
+      "operator": train.operator,
+      "model": train.model,
+      "capacity": train.capacity,
+      "numberOfWagons": train.numberOfWagons,
+      "maxSpeed": train.maxSpeed,
+      "propulsion": train.propulsion,
+      "length": train.length,
+      "manufactureYear": train.manufactureYear,
+      "manufacturer": train.manufacturer,
+      "weight": train.weight,
+      "energyConsumption": train.energyConsumption,
+      "facilities": train.facilities,
+      "owner": this.authService.getCurrentUserId()
+    };
 
-    return this.http.post<Train>(this.apiUrl, newTrain).pipe(
-      tap((addedTrain) => {
-        this.trains.push(addedTrain);
-        this.trainsSubject.next(this.trains);
+    const token = this.authService.getTokenFromLocalStorage();
+    if(token) {
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${token}`
+      });
+  
+      return this.http.post<Train>(this.apiUrl, newTrain, {headers}).pipe(
+        map(response => {
+          return response
+        })
+      );
+    } else {
+      this.authService.logout();
+      return throwError(() => new Error('No valid token found. User logged out'))
+    }
+  }
+
+  editTrain(id: string, train: Train): Observable<Train> {
+    const newTrain = {
+      "sort": train.sort,
+      "name": train.name,
+      "operator": train.operator,
+      "model": train.model,
+      "capacity": train.capacity,
+      "numberOfWagons": train.numberOfWagons,
+      "maxSpeed": train.maxSpeed,
+      "propulsion": train.propulsion,
+      "length": train.length,
+      "manufactureYear": train.manufactureYear,
+      "manufacturer": train.manufacturer,
+      "weight": train.weight,
+      "energyConsumption": train.energyConsumption,
+      "facilities": train.facilities
+    };
+
+    const token = this.authService.getTokenFromLocalStorage();
+    if(token) {
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${token}`
+      });
+
+      return this.http.put<Train>(`${this.apiUrl}/${id}`, newTrain, {headers}).pipe(
+        map(response => {
+          return response
+        })
+      )
+    } else {
+      return throwError(() => new Error('No valid token found. User logged out'))
+    }
+  }
+
+  deleteTrain(id: string): Observable<void> {
+    console.log(`Deleting train with id: ${id} url: ${this.apiUrl}/${id}`);
+    return this.http.delete<void>(`${this.apiUrl}/${id}`).pipe(
+      map(response => {
+        return response;
       })
     );
   }
-
-  editTrain(id: string, train: Train): void {
-    let index = this.trains.findIndex((t) => t._id == id);
-    console.log("index: " + index);
-    if (index !== -1) {
-      this.trains[index] = train;
-      this.trainsSubject.next(this.trains);
-    } else {
-      console.log("Train not found!");
-    }
-  }
-
-  deleteTrain(id: string): void {
-    const index = this.trains.findIndex(train => train._id === id);
-    if (index !== -1) {
-      this.trains.splice(index, 1);
-      this.trainsSubject.next(this.trains);
-    }
-  }
-
+  
   getTrainsAsObservable(): Observable<Train[]> {
     return of(this.trains);
   }
@@ -64,9 +114,5 @@ export class TrainService {
   getTrainById(id: string): Observable<Train | undefined> {
     const train = this.trains.find((train) => train._id === id);
     return of(train);
-  }
-
-  private generateUniqueId(): string {
-    return (Math.max(...this.trains.map(train => parseInt(train._id || '0', 10)), 0) + 1).toString();
   }
 }
