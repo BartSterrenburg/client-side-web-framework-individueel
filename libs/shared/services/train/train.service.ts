@@ -17,6 +17,7 @@ export class TrainService {
 
   // GET: Haal de treinen op van de API
   getTrains(): Observable<Train[]> {
+    console.log(this.apiUrl);
     return this.http.get<{ results: Train[] }>(this.apiUrl).pipe(
       map(response => {
         this.trains = response.results;
