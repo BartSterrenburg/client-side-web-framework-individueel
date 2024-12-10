@@ -8,5 +8,5 @@ export const environment: IEnvironment = {
 
 
     // this is permitted for now
-    MONGO_DB_CONNECTION_STRING: 'mongodb+srv://sbsterrenburg:PzYmiOkbw5bjwq89@traindb.c6xon.mongodb.net/'
+    MONGO_DB_CONNECTION_STRING: 'mongodb+srv://sbsterrenburg:PzYmiOkbw5bjwq89@traindb.c6xon.mongodb.net/database'
 };

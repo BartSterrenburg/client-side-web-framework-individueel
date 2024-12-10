@@ -61,7 +61,7 @@ export class TrainService {
             this.logger.log(`Train successfully created: ${JSON.stringify(result)}`);
             return result;
         } catch (error) {
-            this.logger.error(`Error creating train: ${error.message}`);
+            this.logger.error(`Error creating train`);
             throw error;
         }
     }

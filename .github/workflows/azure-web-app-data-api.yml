@@ -1,12 +1,11 @@
 name: Deploy NestJS to Azure
 
 on:
-  push:
-    branches:
-      - release  # Zorgt ervoor dat de workflow wordt getriggerd bij elke push naar de release branch
-  pull_request:
-    branches:
-      - release  # Dit zorgt ervoor dat de workflow ook wordt getriggerd bij een pull request naar release
+  workflow_run:
+    workflows: ["Azure Static Web Apps CI/CD"]  # Naam van de eerste workflow
+    types:
+      - completed
+    # Het zorgt ervoor dat deze workflow alleen draait als de eerste workflow succesvol is
 
 jobs:
   build:
@@ -32,8 +31,4 @@ jobs:
         with:
           app-name: 'train-api'
           publish-profile: ${{ secrets.NESTJS_PUBLISHPROFILE }}
-          package: '.'  # Gebruik de root van de repository, of het juiste pad naar je app
-          
-      - name: Restart app on Azure
-        run: |
-          az webapp restart --name 'train-api' --resource-group 'myResourceGroup'
+          package: 'dist/apps/data-api'  # Pas dit pad aan op basis van jouw build output
