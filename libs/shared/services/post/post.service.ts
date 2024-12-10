@@ -16,17 +16,16 @@ export class PostService {
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
-  // // GET: Haal de treinen op van de API
-  // getTrains(): Observable<Train[]> {
-  //   console.log(this.apiUrl);
-  //   return this.http.get<{ results: Train[] }>(this.apiUrl).pipe(
-  //     map(response => {
-  //       this.trains = response.results;
-  //       this.trainsSubject.next(this.trains);
-  //       return this.trains;
-  //     })
-  //   );
-  // }
+  getPostsFromTrain(trainId: string): Observable<Post[]> {
+    console.log(`${this.apiUrl}/train/${trainId}`);
+    return this.http.get<{ results: Post[] }>(`${this.apiUrl}/train/${trainId}`).pipe(
+      map(response => {
+        this.posts = response.results;
+        this.postsSubject.next(this.posts);
+        return this.posts;
+      })
+    );
+  }
 
   addTrain(post: Post): Observable<Post> {
     const newPost = {
@@ -36,7 +35,8 @@ export class PostService {
       "isActive": post.isActive,
       "createdAt": Date.now(),
       "updatedAt": Date.now(),
-      "owner": this.authService.getCurrentUserId()
+      "owner": this.authService.getCurrentUserId(),
+      "train": post.train
     };
 
     const token = this.authService.getTokenFromLocalStorage();
@@ -103,8 +103,8 @@ export class PostService {
   //   return of(this.trains);
   // }
 
-  // getTrainById(id: string): Observable<Train | undefined> {
-  //   const train = this.trains.find((train) => train._id === id);
-  //   return of(train);
-  // }
+  getPostById(id: string): Observable<Post | undefined> {
+    const post = this.posts.find((post) => post._id === id);
+    return of(post);
+  }
 }

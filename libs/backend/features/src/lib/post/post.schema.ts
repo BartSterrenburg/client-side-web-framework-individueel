@@ -23,6 +23,8 @@ export class Post implements IPost {
     updatedAt!: Date;
     @Prop({ required: false, type: MongooseSchema.Types.ObjectId, ref: 'User' })
     owner!: MongooseSchema.Types.ObjectId;
+    @Prop({ required: false, type: MongooseSchema.Types.ObjectId, ref: 'Train' })
+    train!: MongooseSchema.Types.ObjectId;
 
 }
 

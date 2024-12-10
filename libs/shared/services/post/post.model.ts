@@ -1,29 +1,32 @@
 import { Id } from '../id.model';
 
 export class Post {
-  id: Id;
+  _id: Id;
   description: string;
   picture: string;
   isCommentable: boolean;
   isActive: boolean;
   createdAt: Date;
   updatedAt: Date;
+  train: string;
 
   constructor(
-    id: Id,
+    _id: Id,
     description: string,
     picture: string,
     isCommentable: boolean,
     isActive: boolean,
     createdAt: Date,
-    updatedAt: Date
+    updatedAt: Date,
+    train: string
     ) {
-    this.id = id;
+    this._id = _id;
     this.description = description;
     this.picture = picture;
     this.isCommentable = isCommentable;
     this.isActive = isActive;
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
+    this.train = train;
   }
 }

@@ -1,0 +1,109 @@
+<!-- trainpost-details.component.html -->
+<div class="container mt-5">
+    <div class="row">
+      <div class="col-md-6 offset-md-2">
+        <!-- Post Detail Card -->
+        <div class="card">
+          <div class="card-header bg-primary text-white">
+            <h3 class="card-title">Post Details</h3>
+          </div>
+          <div class="card-body">
+            <div *ngIf="post">
+              <!-- Displaying Image -->
+              <img *ngIf="post.picture" [src]="post.picture" class="img-fluid mb-3" alt="Post Image">
+              
+              <!-- Post Description -->
+              <h4 class="mb-3">{{ post.description }}</h4>
+  
+              <ul class="list-group list-group-flush">
+                <!-- Created Date -->
+                <li class="list-group-item">
+                  <strong>Created At:</strong> {{ post.createdAt | date:'medium' }}
+                </li>
+  
+                <!-- Updated Date -->
+                <li class="list-group-item">
+                  <strong>Updated At:</strong> {{ post.updatedAt | date:'medium' }}
+                </li>
+  
+                <!-- Train ID -->
+                <li class="list-group-item">
+                  <strong>Train ID:</strong> {{ post.train }}
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h3 class="card-title">Trein Details</h3>
+              </div>
+              <div class="card-body">
+                <div class="info-item">
+                    <strong>Sort:</strong>
+                    {{ train?.sort }}
+                  </div>
+                  <div class="info-item">
+                    <strong>Name:</strong>
+                    {{ train?.name }}
+                  </div>
+                  <div class="info-item">
+                    <strong>Operator:</strong>
+                    {{ train?.operator }}
+                  </div>
+                  <div class="info-item">
+                    <strong>Model:</strong>
+                    {{ train?.model }}
+                  </div>
+                  <div class="info-item">
+                    <strong>Capacity:</strong>
+                    {{ train?.capacity }}
+                  </div>
+                  <div class="info-item">
+                    <strong>Number of Wagons:</strong>
+                    {{ train?.numberOfWagons }}
+                  </div>
+                  <div class="info-item">
+                    <strong>Max Speed:</strong>
+                    {{ train?.maxSpeed }}
+                  </div>
+                  <div class="info-item">
+                    <strong>Propulsion:</strong>
+                    {{ train?.propulsion }}
+                  </div>
+                  <div class="info-item">
+                    <strong>Length:</strong>
+                    {{ train?.length }}
+                  </div>
+                  <div class="info-item">
+                    <strong>Manufacture Year:</strong>
+                    {{ train?.manufactureYear }}
+                  </div>
+                  <div class="info-item">
+                    <strong>Manufacturer:</strong>
+                    {{ train?.manufacturer }}
+                  </div>
+                  <div class="info-item">
+                    <strong>Weight:</strong>
+                    {{ train?.weight }}
+                  </div>
+                  <div class="info-item">
+                    <strong>Energy Consumption:</strong>
+                    {{ train?.energyConsumption }}
+                  </div>
+                  <div class="info-item">
+                    <strong>Facilities:</strong>
+                    {{ train?.facilities }}
+                  </div>
+              </div>
+
+        </div>
+    </div>
+    </div>
+
+
+  </div>
+  

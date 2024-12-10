@@ -14,6 +14,8 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { FeaturesModule } from '@train-repo/features';
 import { TrainpostComponent } from './components/trainpost/trainpost.component';
+import { TrainpostListComponent } from './components/trainpost/trainpost-list/trainpost-list.component';
+import { TrainpostDetailsComponent } from './components/trainpost/trainpost-details/trainpost-details.component';
 
 @NgModule({
     declarations: [
@@ -24,7 +26,9 @@ import { TrainpostComponent } from './components/trainpost/trainpost.component';
         FooterComponent,
         LoginComponent,
         RegisterComponent,
-        TrainpostComponent
+        TrainpostComponent,
+        TrainpostListComponent,
+        TrainpostDetailsComponent
     ],
     imports: [
         BrowserModule,

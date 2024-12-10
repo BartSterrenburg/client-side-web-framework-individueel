@@ -19,10 +19,10 @@ export class PostService {
      *
      * @returns
      */
-    async findAll(): Promise<IPost[]> {
+    async findAll(_id: string): Promise<IPost[]> {
         this.logger.log(`Finding all items`);
         const items = await this.postModel
-            .find()
+            .find({"train": _id})
             .populate(
                 'owner',
                 'description'
@@ -43,15 +43,22 @@ export class PostService {
     async create(req: any): Promise<IPost | null> {
         const post = req.body;
         const user_id = post.owner;
+        const train_id = post.train;
     
         if (!user_id) {
             this.logger.error("User ID is missing in request.");
             throw new Error("User ID is missing.");
         }
+
+        if (!train_id) {
+            this.logger.error("Train ID is missing in request.");
+            throw new Error("Train ID is missing.");
+        }
     
         const createdItem = {
             ...post,
             owner: new mongoose.Types.ObjectId(user_id),
+            train: new mongoose.Types.ObjectId(train_id)
         };
     
         this.logger.log(`Creating post with data: ${JSON.stringify(createdItem)}`);

@@ -1,22 +1,38 @@
-import { Component } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms'; // Importeer FormGroup en FormControl
-import { PostService } from 'libs/shared/services/post/post.service'
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms'; 
+import { PostService } from 'libs/shared/services/post/post.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'train-repo-trainpost',
   templateUrl: './trainpost.component.html',
   styleUrls: ['./trainpost.component.css']
 })
-export class TrainpostComponent {
+export class TrainpostComponent implements OnInit {
   trainpostForm: FormGroup;
-
   imagePreview: string | undefined;
-
-  constructor(private postService: PostService) {
+  trainId: string | null = null; 
+  constructor(
+    private postService: PostService,
+    private route: ActivatedRoute
+  ) {
     this.trainpostForm = new FormGroup({
       description: new FormControl(''),
       isCommentable: new FormControl(false),
-      picture: new FormControl('')
+      picture: new FormControl(''),
+      train: new FormControl()
+    });
+  }
+
+  ngOnInit(): void {
+    this.route.paramMap.subscribe(params => {
+      this.trainId = params.get('id');
+      
+      if (this.trainId) {
+        this.trainpostForm.patchValue({
+          train: this.trainId
+        });
+      }
     });
   }
 
@@ -25,7 +41,7 @@ export class TrainpostComponent {
     if (file) {
       const reader = new FileReader();
       reader.onload = () => {
-        this.imagePreview = reader.result as string; 
+        this.imagePreview = reader.result as string;
         this.trainpostForm.patchValue({
           picture: this.imagePreview
         });
@@ -35,7 +51,7 @@ export class TrainpostComponent {
   }
 
   onSubmit(): void {
-    console.log(this.trainpostForm.value); 
+    console.log(this.trainpostForm.value);
     this.postService.addTrain(this.trainpostForm.value).subscribe(data => {
       console.log(data);
     });

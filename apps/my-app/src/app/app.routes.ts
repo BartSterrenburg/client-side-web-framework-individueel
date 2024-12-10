@@ -12,6 +12,8 @@ import { UserPostComponent } from 'libs/frontend/features/src/lib/users/user-pos
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { TrainpostComponent } from './components/trainpost/trainpost.component';
+import { TrainpostListComponent } from './components/trainpost/trainpost-list/trainpost-list.component';
+import { TrainpostDetailsComponent } from './components/trainpost/trainpost-details/trainpost-details.component';
 
 
 
@@ -31,5 +33,7 @@ export const appRoutes: Route[] = [
     {path: 'train-edit/:id', component: TrainEditComponent, pathMatch: 'full'},
     {path: 'register', component: RegisterComponent, pathMatch: 'full'},
     {path: 'login', component: LoginComponent, pathMatch: 'full'},
-    {path: 'train/post/:id', component: TrainpostComponent, pathMatch: 'full'}
+    {path: 'trainpost-post/:id', component: TrainpostComponent, pathMatch: 'full'},
+    {path: 'train/:id/trainpost', component: TrainpostListComponent, pathMatch: 'full'},
+    {path: 'trainpost/:id', component: TrainpostDetailsComponent, pathMatch: 'full'}
 ];

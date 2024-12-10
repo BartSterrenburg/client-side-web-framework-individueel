@@ -13,7 +13,6 @@ import { ImageLibrary } from './../../../../../../../apps/my-app/src/assets/imag
     styles: []
 })
 export class TrainDetailsComponent implements OnInit{
-
   trainId: string | null = null;
   train: Train | null = null;
   image = ImageLibrary.welcomeImage;
@@ -29,7 +28,11 @@ export class TrainDetailsComponent implements OnInit{
   }
 
   RoutePostForm(id: string) {
-    this.router.navigate([`/train/post/${id}`]);
+    this.router.navigate([`/trainpost-post/${id}`]);
+  }
+
+  RoutePosts(id: string) {
+    this.router.navigate([`/train/${id}/trainpost`])
   }
 
   deleteTrain(id: string): void {

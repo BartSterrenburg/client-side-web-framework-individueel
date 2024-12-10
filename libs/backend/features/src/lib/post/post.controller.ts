@@ -10,9 +10,9 @@ export class PostController {
 
     constructor(private postService: PostService) {}
 
-    @Get('')
-    getAll(): Promise<IPost[]> {
-        return this.postService.findAll();
+    @Get('train/:id')
+    getAll(@Param('id') id: string): Promise<IPost[]> {
+        return this.postService.findAll(id);
     }
 
     @Get(':id')
