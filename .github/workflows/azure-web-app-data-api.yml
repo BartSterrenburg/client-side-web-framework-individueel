@@ -22,7 +22,10 @@ jobs:
           node-version: '20'
 
       - name: Install dependencies
-        run: npm ci  # Gebruik npm ci voor schone installatie
+        run: npm install  # Gebruik npm install om alle dependencies, inclusief Nx, te installeren
+
+      - name: Install Nx globally
+        run: npm install -g nx  # Installeer Nx CLI globaal zodat je het kunt gebruiken
 
       - name: Build data-api app
         run: nx build data-api --prod  # Specifieke Nx build voor data-api
