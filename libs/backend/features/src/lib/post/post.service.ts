@@ -73,6 +73,29 @@ export class PostService {
         }
     }
     
+    async addCommentToPost(postId: string, content: string): Promise<IPost | null> {
+        this.logger.log(`Adding comment to post with id ${postId}`);
+    
+        // Vind de post met de opgegeven ID
+        const post = await this.postModel.findById(postId);
+        if (!post) {
+          this.logger.error(`Post with id ${postId} not found.`);
+          throw new Error('Post not found');
+        }
+    
+        // Voeg een nieuwe comment aan de array toe
+        const newComment = {
+          content,
+          createdAt: new Date(),
+        };
+    
+        post.comments.push(newComment); // Voeg comment toe aan de array
+    
+        // Sla de post op met de nieuwe comment
+        await post.save();
+    
+        return post;
+    }
 
     // async update(_id: string, train: UpdateTrainDto): Promise<ITrain | null> {
     //     this.logger.log(`Update train`);

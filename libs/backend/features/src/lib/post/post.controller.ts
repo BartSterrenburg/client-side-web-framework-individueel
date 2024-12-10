@@ -36,4 +36,10 @@ export class PostController {
     delete(@Param('id') id: string): void {
         this.postService.delete(id);
     }
+
+    @Post(':id/comment')
+    @UseGuards(AuthGuard)
+    addComment(@Param('id') id: string, @Body() body: { content: string }): Promise<IPost | null> {
+      return this.postService.addCommentToPost(id, body.content);
+    }
 }

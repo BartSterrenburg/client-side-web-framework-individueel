@@ -1,3 +1,4 @@
+import { IComment } from '@train-repo/shared/api';
 import { Id } from '../id.model';
 
 export class Post {
@@ -9,6 +10,7 @@ export class Post {
   createdAt: Date;
   updatedAt: Date;
   train: string;
+  comments: IComment[];
 
   constructor(
     _id: Id,
@@ -18,7 +20,8 @@ export class Post {
     isActive: boolean,
     createdAt: Date,
     updatedAt: Date,
-    train: string
+    train: string,
+    comments: IComment[]
     ) {
     this._id = _id;
     this.description = description;
@@ -28,5 +31,6 @@ export class Post {
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
     this.train = train;
+    this.comments = comments;
   }
 }
