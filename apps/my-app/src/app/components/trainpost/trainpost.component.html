@@ -1,0 +1,28 @@
+<div class="container mt-5">
+    <h2>Trainpost</h2>
+  
+    <form [formGroup]="trainpostForm" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label for="image" class="form-label">Afbeelding</label>
+        <input type="file" class="form-control" id="image" (change)="onImageSelected($event)">
+      </div>
+  
+      <div class="mb-3">
+        <label for="description" class="form-label">Beschrijving</label>
+        <textarea class="form-control" id="description" rows="3" formControlName="description" placeholder="Voeg hier een beschrijving toe..."></textarea>
+      </div>
+  
+      <div class="form-check mb-3">
+        <input type="checkbox" class="form-check-input" id="isCommentable" formControlName="isCommentable">
+        <label class="form-check-label" for="isCommentable">Reacties inschakelen</label>
+      </div>
+  
+      <div *ngIf="imagePreview" class="mt-3">
+        <h5>Afbeelding Preview:</h5>
+        <img [src]="imagePreview" class="img-fluid" alt="Preview Image">
+      </div>
+  
+      <button type="submit" class="btn btn-primary mt-3">Opslaan</button>
+    </form>
+  </div>
+  

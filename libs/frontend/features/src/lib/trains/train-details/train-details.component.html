@@ -16,6 +16,8 @@
       <div class="info-grid">
         <button class="primary" (click)="deleteTrain(train!._id)">verwijderen</button>
         <button class="primary" (click)="RouteEditTrainForm(train!._id)" style="cursor: pointer">bewerken</button>
+        <button class="primary" (click)="RoutePostForm(train!._id)" style="cursor: pointer">Deel je moment</button>
+
         <div class="info-item">
           <strong>Sort:</strong>
           {{ train?.sort }}

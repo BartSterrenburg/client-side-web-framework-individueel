@@ -5,14 +5,15 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { appRoutes } from './app.routes';
-import { AlertComponent } from './../../../../libs/frontend/features/src/lib/alert/alert.component'
+import { AlertComponent } from './../../../../libs/frontend/features/src/lib/alert/alert.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AboutComponent } from './components/about/about.component';
 import { HeaderComponent } from './components/ui/header/header.component';
 import { FooterComponent } from './components/ui/footer/footer.component';
-import { LoginComponent } from './components/login/login.component'
-import { RegisterComponent } from './components/register/register.component'
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 import { FeaturesModule } from '@train-repo/features';
+import { TrainpostComponent } from './components/trainpost/trainpost.component';
 
 @NgModule({
     declarations: [
@@ -22,7 +23,8 @@ import { FeaturesModule } from '@train-repo/features';
         HeaderComponent,
         FooterComponent,
         LoginComponent,
-        RegisterComponent
+        RegisterComponent,
+        TrainpostComponent
     ],
     imports: [
         BrowserModule,

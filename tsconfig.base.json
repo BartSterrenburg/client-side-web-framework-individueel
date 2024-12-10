@@ -15,22 +15,14 @@
         "skipDefaultLibCheck": true,
         "baseUrl": ".",
         "paths": {
-            "@train-repo/backend/auth": [
-                "libs/backend/auth/src/index.ts"
-            ],
+            "@train-repo/backend/auth": ["libs/backend/auth/src/index.ts"],
             "@train-repo/backend/dto": ["libs/backend/dto/src/index.ts"],
             "@train-repo/backend/features": [
                 "libs/backend/features/src/index.ts"
             ],
-            "@train-repo/backend/neo4j": [
-                "libs/backend/neo4j/src/index.ts"
-            ],
-            "@train-repo/backend/user": [
-                "libs/backend/user/src/index.ts"
-            ],
-            "@train-repo/features": [
-                "libs/frontend/features/src/index.ts"
-            ],
+            "@train-repo/backend/neo4j": ["libs/backend/neo4j/src/index.ts"],
+            "@train-repo/backend/user": ["libs/backend/user/src/index.ts"],
+            "@train-repo/features": ["libs/frontend/features/src/index.ts"],
             "@train-repo/frontend/common": [
                 "libs/frontend/common/src/index.ts"
             ],
@@ -51,9 +43,7 @@
                 "libs/share-a-meal/user/src/index.ts"
             ],
             "@train-repo/shared/api": ["libs/shared/api/src/index.ts"],
-            "@train-repo/shared/util-env": [
-                "libs/shared/util-env/src/index.ts"
-            ]
+            "@train-repo/shared/util-env": ["libs/shared/util-env/src/index.ts"]
         }
     },
     "exclude": ["node_modules", "tmp"]
