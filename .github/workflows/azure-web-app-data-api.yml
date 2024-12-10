@@ -22,14 +22,17 @@ jobs:
           node-version: '20'
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci  # Gebruik npm ci voor schone installatie
 
-      - name: Build NestJS app
-        run: npm run build
+      - name: Build data-api app
+        run: nx build data-api --prod  # Specifieke Nx build voor data-api
+
+      - name: Check dist folder contents
+        run: ls -la dist/apps/data-api  # Controleer of de build output bestaat
 
       - name: Upload build files to Azure
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'train-api'
           publish-profile: ${{ secrets.NESTJS_PUBLISHPROFILE }}
-          package: 'dist/apps/data-api'  # Pas dit pad aan op basis van jouw build output
+          package: 'dist/apps/data-api'
