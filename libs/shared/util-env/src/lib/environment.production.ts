@@ -3,7 +3,7 @@ import { IEnvironment } from './environment.interface';
 export const environment: IEnvironment = {
     production: true,
 
-    ROOT_DOMAIN_URL: 'https://happy-pebble-06ed2bf03.5.azurestaticapps.net',
+    ROOT_DOMAIN_URL: 'https://ambitious-desert-025798303.4.azurestaticapps.net',
     SERVER_API_URL: 'https://train-api.azurewebsites.net',
 
 
