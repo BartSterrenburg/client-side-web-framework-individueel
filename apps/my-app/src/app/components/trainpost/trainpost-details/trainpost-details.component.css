@@ -1,6 +1,6 @@
-.card-header.text-dark {
-    background-color: #f8f9fa;
-    color: #000; /* Black text color for headers */
+.card-header {
+    background-color: black;
+    color: white;
   }
   
   .card-body {
@@ -8,8 +8,8 @@
   }
   
   .btn-primary {
-    background-color: #007bff;
-    border-color: #007bff;
+    background-color: black;
+    border-color: white;
   }
   
   textarea.form-control {
@@ -17,3 +17,29 @@
     border: 1px solid #ccc;
   }
   
+/* Tabel styling */
+.train-info-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.train-info-table th, .train-info-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+.train-info-table th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.train-info-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.train-info-table tr:hover {
+  background-color: #f1f1f1;
+}
