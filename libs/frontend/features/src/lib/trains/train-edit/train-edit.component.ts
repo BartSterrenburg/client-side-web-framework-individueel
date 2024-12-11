@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { TrainService } from 'libs/shared/services/train/train.service';
 import { Train, TrainSort } from './../../../../../../shared/services/train/train.model';
+import { IUserInfo } from 'libs/shared/services/user/user.model';
 
 
 @Component({
@@ -32,6 +33,7 @@ export class TrainEditComponent implements OnInit {
         manufacturer: '',
         weight: 0,
         energyConsumption: 0,
+        owner: {} as IUserInfo,
         facilities: []
       };
 

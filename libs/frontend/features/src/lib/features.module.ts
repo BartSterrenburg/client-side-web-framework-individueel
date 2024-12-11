@@ -11,6 +11,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { TrainPostComponent } from './trains/train-post/train-post.component';
 import { TrainEditComponent } from './trains/train-edit/train-edit.component';
 import { AlertComponent } from './alert/alert.component'
+import { TrainDetailsComponent } from './trains/train-details/train-details.component';
 
 @NgModule({
     imports: [CommonModule, FormsModule, NgbAlertModule],
@@ -23,6 +24,7 @@ import { AlertComponent } from './alert/alert.component'
         TrainListComponent,
         TrainPostComponent,
         TrainEditComponent,
+        TrainDetailsComponent,
         AlertComponent
     ],
     exports: [AlertComponent, UserListComponent, UserDetailsComponent, UserEditComponent],

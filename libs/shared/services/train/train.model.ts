@@ -1,4 +1,5 @@
 import { Id } from './../id.model';
+import { IUserInfo } from '@train-repo/shared/api';
 
 export enum TrainSort {
   Sprinter = 'Sprinter',
@@ -24,6 +25,7 @@ export class Train {
   weight: number;
   energyConsumption: number;
   facilities: string[];
+  owner: IUserInfo
 
   constructor(
     _id: Id,
@@ -40,6 +42,7 @@ export class Train {
     manufacturer: string,
     weight: number,
     energyConsumption: number,
+    owner: IUserInfo,
     facilities: string[],
   ) {
     this._id = _id;
@@ -56,6 +59,7 @@ export class Train {
     this.manufacturer = manufacturer;
     this.weight = weight;
     this.energyConsumption = energyConsumption;
+    this.owner = owner;
     this.facilities = facilities;
   }
 }
