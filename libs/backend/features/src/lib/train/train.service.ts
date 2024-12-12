@@ -10,6 +10,7 @@ import { Neo4JService } from './../../../../neo4j/src/lib/neo4j.service'
 @Injectable()
 export class TrainService {
     private readonly logger: Logger = new Logger(TrainService.name);
+    result: any;
 
     constructor(
         @InjectModel(TrainModel.name) private trainModel: Model<TrainDocument>, private neo4jService: Neo4JService
@@ -58,16 +59,21 @@ export class TrainService {
         this.logger.log(`Creating train with data: ${JSON.stringify(createdItem)}`);
     
         try {
-            const result = await this.trainModel.create(createdItem);
-            this.logger.log(`Train successfully created: ${JSON.stringify(result)}`);
+            this.result = await this.trainModel.create(createdItem);
+            this.logger.log(`Train successfully created: ${JSON.stringify(this.result)}`);
+            console.log(this.result._id);
+            console.log(this.result.name);
+            console.log(this.result.sort);
+            console.log(this.result.model);
+            console.log(this.result.operator);
 
             const neoResult = await this.neo4jService.createTrain(
-                this.removeFirstAndLastLetter(result.id), 
-                this.removeFirstAndLastLetter(result.name), 
-                this.removeFirstAndLastLetter(result.sort), 
-                this.removeFirstAndLastLetter(result.model), 
-                this.removeFirstAndLastLetter(result.operator));
-            console.log("Result mongoDb: " + result + ", Result neo4j: " + neoResult);
+                this.result._id.toString(), 
+                this.result.name, 
+                this.result.sort, 
+                this.result.model, 
+                this.result.operator);
+            console.log("Result mongoDb: " + this.result + ", Result neo4j: " + neoResult);
 
             let possibleNumbers = [1, 2, 3, 4, 5, 6, 7, 8];
         
@@ -78,14 +84,14 @@ export class TrainService {
                 possibleNumbers.splice(randomIndex, 1);
                 
                 await this.neo4jService.createTrainStationRelationship(
-                    this.removeFirstAndLastLetter(result.id),
+                    this.result._id.toString(),
                     randomNumber, 
                     15
                 );
             }
             
 
-            return result;
+            return this.result;
         } catch (error) {
             this.logger.error(`Error creating train`);
             throw error;
@@ -111,10 +117,6 @@ export class TrainService {
             console.warn(`Train with id ${_id} not found.`);
             return `Train with id ${_id} not found.`;
         }
-    }
-
-    removeFirstAndLastLetter(str: string): string {
-        return str && str.length > 1 ? str.slice(1, str.length - 1) : str;
     }
     
 }
