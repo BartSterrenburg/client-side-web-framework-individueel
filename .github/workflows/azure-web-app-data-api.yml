@@ -18,10 +18,10 @@ jobs:
               with:
                   node-version: '20'
 
-            - name: Clean dist directory
-              run: |
-                  echo "Cleaning dist directory..."
-                  rm -rf dist
+            # - name: Clean dist directory
+            #   run: |
+            #       echo "Cleaning dist directory..."
+            #       rm -rf dist
 
             - name: npm install, build, and test
               run: |

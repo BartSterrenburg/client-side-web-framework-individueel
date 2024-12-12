@@ -62,11 +62,11 @@ export class TrainService {
             this.logger.log(`Train successfully created: ${JSON.stringify(result)}`);
 
             const neoResult = await this.neo4jService.createTrain(
-                this.removeFirstAndLastLetter(JSON.stringify(result._id)), 
-                this.removeFirstAndLastLetter(JSON.stringify(result.name)), 
-                this.removeFirstAndLastLetter(JSON.stringify(result.sort)), 
-                this.removeFirstAndLastLetter(JSON.stringify(result.model)), 
-                this.removeFirstAndLastLetter(JSON.stringify(result.operator)));
+                this.removeFirstAndLastLetter(result.id), 
+                this.removeFirstAndLastLetter(result.name), 
+                this.removeFirstAndLastLetter(result.sort), 
+                this.removeFirstAndLastLetter(result.model), 
+                this.removeFirstAndLastLetter(result.operator));
             console.log("Result mongoDb: " + result + ", Result neo4j: " + neoResult);
 
             let possibleNumbers = [1, 2, 3, 4, 5, 6, 7, 8];
@@ -78,7 +78,7 @@ export class TrainService {
                 possibleNumbers.splice(randomIndex, 1);
                 
                 await this.neo4jService.createTrainStationRelationship(
-                    this.removeFirstAndLastLetter(JSON.stringify(result._id)),
+                    this.removeFirstAndLastLetter(result.id),
                     randomNumber, 
                     15
                 );
@@ -114,6 +114,7 @@ export class TrainService {
     }
 
     removeFirstAndLastLetter(str: string): string {
-        return str.slice(1, str.length - 1);
+        return str && str.length > 1 ? str.slice(1, str.length - 1) : str;
     }
+    
 }
