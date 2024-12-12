@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { BackendFeaturesModule } from '@train-repo/backend/features';
 import { Neo4jBackendModule } from '@train-repo/backend/neo4j';
 import { UsersModule } from '@train-repo/backend/user';
@@ -9,6 +10,10 @@ import { Logger } from '@nestjs/common';
 
 @Module({
     imports: [
+        ConfigModule.forRoot({
+            isGlobal: true,
+            envFilePath: '.env',
+          }),
         BackendFeaturesModule,
         AuthModule,
         MongooseModule.forRoot(environment.MONGO_DB_CONNECTION_STRING, {
