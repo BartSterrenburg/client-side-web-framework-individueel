@@ -69,18 +69,15 @@ export class TrainService {
                 this.removeFirstAndLastLetter(JSON.stringify(result.operator)));
             console.log("Result mongoDb: " + result + ", Result neo4j: " + neoResult);
 
-
             let possibleNumbers = [1, 2, 3, 4, 5, 6, 7, 8];
         
-
             for (let i = 0; i < 4; i++) {           
-                
                 const randomIndex = Math.floor(Math.random() * possibleNumbers.length);
                 const randomNumber = possibleNumbers[randomIndex];
             
                 possibleNumbers.splice(randomIndex, 1);
                 
-                const neoCouplingResult = await this.neo4jService.createTrainStationRelationship(
+                await this.neo4jService.createTrainStationRelationship(
                     this.removeFirstAndLastLetter(JSON.stringify(result._id)),
                     randomNumber, 
                     15
