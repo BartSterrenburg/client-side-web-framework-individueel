@@ -13,6 +13,7 @@ import {
 import { AppModule } from './app/app.module';
 import { CorsOptions } from '@nestjs/common/interfaces/external/cors-options.interface';
 import * as bodyParser from 'body-parser';
+import { environment } from '@train-repo/shared/util-env';
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);
@@ -39,7 +40,12 @@ async function bootstrap() {
     const port = process.env.PORT || 3000;
     await app.listen(port);
     Logger.log(
-        `🚀 DATA-API server is running on: http://localhost:${port}/${globalPrefix}`
+        `🚀 DATA-API server is running on: http://localhost:${port}/${globalPrefix}`,
+        environment.MONGO_DB_CONNECTION_STRING,
+        environment.NEO4J_PASSWORD,
+        environment.NEO4J_URI,
+        environment.NEO4J_USER,
+        environment.SERVER_API_URL
     );
 }
 
