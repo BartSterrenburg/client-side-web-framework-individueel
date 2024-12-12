@@ -16,7 +16,12 @@ jobs:
             - name: Set up Node.js version
               uses: actions/setup-node@v4
               with:
-                  node-version: '20.x'
+                  node-version: '20'
+
+            - name: Clean dist directory
+              run: |
+                  echo "Cleaning dist directory..."
+                  rm -rf dist
 
             - name: npm install, build, and test
               run: |
