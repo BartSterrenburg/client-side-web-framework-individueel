@@ -10,7 +10,6 @@ import { Neo4JService } from './../../../../neo4j/src/lib/neo4j.service'
 @Injectable()
 export class TrainService {
     private readonly logger: Logger = new Logger(TrainService.name);
-    result: any;
 
     constructor(
         @InjectModel(TrainModel.name) private trainModel: Model<TrainDocument>, private neo4jService: Neo4JService
@@ -43,6 +42,8 @@ export class TrainService {
     }
 
     async create(req: any): Promise<ITrain | null> {
+        let result: any
+
         const train = req.body;
         const user_id = train.owner;
     
@@ -59,21 +60,16 @@ export class TrainService {
         this.logger.log(`Creating train with data: ${JSON.stringify(createdItem)}`);
     
         try {
-            this.result = await this.trainModel.create(createdItem);
-            this.logger.log(`Train successfully created: ${JSON.stringify(this.result)}`);
-            console.log(this.result._id);
-            console.log(this.result.name);
-            console.log(this.result.sort);
-            console.log(this.result.model);
-            console.log(this.result.operator);
+            result = await this.trainModel.create(createdItem);
+            this.logger.log(`Train successfully created: ${JSON.stringify(result)}`);
 
             const neoResult = await this.neo4jService.createTrain(
-                this.result._id.toString(), 
-                this.result.name, 
-                this.result.sort, 
-                this.result.model, 
-                this.result.operator);
-            console.log("Result mongoDb: " + this.result + ", Result neo4j: " + neoResult);
+                this.removeFirstAndLastLetter(JSON.stringify(result._id.toString())), 
+                this.removeFirstAndLastLetter(JSON.stringify(result.name)), 
+                this.removeFirstAndLastLetter(JSON.stringify(result.sort)), 
+                this.removeFirstAndLastLetter(JSON.stringify(result.model)), 
+                this.removeFirstAndLastLetter(JSON.stringify(result.operator)));
+            console.log("Result mongoDb: " + result + ", Result neo4j: " + neoResult);
 
             let possibleNumbers = [1, 2, 3, 4, 5, 6, 7, 8];
         
@@ -84,14 +80,14 @@ export class TrainService {
                 possibleNumbers.splice(randomIndex, 1);
                 
                 await this.neo4jService.createTrainStationRelationship(
-                    this.result._id.toString(),
+                    this.removeFirstAndLastLetter(JSON.stringify(result._id)),
                     randomNumber, 
                     15
                 );
             }
             
 
-            return this.result;
+            return result;
         } catch (error) {
             this.logger.error(`Error creating train`);
             throw error;
@@ -118,5 +114,16 @@ export class TrainService {
             return `Train with id ${_id} not found.`;
         }
     }
-    
+
+removeFirstAndLastLetter(str: string): string {
+    // Zorg ervoor dat je geen stringified versie van een waarde gebruikt, maar alleen de werkelijke waarde
+
+    if(str[0].match('"')) {
+        return str && str.length > 1 ? str.slice(1, str.length - 1) : str;
+    } else {
+        return str;
+    }
+
+}
+
 }
