@@ -3,7 +3,9 @@ import { TrainController } from './train/train.controller';
 import { TrainService } from './train/train.service';
 import { PostController } from './post/post.controller';
 import { PostService } from './post/post.service';
+
 import { MongooseModule } from '@nestjs/mongoose';
+import { Neo4jBackendModule } from '@train-repo/backend/neo4j';
 import { User as UserModel, UserSchema } from '@train-repo/backend/user';
 import { Train as TrainModel, TrainSchema } from './train/train.schema';
 import { Post as PostModel, PostSchema } from './post/post.schema'
@@ -18,7 +20,8 @@ import { JwtModule } from '@nestjs/jwt';
             { name: PostModel.name, schema:PostSchema}
         ]),
         JwtModule,
-        AuthModule
+        AuthModule,
+        Neo4jBackendModule
     ],
     controllers: [TrainController, PostController],
     providers: [TrainService, PostService],

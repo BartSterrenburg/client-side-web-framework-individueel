@@ -5,13 +5,14 @@ import { Train as TrainModel, TrainDocument } from './train.schema';
 import { ITrain } from '@train-repo/shared/api';
 import { CreateTrainDto, UpdateTrainDto } from '@train-repo/backend/dto';
 import { UserDocument, User as UserModel } from '@train-repo/backend/user';
+import { Neo4JService } from './../../../../neo4j/src/lib/neo4j.service'
 
 @Injectable()
 export class TrainService {
     private readonly logger: Logger = new Logger(TrainService.name);
 
     constructor(
-        @InjectModel(TrainModel.name) private trainModel: Model<TrainDocument>,
+        @InjectModel(TrainModel.name) private trainModel: Model<TrainDocument>, private neo4jService: Neo4JService
     ) {}
 
     /**
@@ -59,6 +60,34 @@ export class TrainService {
         try {
             const result = await this.trainModel.create(createdItem);
             this.logger.log(`Train successfully created: ${JSON.stringify(result)}`);
+
+            const neoResult = await this.neo4jService.createTrain(
+                this.removeFirstAndLastLetter(JSON.stringify(result._id)), 
+                this.removeFirstAndLastLetter(JSON.stringify(result.name)), 
+                this.removeFirstAndLastLetter(JSON.stringify(result.sort)), 
+                this.removeFirstAndLastLetter(JSON.stringify(result.model)), 
+                this.removeFirstAndLastLetter(JSON.stringify(result.operator)));
+            console.log("Result mongoDb: " + result + ", Result neo4j: " + neoResult);
+
+
+            let possibleNumbers = [1, 2, 3, 4, 5, 6, 7, 8];
+        
+
+            for (let i = 0; i < 4; i++) {           
+                
+                const randomIndex = Math.floor(Math.random() * possibleNumbers.length);
+                const randomNumber = possibleNumbers[randomIndex];
+            
+                possibleNumbers.splice(randomIndex, 1);
+                
+                const neoCouplingResult = await this.neo4jService.createTrainStationRelationship(
+                    this.removeFirstAndLastLetter(JSON.stringify(result._id)),
+                    randomNumber, 
+                    15
+                );
+            }
+            
+
             return result;
         } catch (error) {
             this.logger.error(`Error creating train`);
@@ -85,5 +114,9 @@ export class TrainService {
             console.warn(`Train with id ${_id} not found.`);
             return `Train with id ${_id} not found.`;
         }
+    }
+
+    removeFirstAndLastLetter(str: string): string {
+        return str.slice(1, str.length - 1);
     }
 }

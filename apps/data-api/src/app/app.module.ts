@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { BackendFeaturesModule } from '@train-repo/backend/features';
+import { Neo4jBackendModule } from '@train-repo/backend/neo4j';
 import { UsersModule } from '@train-repo/backend/user';
 import { AuthModule } from '@train-repo/backend/auth';
 import { MongooseModule } from '@nestjs/mongoose';
@@ -24,7 +25,7 @@ import { Logger } from '@nestjs/common';
                 return connection;
             }
         }),
-        
+        Neo4jBackendModule,
         UsersModule
     ],
     controllers: [],
