@@ -11,6 +11,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root',
 })
 export class AuthService {
+  
   public currentUser$ = new BehaviorSubject<IUserInfo | null>(null);
   private readonly CURRENT_USER = 'currentuser';
   private readonly headers = new HttpHeaders({
@@ -91,20 +92,19 @@ export class AuthService {
         Authorization: `Bearer ${token}`,
       }),
     };
-
-    console.log(`validateToken at ${url}`);
+  
     return this.http.get<IUserInfo>(url, httpOptions).pipe(
-      map((response) => {
-        console.log('Token is valid');
-        return response;
+      tap((user) => {
+        this.currentUser$.next(user); // Update de huidige gebruiker
       }),
       catchError((error) => {
-        console.error('Validate token Failed:', error);
+        console.error('Token validatie mislukt:', error);
         this.logout();
         return of(null);
       })
     );
   }
+  
 
   logout(): void {
     this.router.navigate(['/']).then((success) => {

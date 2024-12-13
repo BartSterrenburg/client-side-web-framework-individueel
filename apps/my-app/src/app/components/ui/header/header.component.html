@@ -1,35 +1,37 @@
 <nav class="navbar">
-    <ul class="navbar-list">
-      
-      <li *ngIf="isLoggedIn" class="navbar-item">
-        <a routerLink="/dashboard" class="navbar-link">Home</a>
-      </li>
-      <li *ngIf="isLoggedIn" class="navbar-item">
-        <a routerLink="/user" class="navbar-link">Gebruikers</a>
-      </li>
-      <li *ngIf="isLoggedIn" class="navbar-item">
-        <a routerLink="/train" class="navbar-link">Treinen</a>
-      </li>
-      <li *ngIf="isLoggedIn" class="navbar-item">
-        <a routerLink="/about" class="navbar-link">Over</a>
-      </li>
-  
-      <li *ngIf="!isLoggedIn" class="navbar-item">
-        <a routerLink="/dashboard" class="navbar-link">Home</a>
-      </li>
-      <li *ngIf="!isLoggedIn" class="navbar-item">
-        <a routerLink="/train" class="navbar-link">Treinen</a>
-      </li>
-      <li *ngIf="!isLoggedIn" class="navbar-item">
-        <a routerLink="/about" class="navbar-link">Over</a>
-      </li>
-      <li *ngIf="!isLoggedIn" class="navbar-item">
-        <a routerLink="/register" class="navbar-link">Registreren</a>
-      </li>
-      <li *ngIf="!isLoggedIn" class="navbar-item">
-        <a routerLink="/login" class="navbar-link">Inloggen</a>
-      </li>
-  
-    </ul>
-  </nav>
-  
+  <ul class="navbar-list">
+    <!-- Items zichtbaar voor ingelogde gebruikers -->
+    <li *ngIf="isLoggedIn" class="navbar-item">
+      <a routerLink="/dashboard" class="navbar-link">Home</a>
+    </li>
+    <li *ngIf="isLoggedIn" class="navbar-item">
+      <a routerLink="/user" class="navbar-link">Gebruikers</a>
+    </li>
+    <li *ngIf="isLoggedIn" class="navbar-item">
+      <a routerLink="/train" class="navbar-link">Treinen</a>
+    </li>
+    <li *ngIf="isLoggedIn" class="navbar-item">
+      <a routerLink="/about" class="navbar-link">Over</a>
+    </li>
+    <li *ngIf="isLoggedIn" class="navbar-item">
+      <a (click)="logout()" class="navbar-link">Uitloggen</a>
+    </li>
+
+    <!-- Items zichtbaar voor niet-ingelogde gebruikers -->
+    <li *ngIf="!isLoggedIn" class="navbar-item">
+      <a routerLink="/dashboard" class="navbar-link">Home</a>
+    </li>
+    <li *ngIf="!isLoggedIn" class="navbar-item">
+      <a routerLink="/train" class="navbar-link">Treinen</a>
+    </li>
+    <li *ngIf="!isLoggedIn" class="navbar-item">
+      <a routerLink="/about" class="navbar-link">Over</a>
+    </li>
+    <li *ngIf="!isLoggedIn" class="navbar-item">
+      <a routerLink="/register" class="navbar-link">Registreren</a>
+    </li>
+    <li *ngIf="!isLoggedIn" class="navbar-item">
+      <a routerLink="/login" class="navbar-link">Inloggen</a>
+    </li>
+  </ul>
+</nav>
