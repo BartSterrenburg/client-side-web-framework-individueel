@@ -26,19 +26,30 @@ export class Neo4JService {
             CREATE (t:Trein {id: $id, naam: $name, sort: $sort, model: $model, operator: $operator})
             RETURN t
         `;
-        const parameters = { id, name, sort, model, operator };
+        const parameters = { id: id, name: name, sort: sort, model: model, operator: operator };
         return await this.connection.runQuery(query, parameters);
     }
 
-    // Maak een station-node in Neo4j
     async createStation(id: number, name: string, location: string) {
         const query = `
-            CREATE (s:Station {id: $id, naam: $name, locatie: $location})
+            CREATE (s:Station {
+                id: toInteger($id),
+                naam: $name,
+                locatie: $location
+            })
             RETURN s
         `;
-        const parameters = { id, name, location };
+        this.logger.log(`Running Query: ${query}`);
+    
+        const parameters = {
+            id: id,
+            name: name,
+            location: location
+        };
+    
         return await this.connection.runQuery(query, parameters);
     }
+    
 
     async createTrainStationRelationship(trainId: string, stationId: number, averagePassingTime: number) {
         const query = `
@@ -47,7 +58,8 @@ export class Neo4JService {
             CREATE (s)-[r2:PASSAGEERT {avgPassTime: $averagePassingTime}]->(t)
             RETURN r1, r2
         `;
-        const parameters = { trainId, stationId, averagePassingTime };
+
+        const parameters = { trainId: trainId, stationId: stationId, averagePassingTime: averagePassingTime };
         return await this.connection.runQuery(query, parameters);
     }
     
@@ -59,7 +71,7 @@ export class Neo4JService {
             MATCH (t:Trein {id: $trainId})-[:PASSAGEERT]->(s:Station)
             RETURN s.id AS stationId, s.naam AS stationName, s.locatie AS stationLocation
         `;
-        const parameters = { trainId };
+        const parameters = { trainId: trainId };
         const results = await this.connection.runQuery(query, parameters);
     
         console.log('Neo4j results:', results);
@@ -86,7 +98,7 @@ export class Neo4JService {
     
         const stationId = parseInt(stationIdString);
 
-        const parameters = { stationId };
+        const parameters = { stationId: stationId };
         const results = await this.connection.runQuery(query, parameters);
     
         console.log('Neo4j results:', results);
