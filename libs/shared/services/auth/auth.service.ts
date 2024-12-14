@@ -134,7 +134,6 @@ export class AuthService {
     }
   }
   
-
   getTokenFromLocalStorage(): string | null {
     const localUser = localStorage.getItem(this.CURRENT_USER);
     if (localUser) {
@@ -145,7 +144,6 @@ export class AuthService {
     }
   }
   
-
   private saveUserToLocalStorage(apiResponse: any): void {
     const userData = apiResponse.results;
 
