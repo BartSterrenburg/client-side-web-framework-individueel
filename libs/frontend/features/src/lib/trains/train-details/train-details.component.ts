@@ -39,6 +39,10 @@ export class TrainDetailsComponent implements OnInit{
     this.router.navigate([`/train/${id}/trainpost`])
   }
 
+  RouteTrainFinder(id: string) {
+    this.router.navigate([`/train/${id}/trainfinder`])
+  }
+
   deleteTrain(id: string): void {
     if (id) {
       this.trainService.deleteTrain(id).subscribe(data => {

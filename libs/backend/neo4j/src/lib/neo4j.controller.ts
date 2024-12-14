@@ -35,5 +35,17 @@ export class Neo4JExampleController {
 
         return this.neo4jService.createTrainStationRelationship(trainId, Number.parseInt(stationId), averagePassingTime);
     }
+
+    @Get(':trainId/stations')
+    async getStationsByTrain(@Param('trainId') trainId: string): Promise<any> {
+        const stations = await this.neo4jService.getStationsByTrain(trainId);
+        return stations;
+    }
+
+    @Get('station/:stationId/trains')
+    async getTrainsAtStation(@Param('stationId') stationId: string): Promise<any> {
+        const trainsAtStation = await this.neo4jService.getTrainsAtStation(stationId);
+        return trainsAtStation;
+    }
     
 }

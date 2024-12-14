@@ -1,0 +1,24 @@
+<div class="train-stations-container">
+    <h2>Stations voor Trein {{ trainId }}</h2>
+    
+    <div class="stations-list">
+      <ul>
+        <li *ngFor="let station of stations" (click)="onStationClick(station.id)">
+          <div class="station-item">
+            <span>{{ station.name }}</span>
+            <span>{{ station.location }}</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  
+    <div *ngIf="selectedStation" class="trains-at-station">
+      <h3>Treinen die langs {{ selectedStation.name }} komen:</h3>
+      <ul>
+        <li *ngFor="let train of trainsAtStation">
+          {{ train.name }} (Operator: {{ train.operator }})
+        </li>
+      </ul>
+    </div>
+  </div>
+  

@@ -14,6 +14,7 @@ import { LoginComponent } from './components/login/login.component';
 import { TrainpostComponent } from './components/trainpost/trainpost.component';
 import { TrainpostListComponent } from './components/trainpost/trainpost-list/trainpost-list.component';
 import { TrainpostDetailsComponent } from './components/trainpost/trainpost-details/trainpost-details.component';
+import { TrainFinderComponent } from './components/train-finder/train-finder.component';
 
 
 
@@ -35,5 +36,6 @@ export const appRoutes: Route[] = [
     {path: 'login', component: LoginComponent, pathMatch: 'full'},
     {path: 'trainpost-post/:id', component: TrainpostComponent, pathMatch: 'full'},
     {path: 'train/:id/trainpost', component: TrainpostListComponent, pathMatch: 'full'},
+    {path: 'train/:id/trainfinder', component: TrainFinderComponent, pathMatch: 'full'},
     {path: 'trainpost/:id', component: TrainpostDetailsComponent, pathMatch: 'full'}
 ];

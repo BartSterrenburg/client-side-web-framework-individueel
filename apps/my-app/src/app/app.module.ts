@@ -16,6 +16,7 @@ import { FeaturesModule } from '@train-repo/features';
 import { TrainpostComponent } from './components/trainpost/trainpost.component';
 import { TrainpostListComponent } from './components/trainpost/trainpost-list/trainpost-list.component';
 import { TrainpostDetailsComponent } from './components/trainpost/trainpost-details/trainpost-details.component';
+import { TrainFinderComponent } from './components/train-finder/train-finder.component';
 
 @NgModule({
     declarations: [
@@ -28,7 +29,8 @@ import { TrainpostDetailsComponent } from './components/trainpost/trainpost-deta
         RegisterComponent,
         TrainpostComponent,
         TrainpostListComponent,
-        TrainpostDetailsComponent
+        TrainpostDetailsComponent,
+        TrainFinderComponent
     ],
     imports: [
         BrowserModule,
