@@ -1,5 +1,5 @@
 import { Id } from './../id.model';
-import { IUserInfo } from '@train-repo/shared/api';
+import { IUserInfo } from './../../api/src/lib/models/user.interface';
 
 export enum TrainSort {
   Sprinter = 'Sprinter',
