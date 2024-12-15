@@ -34,8 +34,8 @@ export class Neo4JService {
         const query = `
             CREATE (s:Station {
                 id: toInteger($id),
-                naam: $name,
-                locatie: $location
+                naam: toString($name),
+                locatie: toString($location)
             })
             RETURN s
         `;
