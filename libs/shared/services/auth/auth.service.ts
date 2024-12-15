@@ -52,10 +52,16 @@ export class AuthService {
       )
       .pipe(
         map((user) => {
-          this.saveUserToLocalStorage(user);
-          this.currentUser$.next(user);
-          this.alertService.success('You have been logged in');
-          return user;
+          if(user) {
+            this.saveUserToLocalStorage(user);
+            this.currentUser$.next(user);
+            this.alertService.success('You have been logged in');
+            return user;
+          } else {
+            user == '-1'
+            this.saveUserToLocalStorage(user);
+            return user;
+          }
         }),
         catchError((error) => {
           console.error('Login error:', error);
@@ -81,7 +87,6 @@ export class AuthService {
       )
       .pipe(
         map((user) => {
-          this.saveUserToLocalStorage(user);
           this.currentUser$.next(user);
           this.alertService.success('You have been registered');
           return user;

@@ -8,4 +8,5 @@ import { ImageLibrary} from './../../../assets/imagedata'
 })
 export class AboutComponent {
   erd = ImageLibrary.erd;
+  requirements = ImageLibrary.requirements;
 }
