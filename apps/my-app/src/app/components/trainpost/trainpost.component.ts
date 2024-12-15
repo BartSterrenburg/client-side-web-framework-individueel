@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms'; 
 import { PostService } from 'libs/shared/services/post/post.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from 'libs/shared/services/auth/auth.service';
 
 @Component({
   selector: 'train-repo-trainpost',
@@ -14,13 +15,16 @@ export class TrainpostComponent implements OnInit {
   trainId: string | null = null; 
   constructor(
     private postService: PostService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router,
+    private authService: AuthService
   ) {
     this.trainpostForm = new FormGroup({
       description: new FormControl(''),
       isCommentable: new FormControl(false),
       picture: new FormControl(''),
-      train: new FormControl()
+      train: new FormControl(),
+      owner: new FormControl()
     });
   }
 
@@ -33,6 +37,12 @@ export class TrainpostComponent implements OnInit {
           train: this.trainId
         });
       }
+
+      this.authService.currentUser$.subscribe(user => {
+        this.trainpostForm.patchValue({
+          owner: user?._id
+        });
+      })
     });
   }
 
@@ -55,5 +65,6 @@ export class TrainpostComponent implements OnInit {
     this.postService.addTrain(this.trainpostForm.value).subscribe(data => {
       console.log(data);
     });
+    this.router.navigate(['/train']);
   }
 }

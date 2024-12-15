@@ -1,5 +1,6 @@
 import { IComment } from '@train-repo/shared/api';
 import { Id } from '../id.model';
+import { IUserInfo } from './../../api/src/lib/models/user.interface';
 
 export class Post {
   _id: Id;
@@ -10,6 +11,7 @@ export class Post {
   createdAt: Date;
   updatedAt: Date;
   train: string;
+  owner: IUserInfo;
   comments: IComment[];
 
   constructor(
@@ -21,6 +23,7 @@ export class Post {
     createdAt: Date,
     updatedAt: Date,
     train: string,
+    owner: IUserInfo,
     comments: IComment[]
     ) {
     this._id = _id;
@@ -31,6 +34,7 @@ export class Post {
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
     this.train = train;
+    this.owner = owner;
     this.comments = comments;
   }
 }

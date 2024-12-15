@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { PostService } from 'libs/shared/services/post/post.service';
 import { Post } from 'libs/shared/services/post/post.model';
 import { Train } from 'libs/shared/services/train/train.model';
@@ -6,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { TrainService } from 'libs/shared/services/train/train.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { IComment } from '@train-repo/shared/api';
+import { AuthService } from 'libs/shared/services/auth/auth.service';
 
 @Component({
   selector: 'train-repo-trainpost-details',
@@ -23,7 +25,9 @@ export class TrainpostDetailsComponent implements OnInit {
   constructor(
     private postService: PostService,
     private trainService: TrainService,
-    private route: ActivatedRoute
+    public authService: AuthService,
+    private route: ActivatedRoute,
+    private router: Router,
   ) {
     this.newCommentForm = new FormGroup({
       comment: new FormControl('')
@@ -72,6 +76,13 @@ addComment(): void {
       }
     );
   }
+}
+
+deletePost(id: string): void {
+  this.postService.deletePost(id).subscribe(data => {
+    console.log(data);
+  });
+  this.router.navigate(['/train']);
 }
 
 }

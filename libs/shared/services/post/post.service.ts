@@ -78,4 +78,13 @@ export class PostService {
     const post = this.posts.find((post) => post._id === id);
     return of(post);
   }
+
+  deletePost(id: string): Observable<void> {
+    console.log(`Deleting post with id: ${id} url: ${this.apiUrl}/${id}`);
+    return this.http.delete<void>(`${this.apiUrl}/${id}`).pipe(
+      map(response => {
+        return response;
+      })
+    );  
+  }
 }
