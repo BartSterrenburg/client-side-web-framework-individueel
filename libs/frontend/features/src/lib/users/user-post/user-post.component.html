@@ -8,10 +8,10 @@
 <body>
   <div class="container">
     <div class="form-container">
-      <h2 class="text-center mb-4">User Information Form</h2>
+      <h2 class="text-center mb-4">Nieuwe gebruiker</h2>
       <form #userPostForm="ngForm" name="form" (ngSubmit)="userPostForm.form.valid && onSubmit()" novalidate>
         <div class="form-row mb-3">
-            <label for="name" class="form-label">gebruikersnaam</label>
+            <label for="name" class="form-label">Naam</label>
             <input type="text" class="form-control" id="name" placeholder="Enter Name" required [(ngModel)]="newUser.name" name="name">
         </div>
         <div class="form-row mb-3">
@@ -20,11 +20,7 @@
         </div>
         <div class="form-row mb-3">
             <label for="password" class="form-label">Wachtwoord</label>
-            <input type="text" class="form-control" id="password" placeholder="Enter Password" required [(ngModel)]="newUser.password" name="password">
-        </div>
-        <div class="form-row mb-3">
-            <label for="profilepicture" class="form-label">profilepicture</label>
-            <input type="text" class="form-control" id="profilePicture" placeholder="Enter profilePicture" required [(ngModel)]="newUser.profileImgUrl" name="email">
+            <input type="text" class="form-control" id="password" placeholder="Kies Wactwoord" required [(ngModel)]="newUser.password" name="password">
         </div>
         <div class="form-row mb-3">
             <label for="userRole" class="form-label">Rol</label>

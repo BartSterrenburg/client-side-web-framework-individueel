@@ -54,8 +54,8 @@ export class UserService {
         );  
     }
 
-    getUserById(id: string): IUserInfo {
-        return this.users.filter((user) => user._id == id)[0];
+    getUserById(id: string): Observable<IUserInfo> {
+        return of(this.users.filter((user) => user._id == id)[0]);
     }
 
 

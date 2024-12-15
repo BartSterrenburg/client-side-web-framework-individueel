@@ -39,6 +39,8 @@ export class AuthService {
       .subscribe(() => console.log('Startup auth done'));
   }
 
+  
+
   login(email: string, password: string): Observable<IUserInfo | null> {
     console.log(`login at ${environment.SERVER_API_URL}/api/auth/login with ${email} and ${password}`);
 
@@ -63,12 +65,20 @@ export class AuthService {
       );
   }
 
-  register(userData: IUserInfo): Observable<IUserInfo | null> {
+  register(userData: IUserInfo): Observable<any | null> {
     console.log(`register at ${environment.SERVER_API_URL}/api/users`);
     return this.http
-      .post<IUserInfo>(`${environment.SERVER_API_URL}/api/auth/register`, { "name": userData.name, "emailAddress": userData.emailAddress, "password": userData.password }, {
-        headers: this.headers,
-      })
+      .post<any>(
+        `${environment.SERVER_API_URL}/api/auth/register`,
+        {
+          name: userData.name,
+          emailAddress: userData.emailAddress,
+          password: userData.password,
+        },
+        {
+          headers: this.headers,
+        }
+      )
       .pipe(
         map((user) => {
           this.saveUserToLocalStorage(user);
@@ -78,11 +88,23 @@ export class AuthService {
         }),
         catchError((error) => {
           console.error('Register error:', error);
-          this.alertService.error(error.error?.message || error.message);
+        
+          // Specifieke foutmeldingen verwerken
+          if (error.status === 409) {
+            this.alertService.error(
+              error.error?.message || 'This email address is already registered.'
+            );
+          } else {
+            this.alertService.error(
+              error.error?.message || 'An unexpected error occurred.'
+            );
+          }
+        
           return of(null);
         })
       );
   }
+  
 
   validateToken(token: string): Observable<IUserInfo | null> {
     const url = `${environment.SERVER_API_URL}/api/auth/profile`;

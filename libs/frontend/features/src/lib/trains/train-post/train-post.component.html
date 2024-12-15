@@ -1,108 +1,152 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Train Form</title>
+  <title>Trein Formulier</title>
 </head>
 <body>
   <div class="container">
     <div class="form-container">
-      <h2 class="text-center mb-4">Train Information Form</h2>
+      <h2 class="text-center mb-4">Trein Informatie Formulier</h2>
       <form #trainPostForm="ngForm" name="form" (ngSubmit)="trainPostForm.form.valid && onSubmit()" novalidate>
         
-        <!-- Train Sort -->
+        <!-- Trein Soort -->
         <div class="form-row mb-3">
-          <label for="trainSort" class="form-label">Train Sort</label>
-          <select class="form-select" id="trainSort" required [(ngModel)]="newTrain.sort" name="trainSort">
-            <option value="">Select Sort</option>
+          <label for="trainSort" class="form-label">Trein Soort</label>
+          <select class="form-select" id="trainSort" required [(ngModel)]="newTrain.sort" name="trainSort" #trainSort="ngModel">
+            <option value="">Selecteer Soort</option>
             <option value="Sprinter">Sprinter</option>
             <option value="Intercity">Intercity</option>
-            <option value="HighSpeed">HighSpeed</option>
-            <option value="Freight">Freight</option>
+            <option value="HighSpeed">Hogesnelheid</option>
+            <option value="Freight">Goederen</option>
           </select>
+          <div *ngIf="trainSort.invalid && trainSort.touched" class="text-danger">
+            Selecteer een treinsoort.
+          </div>
         </div>
 
+        <!-- Naam -->
         <div class="form-row mb-3">
-          <label for="trainName" class="form-label">Name</label>
-          <input type="text" class="form-control" id="trainName" placeholder="Enter Train Name" required [(ngModel)]="newTrain.name" name="trainName">
+          <label for="trainName" class="form-label">Naam</label>
+          <input type="text" class="form-control" id="trainName" placeholder="Vul de treinnaam in" required [(ngModel)]="newTrain.name" name="trainName" #trainName="ngModel">
+          <div *ngIf="trainName.invalid && trainName.touched" class="text-danger">
+            Naam is verplicht.
+          </div>
         </div>
 
         <!-- Operator -->
         <div class="form-row mb-3">
           <label for="trainOperator" class="form-label">Operator</label>
-          <input type="text" class="form-control" id="trainOperator" placeholder="Enter Operator" required [(ngModel)]="newTrain.operator" name="trainOperator">
+          <input type="text" class="form-control" id="trainOperator" placeholder="Vul de operator in" required [(ngModel)]="newTrain.operator" name="trainOperator" #trainOperator="ngModel">
+          <div *ngIf="trainOperator.invalid && trainOperator.touched" class="text-danger">
+            Operator is verplicht.
+          </div>
         </div>
 
         <!-- Model -->
         <div class="form-row mb-3">
           <label for="trainModel" class="form-label">Model</label>
-          <input type="text" class="form-control" id="trainModel" placeholder="Enter Model" required [(ngModel)]="newTrain.model" name="trainModel">
+          <input type="text" class="form-control" id="trainModel" placeholder="Vul het model in" required [(ngModel)]="newTrain.model" name="trainModel" #trainModel="ngModel">
+          <div *ngIf="trainModel.invalid && trainModel.touched" class="text-danger">
+            Model is verplicht.
+          </div>
         </div>
 
-        <!-- Capacity -->
+        <!-- Capaciteit -->
         <div class="form-row mb-3">
-          <label for="trainCapacity" class="form-label">Capacity</label>
-          <input type="number" class="form-control" id="trainCapacity" placeholder="Enter Capacity" required [(ngModel)]="newTrain.capacity" name="trainCapacity">
+          <label for="trainCapacity" class="form-label">Capaciteit</label>
+          <input type="number" class="form-control" id="trainCapacity" placeholder="Vul de capaciteit in" required [(ngModel)]="newTrain.capacity" name="trainCapacity" #trainCapacity="ngModel" min="1">
+          <div *ngIf="trainCapacity.invalid && trainCapacity.touched" class="text-danger">
+            Capaciteit moet minimaal 1 zijn.
+          </div>
         </div>
 
-        <!-- Number of Wagons -->
+        <!-- Aantal Wagons -->
         <div class="form-row mb-3">
-          <label for="numberOfWagons" class="form-label">Number of Wagons</label>
-          <input type="number" class="form-control" id="numberOfWagons" placeholder="Enter Number of Wagons" required [(ngModel)]="newTrain.numberOfWagons" name="numberOfWagons">
+          <label for="numberOfWagons" class="form-label">Aantal Wagons</label>
+          <input type="number" class="form-control" id="numberOfWagons" placeholder="Vul het aantal wagons in" required [(ngModel)]="newTrain.numberOfWagons" name="numberOfWagons" #numberOfWagons="ngModel" min="1">
+          <div *ngIf="numberOfWagons.invalid && numberOfWagons.touched" class="text-danger">
+            Aantal wagons moet minimaal 1 zijn.
+          </div>
         </div>
 
-        <!-- Max Speed -->
+        <!-- Maximale Snelheid -->
         <div class="form-row mb-3">
-          <label for="maxSpeed" class="form-label">Max Speed (km/h)</label>
-          <input type="number" class="form-control" id="maxSpeed" placeholder="Enter Max Speed" required [(ngModel)]="newTrain.maxSpeed" name="maxSpeed">
+          <label for="maxSpeed" class="form-label">Maximale Snelheid (km/u)</label>
+          <input type="number" class="form-control" id="maxSpeed" placeholder="Vul de maximale snelheid in" required [(ngModel)]="newTrain.maxSpeed" name="maxSpeed" #maxSpeed="ngModel" min="0">
+          <div *ngIf="maxSpeed.invalid && maxSpeed.touched" class="text-danger">
+            Maximale snelheid moet positief zijn.
+          </div>
         </div>
 
-        <!-- Propulsion -->
+        <!-- Voortstuwing -->
         <div class="form-row mb-3">
-          <label for="propulsion" class="form-label">Propulsion</label>
-          <input type="text" class="form-control" id="propulsion" placeholder="Enter Propulsion Type" required [(ngModel)]="newTrain.propulsion" name="propulsion">
+          <label for="propulsion" class="form-label">Voortstuwing</label>
+          <input type="text" class="form-control" id="propulsion" placeholder="Vul het type voortstuwing in" required [(ngModel)]="newTrain.propulsion" name="propulsion" #propulsion="ngModel">
+          <div *ngIf="propulsion.invalid && propulsion.touched" class="text-danger">
+            Voortstuwing is verplicht.
+          </div>
         </div>
 
-        <!-- Length -->
+        <!-- Lengte -->
         <div class="form-row mb-3">
-          <label for="length" class="form-label">Length (m)</label>
-          <input type="number" class="form-control" id="length" placeholder="Enter Train Length" required [(ngModel)]="newTrain.length" name="length">
+          <label for="length" class="form-label">Lengte (m)</label>
+          <input type="number" class="form-control" id="length" placeholder="Voer de lengte van de trein in" required [(ngModel)]="newTrain.length" name="length" #length="ngModel" min="1">
+          <div *ngIf="length.invalid && length.touched" class="text-danger">
+            Lengte moet minimaal 1 meter zijn.
+          </div>
         </div>
 
-        <!-- Manufacture Year -->
+        <!-- Bouwjaar -->
         <div class="form-row mb-3">
-          <label for="manufactureYear" class="form-label">Manufacture Year</label>
-          <input type="number" class="form-control" id="manufactureYear" placeholder="Enter Manufacture Year" required [(ngModel)]="newTrain.manufactureYear" name="manufactureYear">
+          <label for="manufactureYear" class="form-label">Bouwjaar</label>
+          <input type="number" class="form-control" id="manufactureYear" placeholder="Voer het bouwjaar in" required [(ngModel)]="newTrain.manufactureYear" name="manufactureYear" #manufactureYear="ngModel" min="1800" max="{{currentYear}}">
+          <div *ngIf="manufactureYear.invalid && manufactureYear.touched" class="text-danger">
+            Bouwjaar moet tussen 1800 en {{currentYear}} liggen.
+          </div>
         </div>
 
-        <!-- Manufacturer -->
+        <!-- Fabrikant -->
         <div class="form-row mb-3">
-          <label for="manufacturer" class="form-label">Manufacturer</label>
-          <input type="text" class="form-control" id="manufacturer" placeholder="Enter Manufacturer" required [(ngModel)]="newTrain.manufacturer" name="manufacturer">
+          <label for="manufacturer" class="form-label">Fabrikant</label>
+          <input type="text" class="form-control" id="manufacturer" placeholder="Voer de fabrikant in" required [(ngModel)]="newTrain.manufacturer" name="manufacturer" #manufacturer="ngModel">
+          <div *ngIf="manufacturer.invalid && manufacturer.touched" class="text-danger">
+            Fabrikant is verplicht.
+          </div>
         </div>
 
-        <!-- Weight -->
+        <!-- Gewicht -->
         <div class="form-row mb-3">
-          <label for="weight" class="form-label">Weight (tons)</label>
-          <input type="number" class="form-control" id="weight" placeholder="Enter Weight" required [(ngModel)]="newTrain.weight" name="weight">
+          <label for="weight" class="form-label">Gewicht (ton)</label>
+          <input type="number" class="form-control" id="weight" placeholder="Voer het gewicht in ton in" required [(ngModel)]="newTrain.weight" name="weight" #weight="ngModel" min="1">
+          <div *ngIf="weight.invalid && weight.touched" class="text-danger">
+            Gewicht moet minimaal 1 ton zijn.
+          </div>
         </div>
 
-        <!-- Energy Consumption -->
+        <!-- Energieverbruik -->
         <div class="form-row mb-3">
-          <label for="energyConsumption" class="form-label">Energy Consumption (kWh/km)</label>
-          <input type="number" class="form-control" id="energyConsumption" placeholder="Enter Energy Consumption" required [(ngModel)]="newTrain.energyConsumption" name="energyConsumption">
+          <label for="energyConsumption" class="form-label">Energieverbruik (kWh/km)</label>
+          <input type="number" class="form-control" id="energyConsumption" placeholder="Voer het energieverbruik in" required [(ngModel)]="newTrain.energyConsumption" name="energyConsumption" #energyConsumption="ngModel" min="0">
+          <div *ngIf="energyConsumption.invalid && energyConsumption.touched" class="text-danger">
+            Energieverbruik moet 0 of hoger zijn.
+          </div>
         </div>
 
-        <!-- Facilities -->
+        <!-- Faciliteiten -->
         <div class="form-row mb-3">
-          <label for="facilities" class="form-label">Facilities</label>
-          <input type="text" class="form-control" id="facilities" placeholder="Enter Facilities (comma-separated)" required [(ngModel)]="newTrain.facilities" name="facilities">
+        <label for="facilities" class="form-label">Faciliteiten</label>
+        <input type="text" class="form-control" id="facilities" placeholder="Voer faciliteiten in (komma-gescheiden)" required [(ngModel)]="newTrain.facilities" name="facilities" #facilities="ngModel">
+        <div *ngIf="facilities.invalid && facilities.touched" class="text-danger">
+          Faciliteiten zijn verplicht.
+        </div>
         </div>
 
-        <!-- Submit Button -->
+
+        <!-- Inzenden -->
         <div class="d-grid">
-          <button type="submit" class="btn btn-success" [disabled]="!trainPostForm.valid">Submit</button>
+          <button type="submit" class="btn btn-success" [disabled]="!trainPostForm.valid">Verstuur</button>
         </div>
       </form>
     </div>

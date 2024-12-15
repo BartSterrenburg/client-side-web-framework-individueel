@@ -1,45 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Train Overview</title>
-    </head>
-    <body>
-        <div class="container">
-            <div class="title mt-3 mb-4"><h1>Gebruikerdetails</h1></div>
-
-            <button class="primary" (click)="deleteUser(user!._id)">verwijderen</button>
-            <button class="primary" (click)="RouteEditUserForm(user!._id)" style="cursor: pointer">bewerken</button>
-
-
-            <!-- Train info grid -->
-            <div class="info-grid">
-                <div class="info-item">
-                    <strong>ID:</strong>
-                    {{ user?._id }}
-                </div>
-                <div class="info-item">
-                    <strong>Naam:</strong>
-                    {{ user?.name }}
-                </div>
-                <div class="info-item">
-                    <strong>Email:</strong>
-                    {{ user?.emailAddress }}
-                </div>
-                <div class="info-item">
-                    <strong>Gender:</strong>
-                    {{ user?.gender }}
-                </div>
-                <div class="info-item">
-                    <strong>Rol:</strong>
-                    {{ user?.role }}
-                </div>
-                <div class="info-item">
-                    <strong>Fotolink (wordt nog omgezet naar een foto):</strong>
-                    {{ user?.profileImgUrl }}
-                </div>
-            </div>
-        </div>
-    </body>
-</html>
+<body>
+    <div class="container">
+      <div class="title mt-3 mb-4">
+        <h1>Gebruikerdetails</h1>
+      </div>
+  
+      <!-- Knoppen sectie -->
+      <div class="button-bar" *ngIf="(loggedInUser$ | async)?._id == userId">
+        <button class="btn" (click)="deleteUser(user!._id)">Verwijderen</button>
+        <button class="btn" (click)="RouteEditUserForm(user!._id)" style="cursor: pointer">
+          Bewerken
+        </button>
+      </div>
+  
+      <!-- User info tabel -->
+      <table class="train-info-table">
+        <thead>
+          <tr>
+            <th>Informatie</th>
+            <th>Waarde</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Naam:</strong></td>
+            <td>{{ user?.name }}</td>
+          </tr>
+          <tr>
+            <td><strong>Email:</strong></td>
+            <td>{{ user?.emailAddress }}</td>
+          </tr>
+          <tr>
+            <td><strong>Gender:</strong></td>
+            <td>{{ user?.gender }}</td>
+          </tr>
+          <tr>
+            <td><strong>Rol:</strong></td>
+            <td>{{ user?.role }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+  

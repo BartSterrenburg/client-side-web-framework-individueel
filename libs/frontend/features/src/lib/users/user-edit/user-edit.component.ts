@@ -29,7 +29,9 @@ export class UserEditComponent implements OnInit {
         this.route.paramMap.subscribe((params) => {
           this.userId = params.get('id');
             if(this.userId) {
-              this.newUser = this.userService.getUserById(this.userId!);
+              this.userService.getUserById(this.userId!).subscribe(user => {
+                this.newUser = user;
+              });
             }
           });    
     }

@@ -73,4 +73,13 @@ export class AuthService {
         const createdItem = await this.userModel.create(user);
         return createdItem;
     }
+
+    async checkIfEmailExists(email: string): Promise<boolean> {
+        this.logger.log(`check if email exists: ${email}`);
+        if (await this.userModel.findOne({ emailAddress: email })) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

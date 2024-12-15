@@ -2,9 +2,11 @@ import {
     Controller,
     Request,
     Post,
+    Get,
     UseGuards,
     Logger,
-    Body
+    Body,
+    Param
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { Public } from '../decorators/decorators';
@@ -35,5 +37,10 @@ export class AuthController {
     async register(@Body() user: CreateUserDto): Promise<IUserIdentity> {
         this.logger.log('Register');
         return await this.authService.register(user);
+    }
+
+    @Get('check-email/:email')
+    async checkIfEmailExists(@Param('email') email: string): Promise<boolean> {
+        return await this.authService.checkIfEmailExists(email);
     }
 }

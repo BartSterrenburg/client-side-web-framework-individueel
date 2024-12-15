@@ -37,16 +37,28 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   onSubmit(): void {
     if (this.registerForm.valid) {
-      this.authService.register(this.registerForm.value).subscribe((user) => {
-        if (user) {
-          console.log('user = ', user);
-          this.router.navigate(['/']);
-        }
+      this.authService.register(this.registerForm.value).subscribe({
+        next: (user) => {
+          if (user) {
+            console.log('user = ', user);
+            this.router.navigate(['/']);
+          }
+        },
+        error: (error) => {
+          console.error('Error during registration:', error);
+      
+          // Controleer of error bestaat en een statuscode heeft
+          if (error?.statusCode === 409) {
+            console.error('Email already exists.');
+          }
+        },
       });
+      
     } else {
-      console.error('registerForm invalid');
+      console.error('Form is invalid');
     }
   }
+  
 
   validEmail(control: FormControl): { [s: string]: boolean } | null {
     const email = control.value;
