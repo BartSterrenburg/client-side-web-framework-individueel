@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   loginForm: FormGroup = new FormGroup({});
   subs?: Subscription;
   submitted = false;
+  errorMessage: string | null = null; // Voeg een veld toe voor foutmeldingen
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -47,20 +48,28 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(): void {
+    this.errorMessage = null; // Reset foutmelding bij nieuwe poging
     if (this.loginForm?.valid && this.loginForm != undefined) {
       this.submitted = true;
       const email = this.loginForm.value.email;
       const password = this.loginForm.value.password;
       this.authService
         .login(email, password)
-        // .pipe(delay(1000))
-        .subscribe((user) => {
-          if (user) {
-            console.log('Logged in');
-            this.router.navigate(['/']);
+        .subscribe(
+          (user) => {
+            if (user) {
+              console.log('Logged in');
+              this.router.navigate(['/']);
+            }
+            this.submitted = false;
+          },
+          (error) => {
+            // Foutafhandeling
+            console.error('Login error:', error);
+            this.errorMessage = 'Invalid email or password'; // Standaard foutbericht
+            this.submitted = false;
           }
-          this.submitted = false;
-        });
+        );
     } else {
       this.submitted = false;
       console.error('loginForm invalid');
@@ -82,7 +91,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   validPassword(control: FormControl): { [s: string]: boolean } | null {
     const password = control.value;
     const regexp = new RegExp('^[a-zA-Z]([a-zA-Z0-9]){2,14}');
-    const test = regexp.test(password);
     if (regexp.test(password) !== true) {
       return { password: false };
     } else {
