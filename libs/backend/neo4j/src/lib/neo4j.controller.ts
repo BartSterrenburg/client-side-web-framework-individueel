@@ -28,7 +28,7 @@ export class Neo4JExampleController {
     async coupleTrainToStation(@Param('trainId') trainId: string, @Param('stationId') stationId: string, @Body() body: any): Promise<any> {
         const averagePassingTime = body.info ? Number(body.info) : 0; 
 
-        return this.neo4jService.createTrainStationRelationship(trainId, Number.parseInt(stationId), averagePassingTime);
+        return this.neo4jService.createTrainStationRelationship(trainId, parseInt(stationId), averagePassingTime);
     }
 
     @Get(':trainId/stations')

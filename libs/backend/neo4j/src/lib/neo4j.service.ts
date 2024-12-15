@@ -41,6 +41,7 @@ export class Neo4JService {
     
 
     async createTrainStationRelationship(trainId: string, stationId: number, averagePassingTime: number) {
+
         const query = `
             MATCH (t:Trein {id: $trainId}), (s:Station {id: $stationId})
             CREATE (t)-[r1:PASSAGEERT {avgPassTime: $averagePassingTime}]->(s)
@@ -67,7 +68,7 @@ export class Neo4JService {
     
         const stations = results.map((record: any) => {
             return {
-                id: record._fields[0],           // stationId
+                id: record._fields[0].low,           // stationId
                 name: record._fields[1],         // stationName
                 location: record._fields[2],     // stationLocation
             };
