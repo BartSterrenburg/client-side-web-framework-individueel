@@ -31,6 +31,7 @@ export class neo4JConnection {
         const session = this.neo4jDriver.session();
         try {
             const result = await session.run(query, parameters);
+            Logger.log(`Query parameters: ${JSON.stringify(parameters)}`);
             return result.records; 
         } catch (error) {
             Logger.error('Error running query', error);

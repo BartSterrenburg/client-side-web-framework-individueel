@@ -9,7 +9,7 @@ export const environment: IEnvironment = {
 
     // this is permitted for now
     MONGO_DB_CONNECTION_STRING: 'mongodb+srv://sbsterrenburg:PzYmiOkbw5bjwq89@traindb.c6xon.mongodb.net/database',
-    NEO4J_URI: 'neo4j+s://b060d8d2.databases.neo4j.io',
+    NEO4J_URI: 'neo4j+s://87c86aee.databases.neo4j.io',
     NEO4J_USER: 'neo4j',
     NEO4J_PASSWORD: 'Ka5W-MnFIbYKoFE61A5G0DSY9DSTVAc4Ea16xNH4eP4'
 };
