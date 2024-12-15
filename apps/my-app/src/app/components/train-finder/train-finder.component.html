@@ -1,6 +1,7 @@
 <div class="train-stations-container">
-    <h2>Waar te vinden:</h2>
-    
+    <h2 *ngIf="stations.length != 0">Waar te vinden:</h2>
+    <h2 *ngIf="stations.length == 0">Deze trein is nog niet op een station gesignaleerd</h2>
+
     <div class="stations-list">
       <ul>
         <li *ngFor="let station of stations" (click)="onStationClick(station.id)">

@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { IUserInfo } from './../../../../../../shared/services/user/user.model';
 import { UserService } from './../../../../../../shared/services/user/user.service';
 import { AuthService } from './../../../../../../shared/services/auth/auth.service';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'train-repo-user-details',
@@ -13,16 +12,13 @@ import { Observable } from 'rxjs';
 export class UserDetailsComponent implements OnInit {
   userId: string | null = null;
   user: IUserInfo | null = null;
-  loggedInUser$: Observable<IUserInfo | null>;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private userService: UserService,
-    private authService: AuthService
-  ) {
-    this.loggedInUser$ = this.authService.currentUser$; // Observable van de ingelogde gebruiker
-  }
+    public authService: AuthService
+  ) {}
 
   deleteUser(id: string): void {
     if (id) {
@@ -42,9 +38,12 @@ export class UserDetailsComponent implements OnInit {
       this.userId = params.get('id');
       if (this.userId) {
         this.userService.getUserById(this.userId).subscribe((user) => {
-          this.user = user;
+          this.user = user; 
+          console.log(this.user?._id + " " + this.userId)
+
         });
       }
     });
   }
+
 }

@@ -5,14 +5,25 @@
       </div>
   
       <!-- Knoppen sectie -->
-      <div class="button-bar" *ngIf="(loggedInUser$ | async)?._id == userId">
-        <button class="btn" (click)="deleteUser(user!._id)">Verwijderen</button>
-        <button class="btn" (click)="RouteEditUserForm(user!._id)" style="cursor: pointer">
+      <div class="button-bar" *ngIf="user">
+        <button
+          class="btn"
+          (click)="deleteUser(user._id)"
+          *ngIf="user._id === this.authService.getCurrentUserId()"
+        >
+          Verwijderen
+        </button>
+        <button
+          class="btn"
+          (click)="RouteEditUserForm(user._id)"
+          style="cursor: pointer"
+          *ngIf="user._id === this.authService.getCurrentUserId()"
+        >
           Bewerken
         </button>
       </div>
   
-      <!-- User info tabel -->
+      <!-- Gebruikersinformatie Tabel -->
       <table class="train-info-table">
         <thead>
           <tr>

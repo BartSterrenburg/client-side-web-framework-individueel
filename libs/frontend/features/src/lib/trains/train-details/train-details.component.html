@@ -14,8 +14,8 @@
       <button class="btn" (click)="RouteTrainFinder(train!._id)">Waar te vinden</button>
 
       
-      <button class="btn" *ngIf="train?.owner?._id == user?._id" (click)="RouteEditTrainForm(train!._id)">Bewerken</button>
-      <button class="btn" *ngIf="train?.owner?._id == user?._id" (click)="deleteTrain(train!._id)">Verwijderen</button>
+      <button class="btn" *ngIf="train?.owner?._id == user?._id && train?.owner != null" (click)="RouteEditTrainForm(train!._id)">Bewerken</button>
+      <button class="btn" *ngIf="train?.owner?._id == user?._id && train?.owner != null" (click)="deleteTrain(train!._id)">Verwijderen</button>
 
     </div>
 

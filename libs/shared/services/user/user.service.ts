@@ -55,7 +55,11 @@ export class UserService {
     }
 
     getUserById(id: string): Observable<IUserInfo> {
-        return of(this.users.filter((user) => user._id == id)[0]);
+        return this.http.get<{ results: IUserInfo }>(`${this.apiUrl}/${id}`).pipe(
+            map(response => {
+                return response.results;
+            })
+        )
     }
 
 
