@@ -5,12 +5,6 @@ import { Neo4JService } from './neo4j.service';
 export class Neo4JExampleController {
     constructor(private readonly neo4jService: Neo4JService) {}
 
-    @Get('')
-    async getAllUsers(): Promise<any> {
-        const results = await this.neo4jService.findAll();
-        return results;
-    }
-
     @Post('')
     async postAllStations(): Promise<any> {
         const stations = [
